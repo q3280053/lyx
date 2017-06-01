@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>各种形状</title>
+    <style>
+        div{margin:20px auto;}
+        #square{width:100px; height:100px; background:red;}
+        #rectangle{width:200px; height:100px; background:red;}
+        #circle{width:100px; height:100px; border-radius:50%; background:red;}
+        #oval{width:200px; height:100px; border-radius:50%; background:red;}
+        #triangle-up{width:0; height:0; overflow: hidden;border-left: 50px solid transparent; border-right:50px solid transparent; border-bottom:100px solid red;}
+        #triangle-down{width:0; height:0; overflow: hidden;border-left: 50px solid transparent; border-right:50px solid transparent; border-top:100px solid red;}
+        #triangle-left{width:0; height:0; overflow: hidden;border-top: 50px solid transparent; border-bottom:50px solid transparent; border-right:100px solid red;}
+        #triangle-right{width:0; height:0; overflow: hidden;border-top: 50px solid transparent; border-bottom:50px solid transparent; border-left:100px solid red;}
+        #triangle-topleft{width:0; height:0; border-top:100px solid red; border-right: 100px solid transparent;}
+        #triangle-topright{width:0; height:0; overflow: hidden; border-top:100px solid red; border-left:100px solid transparent;}
+        #triangle-bottomleft{width:0; height:0; border-bottom:100px solid red; border-right:100px solid transparent;}
+        #triangle-bottomright{width:0; height:0; border-bottom:100px solid red; border-left:100px solid transparent;}
+        #parallelogram{width:150px; height:100px; transform:skew(20deg); background:red;}
+        #trapezoid{width:100px; height:0; border-bottom:100px solid red; border-left:50px solid transparent; border-right:50px solid transparent;}
+        #star-six{width:0; height:0; border-left:50px solid transparent; border-right:50px solid transparent; border-bottom:100px solid red; position:relative;}
+        #star-six:after{width:0; height:0; border-left:50px solid transparent; border-right:50px solid transparent; border-top:100px solid red; position:absolute; top:30px; left:-50px; content:'';}
+        #star-five{position:relative; width:0; height:0; border-right:100px solid transparent; border-bottom:70px solid red; border-left:100px solid transparent; transform:rotate(35deg); display:block; color:red; margin-top:100px;}
+        #star-five:before{width:0; height:0; border-right:30px solid transparent; border-bottom:80px solid red; border-left:30px solid transparent; transform:rotate(-35deg); position:absolute; top:-45px; left:-65px; content:''; display:block; color:red;}
+        #star-five:after{width:0; height:0; border-right:100px solid transparent; border-bottom:70px solid red; border-left:100px solid transparent; transform:rotate(-70deg); position:absolute; top:3px; left:-105px; content:''; display:block; color:red;}
+        #pentagon{position:relative; width:54px; border-width:50px 18px 0; border-style:solid; border-color:red transparent; margin-top:100px;}
+        #pentagon:after{position:absolute; width:0; height:0; top:-85px; left:-18px; content:''; border-width:0 45px 35px; border-style:solid; border-color:transparent transparent red;}
+        #hexagon{width:100px; height:55px; background:red; position:relative; margin-top:50px;}
+        #hexagon:before{width:0; height:0; position:absolute; top:-25px; left:0; content:''; border-left:50px solid transparent; border-right:50px solid transparent; border-bottom:25px solid red;}
+        #hexagon:after{width:0; height:0; position:absolute; bottom:-25px; left:0; content:''; border-left:50px solid transparent; border-right:50px solid transparent; border-top:25px solid red;}
+        #octagon{width:100px; height:100px; background:red; position:relative; margin-top:50px;}
+        #octagon:before{content:''; position:absolute; top:0; left:0; border-bottom:29px solid red; border-left:29px solid #eee; border-right:29px solid #eee; width:42px; height:0;}
+        #octagon:after{content:''; position:absolute; bottom:0; left:0; border-top:29px solid red; border-left:29px solid #eee; border-right:29px solid #eee; width:42px; height:0;}
+        #heart{width:100px; height:90px; position:relative;}
+        #heart:after,#heart:before{position:absolute; content:''; left:50px; top:0; width:50px; height:80px; background:red; border-radius:50px 50px 0 0; transform:rotate(-45deg); transform-origin:0 100%;}
+        #heart:after{transform:rotate(45deg); transform-origin:100% 100%; left:0;}
+        #infinity{width:212px; height:100px; position:relative;} 
+        #infinity:before, #infinity:after{content:''; position:absolute; top:0; left:0; width:60px; height:60px; border:20px solid red; transform:rotate(-45deg);border-radius: 50px 50px 0 50px;}
+        #infinity:after{left:auto; right:0; border-radius:50px 50px 50px 0; transform:rotate(45deg);}
+    </style>
+</head>
+<body>
+    <div id="square"></div>
+    <div id="rectangle"></div>
+    <div id="circle"></div>
+    <div id="oval"></div>
+    <div id="triangle-up"></div>
+    <div id="triangle-down"></div>
+    <div id="triangle-left"></div>
+    <div id="triangle-right"></div>
+    <div id="triangle-topleft"></div>
+    <div id="triangle-topright"></div>
+    <div id="triangle-bottomleft"></div>
+    <div id="triangle-bottomright"></div>
+    <div id="parallelogram"></div>
+    <div id="trapezoid"></div>
+    <div id="star-six"></div>
+    <div id="star-five"></div>
+    <div id="pentagon"></div>
+    <div id="hexagon"></div>
+    <div id="octagon"></div>
+    <div id="heart"></div>
+    <div id="infinity"></div>
+</body>
+</html>

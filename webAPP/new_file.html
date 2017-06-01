@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<style type="text/css">
+		 /*当前动画停止后,保持最后一个属性值*/
+			.a{-webkit-animation-fill-mode: forwards;}
+			/*弹性滚动，安卓不支持原生的弹性滚动*/
+			body{overflow: scroll;-webkit-overflow-scrolling: touch;}
+			
+			/*
+			 zepto 框架轻量
+			 jquery mobile 高度组件化
+			 * */
+		</style>
+		<script src="zepto.min.js"></script>
+		<!--<script src="../js/jquery-1.12.1.min.js"></script>-->
+	</head>
+	<body>		
+		<nav>
+			<a href="javascript:;" id="a1">Home</a>
+			<a href="javascript:;" id="a2">Link</a>
+			<a href="">About</a>
+		</nav>	
+		<abbr></abbr>
+		<section id="move" style="height: 100px;background-color: #f00;">
+			
+		</section>
+		<style type="text/css">
+			div{height:100px;width:100px;border: 1px solid #f00;-webkit-animation-fill-mode: forwards;}
+			@keyframes asdasd{
+				from{transform: translateX(100px);}
+				to{transform: translateX(300px);}
+			}
+		</style>
+		<div style="">
+			
+		</div>
+		<script>
+			$(function(){
+				$("div").css('animation','asdasd 1s');
+				//点击前
+				$("#a1").on('touchstart',function(){
+					console.log(0);
+				});
+				//点击后
+				$("#a1").on('touchend',function(){
+					console.log(1);
+				});
+				
+				$("#move").on('touchmove',function(e){
+					var eX=parseInt(e.touches[0].clientX);
+					var eY=parseInt(e.touches[0].clientY);
+					$("abbr").html('X：'+eX+'&emsp;Y：'+eY);
+					event.preventDefault();
+				});
+				
+				$("#a2").on('tap',function(){
+					console.log(3);
+				});
+			});
+		</script>
+	</body>
+</html>
+

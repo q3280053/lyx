@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.1.min.js"></script>
+		<style>
+			ul{margin: 0;padding: 0;list-style: none;}
+			
+			#suiji{width: 600px;margin: 0 auto;height: 600px;color: #747474;}
+			#suiji li{float: left;width: 200px;height: 200px;line-height: 200px;outline: 1px solid #000000;text-align: center;}
+		</style>
+	</head>
+	<body>
+		
+		<div>
+			<ul id="suiji">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+				<li>9</li>
+			</ul>
+		</div>
+		<script>
+		//$("#suiji li").each(function(i){$("#suiji li").eq(i).css("background.color",arrbj[i])})
+		//用随机函数取数组里面的颜色，然后用把数组里面的这个颜色去掉。再随机 重复。。//arrbj[i]，把i给个随机函数呗
+			var arrbj=["#f00","#0000CC","#008000","#009900","#009F95","#00EE00","#0F0F0F","#117700","#11777C"];//"#337AB7","#747474"
+			//console.log(arrbj.length)
+			var lis=$("#suiji li");
+					
+			for(var j=0;j<lis.length;j++)
+			{			
+				for(var i=0;i<arrbj.length;i++)
+				{						
+					var ronarr=arrbj[Math.floor(Math.random()*arrbj.length)];
+					$("#suiji li").eq(i).css("background-color",ronarr);				
+					
+				}
+			}
+			$(function(){
+					var m = 100000;
+				    var i = 1;
+				    while(m > 5000){
+				    if(m > 50000){
+				        m -= 0.05 * m;
+				    }else{
+				        m -= 5000;
+				    }
+				    i++;
+				}
+				console.log(i);
+
+			});
+		
+
+		</script>
+	</body>
+</html>

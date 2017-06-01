@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>	
+		div{width: 600px;height: 27px;border: 3px solid #f00;}
+		ul{width: 100%;margin: 0;padding: 0;}
+		ul li{width: 120px;height: 27px;border: 2px solid #ddd;float: left;box-sizing: border-box;text-align: center;}
+		</style>	
+		<script src="js/jquery-1.12.1.min.js"></script>
+	</head>
+	<body>
+		
+		<input type="button" id="ss" value="按钮" style="width: 100px;" />
+			<form id="myform" action="http://www.baidu.com"><a href="javascript:;">1</a></form>
+		<input type="text" value="" id="dd" />--每个30毫秒循环套银行密码，如果为123456，则弹出成功	
+		<div style="">
+			<ul>
+				<li >asd1</li>
+				<li >asd2</li>
+				<li >asd3</li>
+				<li >asd4</li>
+				<li >asd5</li>				
+			</ul>
+		</div>
+		<script>
+			
+			
+			//true捕获阶段，false冒泡阶段
+			window.onload=function(){
+				
+				var oLink=document.getElementsByTagName("a")[0];
+				oLink.onclick=function(ev){
+					//document.getElementById('myform').submit();
+					
+				}
+				
+				//var str="qwertyu";
+				//var h=new Date().toLocaleTimeString();				
+				var str="1234567890";
+		        var arry=[];
+		        var timer=null;
+		        
+		        function xhsz(){
+			        for(i=0;i<6;i++){
+			                arry[i]=str.substr(Math.floor(str.length*Math.random()),1);											
+							for(var j=0;j<i;j++){
+					             if(arry[j]==arry[i]){i--;break;};
+							}
+			       	}
+			        document.getElementById("dd").value=arry.toString().replace(/,/g,'');
+			        if(document.getElementById("dd").value=="123456"){
+			        	alert("密码成功");
+			        }
+		        }
+		        timer=setInterval(xhsz,30);
+		               		 
+			
+				//document.getElementById("dd").value=h;
+				var ss=document.getElementById("ss");
+				ss.onclick=function(){							
+					var str=location.pathname;					
+					
+				
+				}
+				
+				var oLi=document.getElementsByTagName("li");
+				for(var i=0;i<oLi.length;i++)
+				{
+					oLi[i].onclick=function(){
+						alert(this.innerHTML);
+					};
+				}
+				
+				
+			}
+			
+			$(document).bind("click",function(e){
+				//alert(e.pageX+','+e.screenX+","+e.clientX);
+				alert(e.pageY+','+e.screenY+","+e.clientY);
+			});
+			
+		</script>
+	</body>
+	
+	
+</html>

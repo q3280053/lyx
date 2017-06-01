@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.1.min.js"></script>
+	</head>
+	<body>
+		<input type="button" value="按钮" />
+		<a href="" disabled="disabled"> asdasd</a>
+		<script>
+			$(function(){
+				
+				$("input").click(function(){
+					//alert(1);
+				}).trigger("click");
+				//$("input").triggr("click");
+				//bind无法动态绑定事件，live可以
+				/*$("input").bind("click",function(){
+					$(this).clone(true).appendTo("body");
+				})*/
+				//代替live delegate
+				//三个参数才带事件委托,俩个参数不带				
+				$("body").on("click","input",function(){
+					$("<input type='button' value='按钮1' />").appendTo("body");
+				})
+				//$("body").off("click","input");
+				/*$("input").on("click",function(){
+					$("<input type='button' value='按钮1' />").appendTo("body");
+				})
+				$("input").off("click");*/
+				/*$("body").delegate("input","click",function(){
+					$("<input type='button' value='按钮1' />").appendTo("body");
+				})
+				$("input").on({
+					mouseover:function(){
+						alert(1)
+					},
+					mouseout:function(){
+						alert(2);
+					}
+				})*/
+				
+				$("input").stop(true,true);
+				//第一个参数，如果为true的话，停止并且清除后面的动画
+				//第二个参数，如果为true的话，停止后会跳转到最后末尾的位置上
+				
+				//arguments.callee;
+				//console.log(Math.floor("1.13x"));//不能对字符串操作
+				//console.log(parseInt("1.13x"));
+			/*	var arr=[11,22,44,55,3];
+				var a=Math.min.apply(null,arr); //取数组的最小值
+				console.log(a);
+				var arr = [ 10, 25, 3, 0, -3 ];
+
+				w( $.inArray( 25, arr ) ); // 1
+				w( $.inArray( -3, arr ) ); // 4
+				w( $.inArray( 10, arr ) ); // 0
+				
+				// 数组中没有99
+				w( $.inArray( 99, arr ) ); // -1
+				// 数组中有数字10，但是没有字符串"10"
+				w( $.inArray( "10", arr ) ); // -1
+				//type 会智能判断
+				$.getScript("asd.js");//加载js
+				decodeURIComponent(xxx)//解码
+				$.param({name:'张',sex:'男'}); //序列化 ‘对象’
+				
+				$.ajax({
+					type:'post',
+					url:'http://www111.baidu.com',
+					data:$.param({a:'1',b:'2'}),
+					success:function(response,status,xhr){
+						console.log(response);
+					},
+					timeout:1000,
+					global:false
+				})
+				
+				$(document).ajaxStart({
+					console.log("加载中...");
+				}).ajaxStop({
+					console.log("加载完毕");
+				})*/
+				//跨域的原理就是给他一个契约 jqXHR
+				//1.（链接后面加xxx=?）  $.getjson和 $.ajax都能获取到
+				//2.$.ajax datatype：“jsonp” 也能获取到
+				//done 相对应success
+				//同时处理多个ajax对象
+				/*var jqXHR=$.ajax("t1.php")
+				var jqXHR2=$.ajax("t2.php")
+				
+				$.when(jqXHR,jqXHR2).done(function(r1,r2){
+					 alert(r1[0]);
+					 alert(r2[0]);
+				})*/
+				
+				
+			})
+		</script>
+	</body>
+</html>

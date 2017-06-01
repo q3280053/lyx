@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery.js"></script>
+
+	</head>
+	<body>
+		
+		<canvas id="canvas" style="border: 1px solid #CCCCCC;display: block;margin: 10px auto;">
+			
+<script>
+   <!--弧形-->
+	window.onload=function(){
+	var canvas=document.getElementById("canvas");
+	
+	canvas.width=1024;
+	canvas.height=768;
+	
+	var context=canvas.getContext("2d");
+	
+	context.lineWidth=5;
+	context.strokeStyle="#FF0000";
+	context.arc(500,500,100,0,2*Math.PI)
+	context.stroke();
+	
+	for(var i=0;i<10;i++){
+		
+		context.beginPath()
+		context.arc(50+i*100,60,40,0,2*Math.PI*(i+1)/10)
+		context.closePath()
+		context.stroke();
+	}
+	for(var i=0;i<10;i++){
+		
+		context.beginPath()
+		context.arc(50+i*100,180,40,0,2*Math.PI*(i+1)/10)
+		
+		context.stroke();
+	}
+}
+</script>
+	</body>
+</html>

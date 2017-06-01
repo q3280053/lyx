@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="jquery.js"></script>
+	</head>
+
+	<body>
+		<canvas id="canvas"></canvas>
+
+		<script type="text/javascript">
+			window.onload=function(){
+				var canvas=document.getElementById("canvas");
+				canvas.width=1200;
+				canvas.height=600;
+				
+				var context=canvas.getContext("2d");
+				
+				var skyStyle=context.createLinearGradient(0,0,0,canvas.height);
+				
+				//径向渐变
+//				var skyStyle=context.createRadialGradient(canvas.width/2,canvas.height,0,
+//														canvas.width/2,canvas.height,canvas.height);
+				
+				skyStyle.addColorStop(0.0,'black');
+				skyStyle.addColorStop(1.0,'#035');
+				context.fillStyle=skyStyle;
+				context.fillRect(0,0,canvas.width,canvas.height);
+//			context.fillStyle="black";
+//			context.fillRect(0,0,canvas.width,canvas.height);
+//			drawStar(context,400,400,300,150,20);
+			
+			   for(var i=0;i<200;i++)
+			   {
+			   	var r=Math.random()*5+5;
+			   	var x=Math.random()*canvas.width;
+			   	var y=Math.random()*canvas.height*0.65;
+			   	var a=Math.random()*360;
+			   	
+			    	drawStar(context,x,y,r,r/2.0,a);
+			   }
+			  
+			}
+			
+			function drawStar(cxt,x,y,outerR,innerR,rot){
+				cxt.beginPath();
+				for(var i=0;i<5;i++)
+				{
+					cxt.lineTo(Math.cos((18+i*72-rot)/180*Math.PI)*outerR+x,
+					-Math.sin((18+i*72-rot)/180*Math.PI)*outerR+y);
+					cxt.lineTo(Math.cos((54+i*72-rot)/180*Math.PI)*innerR+x,
+					-Math.sin((54+i*72-rot)/180*Math.PI)*innerR+y);
+				}
+				cxt.closePath();
+				cxt.fillStyle="#fb3";
+				cxt.strokeStyle="#fd5";
+				cxt.lineWidth=3;
+				cxt.lineJoin="round";
+				
+				cxt.fill();
+				cxt.stroke();
+			}
+		</script>
+	</body>
+
+</html>

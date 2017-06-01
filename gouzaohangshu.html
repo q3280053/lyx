@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>构造函数</title>
+	</head>
+	<body>
+		<script>
+			function createPerson(name,qq)
+			{
+				//原料
+				var obj=new Object();
+				//加工
+				obj.name=name;
+				obj.qq=qq;
+				obj.showName=function(){
+					alert("名字叫"+this.name);
+				}
+				obj.showQQ=function(){
+					alert("qq是"+this.qq);
+				}
+				//出厂
+				return obj;
+			}
+			var obj=createPerson('blue','123456');
+			obj.showName();
+			obj.showQQ();
+		</script>
+		
+	</body>
+</html>

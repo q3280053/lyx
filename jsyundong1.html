@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>darg</title>
+<script src="js/jquery-1.12.1.min.js"></script>
+<style>
+	#aaa{height: 200px;}
+</style>
+</head>
+<body>
+
+<div style="text-overflow: ellipsis;width:130px;overflow: hidden;white-space: nowrap;">是的房间里看书的解放螺丝钉解放螺丝钉解放时第三轮开发建设拉动房价高了是的分开过</div>
+
+<style>
+	#asd1{color: #f00;visibility: hidden;display: none;}
+	#asd1 .aaa2{color: #000000;}
+	#asd1 .aaa2 .aaa3{color: #ddd;}
+	.active{background: red;}
+</style>
+<div id="aaa" style="border: 1px solid #ddd;"></div>
+<div id="asd1">
+	<div class="aaa2">
+		<span class="aaa3">我是什么颜色</span>
+	</div>
+</div>
+<table id="haha">
+	<!--<tr onclick="haha($(this))"><td>1</td><td>2</td></tr>
+	<tr onclick="haha($(this))"><td>3</td><td>4</td></tr>-->
+	<tr onclick="haha(this)"><td>1</td><td>2</td></tr>
+	<tr onclick="haha(this)"><td>3</td><td>4</td></tr>
+</table>
+<div>
+	<table id="boxtable"></table>
+</div>
+<input id="btnyd" type="button" value="移动" />
+<div id="div2" style="width: 100px;height: 100px;background-color:red;position: fixed;left: 0;opacity: 0.3;filter: alpha(opacity:30);"></div>
+<script>
+/*$(function (){
+	$("#haha tr").click(function(){
+		alert($(this).html());
+	})
+});
+	function haha($this){
+		alert($this.html())
+		$this.addClass("active");
+	}*/
+	function haha(obj){
+		alert(obj.innerHTML)
+		//$this.addClass("active");
+	}
+</script>
+<input type="text" id="txt" />
+<input type="button" id="btn" value="校验" />
+<script type="text/javascript">
+ window.onload=function(){
+ 	var txt=document.getElementById("txt");
+ 	var btn=document.getElementById("btn");
+ 	
+ 	btn.onclick=function(){
+ 		var re=/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;
+ 		if(re.test(txt.value))
+ 		{
+ 			alert("正确");
+ 		}else{
+ 			alert("错误");
+ 		}
+ 		
+ 	}
+ 	
+ 	/*var str="<div id='asd' class='22'>asdasdasd<span>asd的的asd</span></div>";
+ 	var rr=/<[^<>]+>/g;
+ 	var asd=str.replace(rr,'');
+ 	alert(asd);*/
+ 	//子函数可以调用父函数的局部变量 闭包
+ 	/*(function(a){ 		
+ 		alert(1);
+ 	}(a))*/
+ 	
+ 	/*s += " 网页可见区域宽："+ document.body.clientWidth; 
+s += " 网页可见区域高："+ document.body.clientHeight; 
+s += " 网页可见区域宽："+ document.body.offsetWidth + " (包括边线和滚动条的宽)"; 
+s += " 网页可见区域高："+ document.body.offsetHeight + " (包括边线的宽)"; 
+s += " 网页正文全文宽："+ document.body.scrollWidth; 
+s += " 网页正文全文高："+ document.body.scrollHeight;*/
+var aaa=document.getElementById("aaa");
+ }
+function getStyle(obj,name){
+	if(obj.currentStyle)
+	{
+		return obj.currentStyle[name];
+	}
+	else{
+		return getComputedStyle(obj,false)[name];		
+	}
+	
+}
+ 
+ //js根据json生成表格
+window.onload=function(){
+	var oTable=document.getElementById("boxtable");
+	var jSon=[
+		{"name":"张三","age":"23","sex":"男"},
+		{"name":"李四","age":"11","sex":"女"},
+		{"name":"王五","age":"103","sex":"男"}
+		];
+	for(var i=0;i<jSon.length;i++)
+	{
+		var oTr=document.createElement("tr");
+		oTr.innerHTML+="<td>"+jSon[i].name+"</td><td>"+jSon[i].age+"</td><td>"+jSon[i].sex+"</td>";
+		oTable.appendChild(oTr);
+	}
+	
+	///js运动
+	var oBtnyd=document.getElementById("btnyd");
+	var oDiv=document.getElementById("div2");
+	var timer=null;
+	
+	oBtnyd.onclick=function(){		
+		var speed=10;
+	//var speed=(300-oDiv.offsetLeft)/10; 速度变慢
+		clearInterval(timer);
+	    timer=setInterval(function(){	    	
+	    	if(oDiv.offsetLeft>400)
+	    	{	    		
+	    		clearInterval(timer);
+	    	}
+	    	else{	    		
+	    		oDiv.style.left=oDiv.offsetLeft+speed+"px";
+	    	}	    	
+	    },30);
+    };
+    
+    ///鼠标触摸事件
+   
+    oDiv.onmouseover=function(){    	
+    	SBmove(100);
+    }
+    oDiv.onmouseout=function(){    	
+    	SBmove(30);
+    }
+   
+}
+var sp=0;
+var alpha=30;
+var timersb=null;
+function SBmove(iTarger){
+	var oDiv=document.getElementById("div2");
+	clearInterval(timersb);
+	timersb=setInterval(function(){
+		if(alpha<iTarger)
+		{
+			sp=10;
+		}
+		else{
+			sp=-10;
+		}
+		
+		if(alpha==iTarger)
+		{
+			clearInterval(timersb);
+		}
+		else{
+			alpha+=sp;
+			oDiv.style.filter='plpha(opacity:'+alpha+')';
+			oDiv.style.opacity=alpha/100;
+		}
+		
+	},30)
+}
+
+</script>
+</body>
+</html>

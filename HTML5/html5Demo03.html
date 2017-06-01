@@ -1,0 +1,71 @@
+﻿<!DOCTYPE  html>
+<html>
+
+	<head>
+		<title>html5新的特性</title>
+		<meta name="author" content="power" >
+		<meta charset="UTF-8" />
+	    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width,target-densitydpi=device-width" />
+		<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+	<script src="js/jquery-1.12.1.min.js"></script>
+	<script src="Boostrap/js/html5shiv.min.js">/*兼容新标签*/</script>
+	<style>
+		h3{border-bottom:1px solid #ccc;}
+	</style>
+			
+	</head>
+
+	<body>	
+		<div id="asdasd" onclick="sss()">
+			<div id="div1" class="box box1 box2" onclick="haha('你是')">11</div>
+		</div>
+		<h3></h3>
+		eval  可以解析任何字符串变成js<br />
+		parse :只能解析json形式的字符串变成js
+		<h3>历史管理</h3>
+		o
+		<script>
+			function sss(){alert("div1")}
+			function haha(ev,asd){
+				var e=ev||window.event;				
+					alert(asd);
+					e.stopPropagation();					
+				}
+			window.onload=function(){
+				var oDiv=document.querySelector('#div');//跟jq选择器类似，但是只能选择一组中的一个元素
+				var oDivs=document.querySelectorAll(".box");//获取一组
+				var oDiv1=document.getElementById("div1");
+			
+				
+				//alert(oDiv1.classList)//类似数组
+				oDiv1.classList.add('box4');
+				oDiv1.classList.remove('box2');
+				oDiv1.classList.toggle('box3');//判断有就删除，无就添加
+				
+				
+				var str="function asd(){alert(1)}";
+				eval(str);
+				//asd();
+				var str1='{"name":"hello"}'; //严格的json形式
+				var json1=JSON.parse(str1);
+				//alert(json1.name);
+				var json2={name:"hello"};
+				var str2=JSON.stringify(json2); //自动加因
+				//alert(str2);
+				
+				var ran=[11,22,3,33,55,66,77,88];
+				var newran=[];
+				/*for(var i=0;i<ran.length;i++)
+				{
+					newran.push(ran.splice(Math.floor(Math.random()*3),1));
+				}
+				alert(newran);*/
+				
+			}
+		</script>
+		
+		
+	</body>
+
+</html>

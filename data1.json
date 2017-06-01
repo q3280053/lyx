@@ -1,0 +1,5 @@
+{"total":3,"rows":[
+	{"sid":"1","rank":"50","carnamelistname":"张三","isdanger":"1","bklevel":""},
+	{"sid":"2","rank":"30","carnamelistname":"李四","isdanger":"2","bklevel":"4"},
+	{"sid":"3","rank":"20","carnamelistname":"王五","isdanger":"1","bklevel":""}
+]}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>选项卡</title>
+		<style>
+			p{
+				overflow : hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical; 
+			}
+			div{width: 100px;height: 100px;background-color: #ddd;display: none;}
+			input.active{background-color:#ccc}			
+		</style>
+	</head>
+	<body>
+	<input type="button" name="" id="" value="aaa" class="active" />
+	<input type="button" name="" id="" value="bbb" />
+	<input type="button" name="" id="" value="ccc" />
+	<div style="display:block;">aaa</div>
+
+	<div>bbb</div>
+	<div>ccc</div>
+		<script>
+			window.onload=function(){
+				var oBtn=document.getElementsByTagName("input");
+				var oDiv=document.getElementsByTagName("div");
+				
+				for(var i=0;i<oBtn.length;i++)
+				{
+					oBtn[i].index=i;
+					oBtn[i].onclick=function(){
+						for(var j=0;j<oDiv.length;j++){								
+							oBtn[j].className='';
+							oDiv[j].style.display="none";
+						}
+						this.className='active';
+						oDiv[this.index].style.display="block";						
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

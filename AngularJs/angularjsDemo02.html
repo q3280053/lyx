@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+	<script src="js/angular.min.js"></script>
+
+</head>
+<body>
+	<h1>同个界面三个ng-app指令</h1>
+	<div id="A1" ng-app="app1">
+		<input ng-model="name" type="text" placeholder="请输入姓名">
+		<p>我的姓名： {{name}}</p>
+	</div>
+
+	<div id="A2" ng-app="app2">
+		<input ng-model="age" type="number" placeholder="请输入年龄">
+		<p>我的年龄: {{age}}</p>
+	</div>
+	<div id="A3" ng-app="app3">
+		<input ng-model="sex" type="text" placeholder="请输入性别">
+		<p>我的年龄: {{sex}}</p>
+	</div>
+
+	<script type="text/javascript">
+		var app1 = angular.module("app1",[]);
+		var app2 = angular.module("app2",[]);
+		var app3 = angular.module("app3",[]);
+
+		angular.bootstrap(document.getElementById("A2"),['app2']);
+		angular.bootstrap(document.getElementById("A3"),['app3']);	
+		setInterval(function(){
+			var d=new Date();
+			var hour=d.getHours();
+			var min=d.getMinutes();
+			var s=d.getSeconds();			
+			if(d==10&&min==00&&s==00){
+				$("#J_btnBuy").click();
+			}
+			console.log('时间未到');
+		},1000);
+	</script>
+</body>
+</html>

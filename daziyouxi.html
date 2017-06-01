@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>打字游戏</title>
+    
+
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <style>
+        label {
+            position: absolute;
+            color: #fff;
+            top: 0;
+            font-size: 30px;
+            left: 0;
+            display: none;
+        }
+        
+        div.lbl {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="btn" value="" />
+    <span id="count"></span>
+    <div id="box" style="width: 1200px;height: 600px;border: 1px solid #D3D3D3;margin: 0 auto;background-color: #000;position: relative;overflow: hidden;">
+        <label id="lbl" style="display: block;"></label>
+        <label id="lb0">A</label>
+        <label id="lb1">B</label>
+        <label id="lb2">C</label>
+        <label id="lb3">D</label>
+        <label id="lb4">E</label>
+        <label id="lb5">F</label>
+        <label id="lb6">G</label>
+        <label id="lb7">H</label>
+        <label id="lb8">I</label>
+        <label id="lb9">J</label>
+        <label id="lb10">K</label>
+        <label id="lb11">L</label>
+        <label id="lb12">M</label>
+        <label id="lb13">N</label>
+        <label id="lb14">O</label>
+        <label id="lb15">P</label>
+        <label id="lb16">Q</label>
+        <label id="lb17">R</label>
+        <label id="lb18">S</label>
+        <label id="lb19">T</label>
+        <label id="lb20">U</label>
+        <label id="lb21">V</label>
+        <label id="lb22">W</label>
+        <label id="lb23">X</label>
+        <label id="lb24">Y</label>
+        <label id="lb25">Z</label>
+    </div>
+
+    <script>
+        //window.onload=function(){
+        var sjlxIndex = 0,
+            timer = null;
+
+        //var sjbq="lb"+parseInt(Math.random()*25);
+        setInterval("sjlx()", 300);
+
+        //随机落下方法
+        function sjlx() {
+
+            //随机颜色
+            var arrbj = ["#f00", "#fff", "#0000CC", "#008000", "#009900", "#009F95", "#00EE00", "#0F0F0F", "#117700", "#11777C", "#337AB7", "#747474"];
+            var sjys = arrbj[parseInt(Math.random() * arrbj.length)];
+            document.getElementById("btn").value = sjys;
+
+            //随机字母
+            var arrzm = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+            var sjzm = arrzm[parseInt(Math.random() * arrzm.length)];
+            //document.getElementById("btn").value=sjzm;
+
+            //随机出现的左右位置
+            var sjwz = parseInt(Math.random() * 1200) + "px";
+            //document.getElementById("btn").value=sjwz;
+
+            //初始高度落下
+            var cstop = $("#box").offset().top;
+            //document.getElementById("btn").value=cstop;
+
+            //往下移动
+            var interval = null;
+
+            var delay = 1000;
+            sjlxIndex++;
+            if (sjlxIndex < arrzm.length) {
+                $("#box").append("<div class='lbl lb" + sjlxIndex + "'></div>")
+                $(".lb" + sjlxIndex).css({
+                    "left": sjwz,
+                    "color": sjys
+                });
+                $(".lb" + sjlxIndex).html(sjzm);
+                $(".lb" + sjlxIndex).animate({
+                    "top": (600 * Math.random())
+                }, 5000 * Math.random(), function () {
+                    //                $(".lb" + sjlxIndex).css({display:"none"});
+                });
+            } else {
+                $("div.lbl").remove();
+                sjlxIndex = 1;
+            }
+            var jltop = parseInt($(".lb" + sjlxIndex).offset().top); //距离顶部位置
+            //console.log(jltop);
+            //26个标签随机
+            /*$("#"+sjbq+"").show();
+            $("#"+sjbq+"").css({"left":sjwz,"color":sjys});					
+            $("#"+sjbq+"").animate({"top":"+=10"});
+            var jltop=parseInt($("#lbl").offset().top); //距离顶部位置
+            console.log(jltop);
+            if(jltop>=600)
+            {						
+            	clearInterval(interval);
+            	//interval = setInterval('sjlx()', delay)；
+            	
+            }*/
+        }
+        //按下字母清空改节点内容，计分器加1
+    </script>
+</body>
+
+</html>

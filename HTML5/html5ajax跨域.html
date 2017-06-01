@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ajax跨域</title>
+	</head>
+	<body>
+		<input type="button" id="btn1" value="ajax跨域" />
+		<script>
+			
+		/**
+		 * 跨域需要后台配合 'Access-Control-Allow-Origin:http://www.liuyongxi.cn/
+		 * XMLHttpRequest 在标准下 已经进行了升级 支持更多的特性
+		 * 
+		 * XDomainRequest:IE需要另外一个对象去实现 
+		 * 		 
+		 */
+		var obtn=document.querySelector("#btn1");
+		obtn.onclick=function(){
+			//非IE
+			var xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4){
+					if(xhr.status==200){
+						alert(xhr.responseText);
+					}
+				}
+			}
+			xhr.open('get','http://www.liuyongxi.cn/00000.html',true);
+			xhr.send();
+			
+			//IE跨域
+			/*var xdo=new XDomainRequest();
+			xdo.onload=function(){
+				alert(this.resoponseText);
+			}
+			xdo.open('get',"http://www.liuyongxi.cn/00000.html",true);
+			xdo.send();*/
+		}
+		
+ 
+		</script>
+	</body>
+</html>

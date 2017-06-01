@@ -1,0 +1,43 @@
+﻿<!DOCTYPE  html>
+<html>
+
+	<head>
+	<title>history</title>
+	<meta name="author" content="power" >
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width,target-densitydpi=device-width" />
+	<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+ 	<script src="js/jquery-1.12.1.min.js" defer="defer" async="async"></script>
+	
+	<style>
+
+	</style>
+		
+	</head>
+
+	<body>
+		<input value="随机" type="button" />
+		<div></div>
+		<script>
+			var obtn=document.querySelector("input");
+			var Div=document.querySelector("div");
+			obtn.onclick=function(){
+				var num=Math.random();
+				//window.location.hash=num;
+				history.pushState(num,'',num);//存  H5属性 
+				Div.innerHTML=num;
+			}
+			//监听
+			window.onpopstate=function(ev){				
+				Div.innerHTML=ev.state; //取
+			}
+			
+			//改变hash事件
+			window.onhashchange=function(){			
+				//Div.innerHTML=window.location.hash.substring(1);
+			}
+		</script>
+		
+	</body>
+
+</html>

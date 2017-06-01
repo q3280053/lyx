@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset="uft-8" />
+  <title>无标题文档</title>
+  <style type="text/css">
+      body{
+     font-size:14px;
+      margin:0;}
+     div{
+     width:auto;
+     height:auto;
+     line-height:150%;}
+     ul{
+     list-style:none;
+     margin-left:-20px;}
+    ul li:hover{
+     background-color:#DDDDDD;
+     color:#FF0000;
+     cursor:pointer;}
+ </style>
+ </head>
+ 
+ <body>
+     <div id="continer"></div>
+ </body>
+ </html>
+ 
+ <script src="js/jquery-1.12.1.min.js"></script>
+ <script language="javascript">
+     //模拟数据
+     var jsonData = [{"id":4000200000001135,"isParent":"true","name":"湖南省公安厅","pId":0},
+     {"id":4000200000001136,"isParent":"true","name":"长沙市公安局","pId":4000200000001135},
+     {"id":4000200000001137,"isParent":"true","name":"科信支队","pId":4000200000001136},
+     {"id":4000200000001138,"isParent":"true","name":"技侦支队","pId":4000200000001136},
+     {"id":4000200000001140,"isParent":"true","name":"技侦支队2","pId":4000200000001136},
+     {"id":4000200000001141,"isParent":"true","name":"长沙市公安局2","pId":4000200000001135},
+     {"id":4000200000001142,"isParent":"true","name":"技侦支队2","pId":4000200000001141}];
+     
+     
+     //主方法，运用递归实现
+     function createTree(jsons,pId){
+         if(jsons != null){
+             var ul = '<ul class="123123">' ;
+             for(var i=0;i<jsons.length;i++){
+                 if(jsons[i].pId == pId){
+                     ul += '<li>' + jsons[i].name + "</li>" ;
+                     ul += createTree(jsons,jsons[i].id) ;
+                 }
+             }
+             ul += "</ul>" ;
+        }
+         return ul ;
+     }
+     
+     $(function(){
+         var ul = createTree(jsonData,0) ;
+         
+         $("#continer").append(ul) ;
+         
+         //控制菜单的隐藏显示
+         $("ul[class] li").each(function(){
+             $(this).click(function(){
+                 $(this).next().toggle() ;
+             }) ;
+         }) ;
+ 
+     }) ;
+     
+ </script>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>todolist</title>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<style>
+			.finised{text-decoration: line-through;}
+		</style>
+	</head>
+	<body>
+		<todo-item>
+			
+		</todo-item>
+		<div id="list">			
+			<input v-model="newItem" v-on:keyup.enter="addNew" />
+			<ul>				 
+				<li v-for="item in items" v-on:click="toogleFinish(item)" v-bind:class="{finised:item.finised}">
+					{{item.label}}
+				</li>				
+			</ul>
+			
+		</div>		 
+		<script>
+			
+			new Vue({
+				el:'#list',					
+				data:{
+					newItem:'',
+					/*items:[
+						{label:'第一个工作',finised:false},
+						{label:'第二个工作',finised:true}
+						]*/
+						//获取localStorage值
+						items:JSON.parse(window.localStorage.getItem('todos-vuejs')||'[]')
+				},
+				watch:{
+					items:{
+						handler:function(items){
+							window.localStorage.setItem('todos-vuejs',JSON.stringify(this.items))							
+						},
+						deep:true//设置为true才会及时更新
+					}
+				},
+				methods:{
+					toogleFinish:function(item){
+						item.finised=!item.finised;
+					},
+					addNew:function(){
+						this.items.push({label:this.newItem,finised:false});
+						this.newItem='';
+						window.localStorage.setItem('todos-vuejs',JSON.stringify(this.items));
+					}
+				}
+			})
+			
+		</script>
+	</body>
+</html>

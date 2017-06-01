@@ -1,0 +1,98 @@
+﻿<!DOCTYPE  html>
+<html>
+
+	<head>
+	<title>拖放</title>
+	<meta name="author" content="power" >
+	<meta charset="UTF-8" />
+    
+	
+ 	<script src="js/jquery-1.12.1.min.js" defer="defer" async="async"></script>
+	
+	<style>
+		ul{list-style: none;}
+		ul li{height: 30px;width: 100px;background-color: #F0AD4E;margin: 1px 0;}
+	</style>
+		<script>
+		window.onload=function(){
+			var oli=document.getElementsByTagName("li");
+			var odiv=document.querySelector("div");
+			var label=document.querySelector("label");
+			var oul=document.querySelector("#ul_tp");
+			var num=0;
+			for(var i=0;i<oli.length;i++){
+				oli[i].index=i;
+				oli[i].ondragstart=function(ev){	//开始拖拽
+					var ev=ev||window.event;
+					ev.dataTransfer.setData('name',this.index);//兼容火狐
+					ev.dataTransfer.effectAllowed='link';//移入目标后的鼠标样式;
+					ev.dataTransfer.setDragImage(this,100,100);//移动中的设置 x y 坐标
+					this.style.background="#00438A";	
+				};
+				oli[i].ondrag=function(){ //开始到结束之间一直会触发
+					document.title=i++;
+				}
+				oli[i].ondragend=function(){	//拖拽结束
+					this.style.background="#F0AD4E";
+				}
+				
+			}
+			//目标事件-------------
+			//进入目标--移入
+			odiv.ondragenter=function(){
+				this.style.background="#ddd";
+				this.innerHTML="请释放鼠标";
+			}
+			//进入目标到离开之间 一直触发
+			odiv.ondragover=function(ev){
+				ev.preventDefault();
+				//要触发ondrop事件  必须阻止默认事件----------------
+				label.innerHTML=num++;
+			}
+			////离开目标---移出
+			odiv.ondragleave=function(){
+				this.style.background="#f00";				
+			}
+			
+			//把文件移入到目标 释放触发事件
+			odiv.ondrop=function(ev){
+				this.innerHTML='将文件拖放到此区域';
+				ev.preventDefault();
+				
+				var fs=ev.dataTransfer.files;//文件
+				//判断必须为图片
+				for(var i=0;i<fs.length;i++){
+					if(fs[i].type.indexOf("image")!="-1"){
+						var fd=new FileReader();
+						fd.readAsDataURL(fs[i]);//读取文件信息
+						fd.onload=function(){//当文件读取成功触发
+							
+							var oli =document.createElement('li');
+							var oimg=document.createElement("img");
+							oimg.src=this.result;
+							oli.appendChild(oimg);
+							oul.appendChild(oli);
+						}
+					}else{
+						alert('不是图片');
+					}
+				}
+				
+				//alert(ev.dataTransfer.getData('name'));
+			}
+		}
+		</script>
+	</head>
+
+	<body>
+		<ul >
+			<li draggable="true">1</li>
+			<li draggable="true">2</li>
+			<li draggable="true">3</li>
+		</ul>
+		<ul id="ul_tp"></ul>
+		<label></label>
+		<div style="height: 200px;width:200px;background: #f00;margin: 30px;">将文件拖放到此区域</div>
+	</body>
+
+</html>

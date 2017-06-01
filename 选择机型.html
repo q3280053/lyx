@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.1.min.js" type="text/javascript"></script>
+		<style>
+			ul{margin: 0;padding: 0;list-style: none;width: 300px;height: 100px;border:1px solid #ccc;float: left;}
+			ul li{width: 100%;cursor: pointer;}
+			ul li.active{background-color: #f00;}
+		</style>
+	</head>
+	<body>
+		<input id="btn1" type="button" value="往右移" onclick="wangyouyi();" />
+		<input id="btn2" type="button" value="往左移" onclick="wangzuoyi();" />
+		<input id="btn1" type="button" value="全右移" onclick="quanyouyi();" />
+		<h1>ul1</h1>
+		<ul class="ul1">
+			<li onclick="huawei()">华为</a></li>
+			<li onclick="zhongxing()">中兴</a></li>
+		</ul>
+		
+		<h1>ul2</h1>
+		<ul class="ul2">
+			
+		</ul>
+		<h1>ul3</h1>
+		<!--<ul class="ul3"></ul>-->
+		<div class="zuizhong">
+			
+		</div>
+		
+		
+		
+		<script>
+			$(function(){
+				
+				
+				var ul1=$(".ul1 li").length;				
+				for(var i=0;i<ul1;i++){
+					var index=i;
+					$(".zuizhong").append("<ul class='ul3-"+index+"'></ul>");
+				}
+				
+			})
+				var sp=0;
+				var arrhw=["华为1","华为2","华为3","华为4"];
+				var arrzx=["中兴1","中兴2","中兴3","中兴4"];
+				var cun=[];
+			//华为
+			function huawei(){
+					$(".ul2").html('');
+					
+					for(var i=0;i<arrhw.length;i++)
+					{
+						var li="<li onclick='huoqu($(this))'>"+arrhw[i]+"</li>";
+						$(".ul2").append(li);
+					}
+					sp=1;
+					//$(".ul3").append("<li>大华为</li>");
+					console.log(sp);
+					console.log("cun"+cun)
+					console.log("arrhw"+arrhw)
+				}
+			//中兴
+			function zhongxing(){
+					
+					$(".ul2").html('');
+					
+					for(var i=0;i<arrzx.length;i++)
+					{
+						var li="<li onclick='huoqu($(this))'>"+arrzx[i]+"</li>";
+						$(".ul2").append(li);
+					}
+					sp=2;
+					console.log(sp);
+				}
+			
+			//获取li
+			
+			function huoqu($this){
+				if($this.hasClass("active"))
+				{
+					$this.removeClass("active");
+					cun.splice($.inArray($this.text(),cun),1);					
+				}
+				else{
+					$this.addClass("active");
+					cun.push($this.text());
+				}
+				
+				console.log(cun);
+				console.log(arrhw);
+				
+				
+			}
+			
+			//往右移
+			function wangyouyi(){
+				if(cun.length<0) return;
+				
+				if(sp==1){
+					if(!$('.zuizhong ul').eq(sp-1).find("li").hasClass("dhw")){
+						$(".zuizhong ul").eq(sp-1).append("<li class='dhw'>大华为你服不服</li>");
+					}
+				   	
+					var c = [];
+					var tmp = arrhw.concat(cun);
+					var o = {};
+					for (var i = 0; i < tmp.length; i ++) (tmp[i] in o) ? o[tmp[i]] ++ : o[tmp[i]] = 1;
+					for (x in o) if (o[x] == 1)  c.push(x);
+					arrhw.length=0;
+					for(var i=0;i<c.length;i++)
+					{
+						arrhw.push(c[i]);
+					}
+					
+				
+				}
+				
+				if(sp==2){
+					if(!$('.zuizhong ul').eq(sp-1).find("li").hasClass("dzx")){
+						$(".zuizhong ul").eq(sp-1).append("<li class='dzx'>大中兴你服不服</li>");
+					}
+					var c = [];
+					var tmp = arrzx.concat(cun);
+					var o = {};
+					for (var i = 0; i < tmp.length; i ++) (tmp[i] in o) ? o[tmp[i]] ++ : o[tmp[i]] = 1;
+					for (x in o) if (o[x] == 1)  c.push(x);
+					arrzx.length=0;
+					for(var i=0;i<c.length;i++)
+					{
+						arrzx.push(c[i]);
+					}
+				}
+				
+				
+				for(var i=0;i<cun.length;i++){
+					var li="<li>"+cun[i]+"</li>";
+					$(".zuizhong ul").eq(sp-1).append(li);				
+				}
+				$(".ul2 li.active").remove();				
+				cun.length = 0;
+				
+			}
+			
+			//全右移
+			function quanyouyi(){
+				if(sp==1){
+					if(!$('.zuizhong ul').eq(sp-1).find("li").hasClass("dhw")){
+						$(".zuizhong ul").eq(sp-1).append("<li class='dhw'>大华为你服不服</li>");
+						
+						for(var i=0;i<arrhw.length;i++)
+						{
+						var li="<li>+"arrhw[i]"+</li>";	
+						$(".zuizhong ul").eq(sp-1).append(li)
+						}
+				}
+					
+			}
+		</script>
+	</body>
+</html>

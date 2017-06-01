@@ -1,0 +1,183 @@
+﻿<!DOCTYPE  html>
+<html>
+
+	<head>
+		<title>只会搬代码的渣渣</title>
+		<meta name="author" content="power" >
+		<meta charset="UTF-8" />
+	    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width,target-densitydpi=device-width" />
+		<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+	<script src="js/jquery-1.12.1.min.js"></script>
+	<style>
+
+		</style>
+		<script>
+			window.document.designMode = "off"; //所有文字可编辑
+			function Load() {
+        setInterval("sptime.innerHTML=new Date().toLocaleString()+' '.charAt(new Date().getDay());", 1000);
+    }
+		</script>
+	</head>
+
+	<body onload="Load();">
+		<span id="sptime"></span>
+		
+	
+		<span id="shuaxin"></span>
+<canvas id="mycanvas" ></canvas>
+<div id="xycoordinates"></div>
+		<!--头部标签-->
+		<header>
+			<nav>
+				<ul start="3" reversed>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="canvas.html">canvas开始</a></li>
+					<li><a href="qiqiaoban.html">七巧板</a></li>
+					<li><a href="yuanxing.html">圆形</a></li>
+					<li><a href="xingkong.html">星空</a></li>
+				</ul>
+			</nav>
+		</header>
+		
+		<!--章节，内容区块-->
+		<section id="1">
+			<!--时间  pubdate//发布时间-->
+			<time datetime="2015-02-09 10:18" pubdate>2015-02-10 10:18</time>
+			
+			<!--类似提示框-->
+			<input type="text" list="cars"> <!--list必须和ID名匹配-->
+			<datalist id="cars">
+				<option value="bbb"></option>
+				<option value="bbc"></option>
+				<option value="bbd"></option>
+				<option value="bba"></option>
+				<option value="cba"></option>
+				<option value="aaa"></option>
+			</datalist>
+			
+		</section>
+		<section id="2">
+			<form oninput=x.value=parseInt(a.value)+parseInt(b.value)>
+				0
+				<input type="range" id="a" value="0" /> 100
+				<input type="number" id="b" value="0" /> "="
+				<output name="x" for="a b">
+					0</output>
+			</form>
+
+			<!--倒叙  reversed-->
+			<ol start="3" reversed>
+				<li>coffee</li>
+				<li>tea</li>
+				<li>milk</li>
+			</ol>
+			
+			<!--菜单-->
+			<menu type="toolbar" label="Menu">
+				<li><input type="checkbox" />red</li>
+				<li><input type="checkbox" />blue</li>
+			</menu>
+
+
+ 			<!--Tab  tabindex切换选中-->
+			<input type="text" tabindex="2" /> 
+			
+			<!-- seamless//无边框  sandbox//安全线,无法执行    srcdoc="<h1>hello</h1>//内容，优先执行"  三个属性-->
+			<iframe seamless   src="http://www.baidu.com"></iframe>
+			
+			<!--contenteditable可编辑-->
+			<p contenteditable="true">直接修改</p>
+			<input type="text" autocomplete="off"  value="1"/>
+
+			<!--spellcheck识别因为是否正确-->
+			<textarea tabindex="1" spellcheck="true" cols="60" rows="5"></textarea>
+		</section>
+		<section>
+			<meter value="80" min="10" max="100" low="40" high="80" optimum="60"></meter>
+			
+		</section>
+		<section>
+				<a href="http://www.baidu.com" target="in123">百度</a>
+				<a href="http://www.taobao.com" target="in123">淘宝</a>
+				<br />
+				<iframe src="http://www.qq.com" name="in123"></iframe>
+		</section>
+		<!--底部标签-->
+		<footer>
+			<video width="320" height="240"  controls>
+			 <source src="TheBoys.mp4" >
+			 	Your browser does not support the video tag.
+			</video>
+			
+			<audio src="shall.mp3" controls>
+			  Your browser does not support the audio tag.
+			</audio>
+			
+			  <br />兼容多个浏览器<br />
+			<audio controls>
+				<source src="shall.mp3"></source>
+				<source src="shall.m4a"></source>
+				<source src="shall.wav"></source>
+			</audio>
+			
+		     
+			<video width="800" height="600" controls>
+				<source src="TheBoys.mp4" type="video/mp4"></source>
+				<source src="myvideo.ogv" type="video/ogg"></source>
+				<source src="myvideo.webm" type="video/webm"></source>
+				<object width="" height="" type="application/x-shockwave-flash" data="myvideo.swf">
+					<param name="movie" value="myvideo.swf" />
+					<param name="flashvars" value="autostart=true&amp;file=myvideo.swf" />
+				</object>
+				当前浏览器不支持 video直接播放，点击这里下载视频： <a href="myvideo.webm">下载视频</a>
+			</video>
+			
+		</footer>
+
+			
+
+		<script>
+			/*document.onkeydown = function(event) {
+				var e = event || window.event || arguments.callee.caller.arguments[0];
+				if (e && e.keyCode === 13) {
+ 					   $("p").blur();	
+				}
+			}*/
+			
+			$(function(){
+				//回车键事件
+				$("p").keydown(function(e){ 
+					if(e.keyCode==13){ 	
+						$(this).blur();
+					} 
+				});
+			});
+		</script>
+	<script>
+	$(function(){
+			var c=document.getElementById("mycanvas");
+			var cxt=c.getContext("2d");
+			
+			cxt.height=100;
+			cxt.width=200;
+			var img=new Image()
+			img.src="/img/HBuilder.png";
+			cxt.drawImage(img,0,0);
+			/*cxt.fillStyle="#f00";
+			cxt.fillRect(0,0,150,75);*/
+			
+			
+			
+		});
+		if (sessionStorage.pagecount)  {
+     sessionStorage.pagecount= Number(sessionStorage.pagecount) +1; 
+      } else  { 
+        sessionStorage.pagecount= 1;  
+     }  
+     
+    $("#shuaxin").html("您已刷新了 " + sessionStorage.pagecount + " 次"); 
+	</script>
+	</body>
+
+</html>

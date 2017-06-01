@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.1.min.js"></script>
+	</head>
+	<body>
+		<script>
+			var o={
+				m:function(x,y){
+					alert(x+'----'+y);
+				}
+			}
+			//o.m=f;
+			//o.m(1,2);
+			function f(x,y,z){
+				if(arguments.length!=3){
+					throw new Error(arguments.length);
+				}
+				
+			}
+			function s(){
+				alert(2);
+			}
+	//			f(1);
+			function asd(name){
+				return ("hello:"+name);
+			}
+			
+			//console.log(asd("aa"));
+			var ss1={
+				aa:"zhangsan",
+				bb:"lisi"
+			}
+			ss1.aa="hahahaha";
+			console.log(ss1.aa);
+		</script>
+		<style>
+			/*div{color: #000 !important;width: 100px;height: 100px;border: 5px inset #f00;margin: 10px 0;}*/
+		</style>
+		<div attr="val" >1111111111111111</div>
+		<div attr="valsad">2</div>
+		<div attr="sval" id="div3">3</div>
+		<div attr="asd , val ,dsfsdfval,sdfsdf,dssd">4</div>
+		<script>
+			$(function(){
+				//console.log($("[attr =val]"));				
+				//console.log($("[attr ~=val]").html(444444));
+				//console.log($("[attr *=val]").html(3333));
+				//console.log($("[attr ^=val]").html(22222));
+				//console.log($("[attr $=val]").html(11111));
+				var aa1=12321323;
+				var aa2=aa1.toString();
+				console.log(typeof aa2);
+				var jq=jQuery.noConflict(); 
+				jq("#div3").css('color','#f00');
+			});
+		</script>
+	</body>
+</html>

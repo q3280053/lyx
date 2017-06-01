@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>存储</title>				
+		<script src="../js/jquery-1.12.1.min.js"></script>
+	</head>
+	<body>
+		<b></b>
+<img src="../img/HBuilder.png"  id="asd"/>
+		<script>
+		$("img").before("<span>1</span>");
+			
+		
+/*		$(function(){
+			
+			//localStorage 五个属性 getItem,setItem,removeItem,key,clear
+			localStorage.setItem('test1','admin');//设置
+			$("b").html(localStorage.getItem('test1'));//获取
+			
+			//alert(localStorage.key(0));
+
+			localStorage.clear();//清除
+			//alert(localStorage.getItem('test1'));
+});*/
+
+//户访问页面的次数进行计数
+if (localStorage.pagecount) {
+	localStorage.pagecount = Number(localStorage.pagecount) + 1;
+} else {
+	localStorage.pagecount = 1;
+}
+document.write("local: " + localStorage.pagecount + " time(s)."+"<br />");
+
+//当用户关闭浏览器窗口后，数据会被删除。
+if (sessionStorage.pagecount)
+	{
+	sessionStorage.pagecount=Number(sessionStorage.pagecount) +1;
+	}
+else
+	{
+	sessionStorage.pagecount=1;
+	}
+document.write("session " + sessionStorage.pagecount + " time(s) this session.");
+
+</script>
+	</body>
+</html>

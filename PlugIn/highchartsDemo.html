@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="../jquery-easyui-1.4.4/themes/default/easyui.css" rel="stylesheet" />
+		
+		<script src="../js/jquery-1.12.1.min.js"></script>
+		<script src="../jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+		<script src="jquery-easyui-1.4.4/locale/easyui-lang-zh_CN.js"></script>
+		
+		
+		<script src="../highchart/highcharts.js"></script>
+		<script src="../highchart/grouped-categories.js"></script>
+		<script src="../My97DatePicker/My97DatePicker/WdatePicker.js"></script>
+		
+		<style type="text/css">
+  body{margin:0;padding:0;font-family: "微软雅黑";}
+      *{margin:0;padding:0;}
+      em{font-style: normal;}
+      ul,ol{list-style:none;}
+
+
+	#header{height:90px;background-color:#e0edff}
+	ul li{float:left;height:30px;width:300px;margin-top:10px;}
+	ul li input,.txt{height:30px;width：170px;}
+	ul li select{width:170px;height:30px;}
+	.btns{padding:3px 15px;margin-left:20px;}
+	
+	#tt{width:50%;}
+</style>
+	</head>
+	
+	<body>
+<div id="header">
+<form id="myform"  >
+	<ul>
+		<li>&nbsp;&nbsp;<span>统计月份</span><input type="text" id="startime" class="Wdate txt" onclick="WdatePicker({isShowClear:false,dateFmt:'yyyy-M',maxDate:'#F{$dp.$D(\'endtime\')}'})" /></li>
+		<li><span>至&nbsp;&nbsp;</span><input type="text" class="Wdate txt" id="endtime" onclick="WdatePicker({isShowClear:false,dateFmt:'yyyy-M',minDate:'#F{$dp.$D(\'startime\')}'})" /></li>		
+		<li></li><li></li><li></li><li></li><li></li>
+		<li><input type="button" class="btns" value="查询"  onclick="query();"/><input type="button" class="btns" value="重置" onclick="rest();" /><input type="button" class="btns" value="导出" onclick="downdemo();" /></li>	
+	</ul>
+</form>
+</div>
+<table id="tt"></table>
+<div class="chart-container" id="chart" style="width:800px;"></div>
+</body>
+<script type="text/javascript">
+$(function(){
+//日期默认值
+var d = new Date();
+var vYear = d.getFullYear();
+var vMon = d.getMonth() + 1;
+ssd=vYear+"-"+"1";
+tsd=vYear+"-"+vMon;
+$("#startime").val(ssd); 
+$("#endtime").val(tsd); 
+
+});
+	  $(function(){
+		$("#tt").datagrid({	
+			
+			url:"data2.json",
+			method:"get",
+            striped: true,//条纹 
+			rownumbers : true,//显示行号
+			singleSelect : true,//只允许选中一行
+			fitColumns:true,//防止水平滚动
+			//fit:true,
+			height:400,
+			toolbar:'#header',
+			pagination: true, // 允许分页
+			//pageList:[20,30,40], //分页条数
+			columns:[[
+			    {field:'yys',title:'运营商',width:100,align:'center'},
+				{field:'yf',title:'月份',width:100,align:'center'},
+				{field:'yysfsl',title:'运营商数量',width:100,align:'center'},
+				{field:'wfsl',title:'我方数量',width:100,align:'center'}
+				
+			]],
+			onLoadSuccess:onload
+		});
+	});  
+
+
+function onload(data){	
+	var star=$("#startime").val().replace(/-/,"年");
+	var end=$("#endtime").val().replace(/-/,"年");
+	
+	var leng=data.rows.length;
+	var array=[];
+	var arrayyys=[]; //运营商
+	var arrayyf=[]; //月份
+	var arrayyyssl=[];//运营商数量
+	var arraywfsl=[];//我方数量
+
+
+	for(var i=0;i<leng;i++)
+	{
+	
+	var yys=data.rows[i].yys;//运营商
+	var yf=data.rows[i].yf;//月份
+	var yyssl=data.rows[i].yysfsl;//运营商数量
+	var wfsl=data.rows[i].wfsl;// 我方数量
+
+       	arrayyyssl.push(parseInt(yyssl));//运营数量
+		arraywfsl.push(parseInt(wfsl));//我方数量
+		arrayyys.push(yys);//运营商
+		arrayyf.push(yf);//月份
+
+	}
+
+		dataqc(arrayyys);//去重方法 //["移动", "联通", "电信"]
+		dataqc(arrayyf);//去重方法 //["2015-1", "2015-2"]
+		
+	//把组数转化成字符串加引号--------------
+	var yflist="";
+	for (var n= 0; n < arrayyf.length;n++) //这个FOR循环就是加单引号
+	{
+		yflist +="\""+arrayyf[n]+"\",";
+	}
+	yflist=yflist.replace(/,$/,"");
+	
+	//数据变成json格式-------------------------
+	var xdata="[";
+	for(var j=0;j<arrayyys.length;j++)
+	{
+		var temdata="{";
+		temdata+= "name:\""+arrayyys[j]+"\",categories:["+yflist+"]";
+		temdata+="},";
+		xdata+=temdata;
+	}
+	xdata=xdata.replace(/,$/,"");
+	xdata+="]";
+
+	//柱状图
+  $('#chart').highcharts({
+    chart: {
+        renderTo: "chart",
+        type: "column"
+    },
+    title: {
+		style: {
+		 'fontSize': '1em'
+		},
+		useHTML: true,
+		x: -27,
+		y: 8,
+		text:  star+'-'+end+'运营商用户信息查询对账系统'
+				},
+    //添加横向滚动条
+     scrollbar:{
+  	 	enabled:true
+	},
+    colors: ['#4f81bd', '#c0504d'],
+    //设置几条数据
+    
+    series: 
+    [{
+    	name:'运营商方数量',
+        data: arrayyyssl,//[2300,1300,3300,300,200,2500],
+        stack: 0
+    },{
+    	name:'我方数量',
+    	data: arraywfsl,//[1980,980,2980,3000,2133,1235],
+    	stack: 1
+    }],
+    //设置几组类别
+    xAxis: {
+        categories:  eval(xdata)//[{ name: "移动",categories: ["2015-1", "2015-2"]}, {name: "电信",categories: ["2015-1", "2015-2"]}, {name: "联通",categories: ["2015-1", "2015-2"]}] 
+       
+    }
+
+});
+
+}
+
+//setTimeout(function(){query();}, 300)
+//查询
+function query(){
+	 var stime=$("#startime").val();
+	 var etime=$("#endtime").val();
+	if(""==stime&&""!=etime){
+			layer.tips('请输入开始时间', '#startime', {
+			    tips: 1,
+	    		time: 4000
+			});
+			return;
+		}
+		if(""==etime&&""!=stime){
+			layer.tips('请输入结束始时间', '#endtime', {
+			    tips: 1,
+	    		time: 4000
+			});
+			return;
+		}
+		
+	     $('#tt').datagrid(
+			{
+				type: "get",
+				url:'data2.json',
+				/* queryParams:{
+					'jjd.jjdzt':zt,			
+					
+				}  */
+			});  
+} 
+
+//重置
+function rest(){
+
+};
+//导出
+function downdemo(){
+	document.getElementById("myform").submit();
+}
+
+//去掉重复数据方法
+function dataqc(array){
+for(var i=0;i<array.length;i++){   
+    for(var j=i+1;j<array.length;j++){   
+       if(array[j]===array[i]) {   
+           array.splice(j,1);   
+           j--;   
+         }          
+    }
+}
+	return array;
+}
+</script>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>目录</title>
+		<style>
+			*,body{margin: 0;padding: 0;font-family: "微软雅黑";font-size: 12px;height: 100%;overflow: hidden;}
+			ul{list-style: none;margin: 0;padding: 0;}
+			a{text-decoration: none;}
+			#box-left{width: 15%;float: left;height: 100%;transition: all 3s;}
+			#box-right{border: 1px solid #ddd;float: left;width: 84.8%;}
+			
+			#box-left span{font-size: 16px;width: 100%;display: inline-block;height: 40px;background-color: lightblue;color: #fff;text-align: center;line-height: 40px;}
+			#box-left #duang{font-size: 16px;width: 100%;display: inline-block;height: 40px;background-color: lightblue;color: #fff;text-align: center;line-height: 40px;}
+			#box-left ul{width: 100%;height: auto;}
+			#box-left ul li{float: left;width: 100%;height: 25px;text-align: center;line-height: 25px}
+			
+			#box-left ul li a{height: 25px;line-height: 25px;display: inline-block;width: 100%;}
+			/*#box-left ul li a:hover{border-bottom: 1px solid #ddd;}*/
+			#box-left ul li a:hover{background-color: #00FF00;}
+			#box-left ul li a.active{background-color: #ddd;}
+			/*滚动条*/
+			#srcoll{width: 100%;overflow-y: scroll;height: 100%;}
+			
+			#btnref{height: 25px;position:absolute;top:40%;left:15%;width:30px;height:33px;background:#fc0;cursor:move;z-index: 999999999999;}
+			.mu-yj{background-color: #BCD68D;font-weight: bold;}
+			.index-heaer{background-color: cyan;}
+			
+			
+		</style>
+		<script src="js/jquery-1.12.1.min.js"></script>
+		<script src="js/mycookie.js"></script>
+	</head>
+	<body>
+		<div>
+		<div id="box-left">
+			<div id="srcoll">
+				<!--<a href="javascript:;" id="suoxiao" style="position: absolute;right: 10px;top:10px;">X</a>-->
+				<a style="" id="duang" target="_blank" href="duang.html" >Power、</a>
+				<label id="nums"></label><input type="button" value="刷新" id="btnref" title="可拖拽" />
+				<ul id="ullink">														
+					<!--<li class="index-heaer">首页</li>-->		
+					
+					<li class="mu-yj">WebApp</li>
+					<li><a href="webAPP/index.html" target="_blank">移动端个人网站</a></li>			
+					
+					
+					<li class="mu-yj">HTML5</li>
+					<li><a href="HTML5/lyx.html">canvas画名字</a></li>
+					<li><a href="HTML5/html5Demo01.html">html5例子1</a></li>					
+					<li><a href="HTML5/html5Demo02.html">html5标签</a></li>
+					<li><a href="HTML5/html5Demo03.html">html5新特性</a></li>
+					<li><a href="HTML5/cunchu.html">html5存储</a></li>
+					<li><a href="HTML5/canvas.html">canvas例子1</a></li>
+					<li><a href="HTML5/xingkong.html">canvas星空</a></li>					
+					<li><a href="HTML5/yuanxing.html">canvas圆形</a></li>
+					<li><a href="HTML5/qiqiaoban.html">canvas七巧板</a></li>
+					<li><a href="HTML5/Geolocation&localStorage.html">地理信息和本地存储</a></li>
+					<li><a href="HTML5/html5拖放.html">拖放事件</a></li>
+					<li><a href="HTML5/html5跨域.html">跨域</a></li>
+					<li><a href="HTML5/html5history.html">history</a></li>
+					<li><a href="HTML5/html5ajax跨域.html">H5特性ajax跨域</a></li>
+					<li><a href="HTML5/html5ajax上传.html">H5特性ajax上传</a></li>
+					<li><a href="HTML5/svg.html">SVG</a></li>
+					
+					<li class="mu-yj">CSS3</li>
+					<li><a href="CSS3/3drotate.html">3drotate</a></li>
+					<li><a href="CSS3/3dtranslate.html">3dtranslate</a></li>
+					<li><a href="CSS3/gzxz.html">css拼成的各种形状</a></li>
+					<li><a href="CSS3/Css3demo.html">Css3demo</a></li>
+					<li><a href="CSS3/Css3pinghua.html">Css3平划</a></li>					
+					<li><a href="CSS3/Css3_box.html">Css3弹性盒子</a></li>
+					<li><a href="CSS3/Css3_gradient.html">Css3渐变</a></li>
+					
+					<li class="mu-yj">Javascript</li>
+					<li><a href="cookie.html">cookie</a></li>
+					<li><a href="cookie02.html">cookie2</a></li>
+					<li><a href="piaofu.html">图片漂浮</a></li>
+					<li><a href="tablegundong.html">table自动滚动</a></li>
+					<li><a href="IE6fixed.html">IE6下的fixed兼容</a></li>	
+					<li><a href="zuobiao.html">坐标</a></li>
+					<li><a href="ceshi.html">ul文字无缝滚动</a></li>
+					<li><a href="ulimg.html">ul图片无缝滚动</a></li>
+					<li><a href="fangdajing.html">放大镜</a></li>
+					<li><a href="divzuobiao.html">div跟鼠标走</a></li>
+					<li><a href="divgensui.html">div跟随</a></li>
+					<li><a href="ajax.html">ajax</a></li>
+					<li><a href="jsfangxiangjian.html">js方向键</a></li>
+					<li><a href="gouzaohangshu.html">构造函数</a></li>
+					<li><a href="jsyundong1.html">js运动1</a></li>
+					<li><a href="jsyundong2.html">js运动2</a></li>					
+					<li><a href="xuanxiangka.html">js选项卡</a></li>
+					<li><a href="caisuij.html">猜随机</a></li>
+					<li><a href="图片预加载.html">图片预加载</a></li>
+					<li><a href="BOM.html">BOM操作</a></li>
+					<li><a href="jstuozhuai.html">js拖拽</a></li>
+					<li><a href="jsdbktuozhuai.html">带边框拖拽</a></li>
+					
+					
+					<li class="mu-yj">Jquery</li>
+					<li><a href="DOM-fxj.html">DOM操作方向键</a></li>
+					<li><a href="DOM-shdz.html">DOM操作收货地址</a></li>
+					<li><a href="DOM-zyyd.html">DOM操作左右移动</a></li>
+					<li><a href="lunbo.html">幻灯片</a></li>	
+					<li><a href="suijicolor.html">随机背景颜色替换</a></li>
+					<li><a href="suijiqumima.html">随机取密码</a></li>
+					<li><a href="zhjson.html">table转换成json格式</a></li>
+					<li><a href="xunhuanquzhi.html">循环分割字符串</a></li>
+					<li><a href="tablezhjsonzhul.html">tbale转换成json后生成ul</a></li>					
+					<li><a href="cishu.html">循环次数</a></li>
+					<li><a href="playArr.html">玩数组</a></li>
+					<li><a href="chajian.htmll">封装插件</a></li>
+										
+					
+					<li class="mu-yj">Bootstap</li>
+					<li><a href="0boot.html">0boot</a></li>
+					<li><a href="bt-01.html">bt-01-demo</a></li>
+					<li><a href="bt-02lunbo.html">bt-02轮播-demo</a></li>
+					
+					
+					
+					<li class="mu-yj">angulaJS</li>
+					<li><a href="AngularJs/angularjsDemo01.html">angularjs列子1</a></li>
+					<li><a href="AngularJs/angularjsDemo02.html">angularjs列子2</a></li>
+					<li><a href="AngularJs/angularjsDemo03.html">任务清单</a></li>
+					
+					<li class="mu-yj">vueJS</li>
+					<li><a href="VueJs/todolist.html">todolist</a></li>
+					<li><a href="VueJs/vueDemo1.html">vuejs列子1</a></li>
+					<li><a href="VueJs/组件.html">组件1</a></li>
+					<li><a href="VueJs/组件2.html">组件2</a></li>
+					
+					
+					<li class="mu-yj">插件</li>
+					<li><a href="PlugIn/higchars.html">highcharts的类似心电图</a></li>
+					<li><a href="PlugIn/qiehuantb.html">各种highcharts</a></li>
+					<li><a href="PlugIn/fuzhi.html">复制插件</a></li>
+					
+					<li class="mu-yj">转载</li>
+					<li><a href="Reprint/daojishi.html">倒计时</a></li>
+					<li><a href="Reprint/jishiqi.html">计时器</a></li>		
+					<li><a href="Reprint/thisNB.html">转载--黑洞</a></li>
+					<li><a href="Reprint/xiaochou.html">转载--小丑</a></li>
+					<li><a href="Reprint/qixi.html">转载-七夕</a></li>
+					<li><a href="Reprint/biaobai.html">转载-表白</a></li>
+					
+					
+					
+				</ul>
+			</div>
+		</div>
+		<div id="box-right" >
+			<iframe src="content.html" frameborder="0" width="100%" scrolling="yes"  id="myframe"></iframe>
+		</div>
+		</div>
+		
+		<script>
+			window.onload=function(){
+			var fsrc=null;
+			//点击a标签获取路径赋给iframe
+			var oUl=document.getElementById("ullink");
+			var oAlnk=oUl.getElementsByTagName("a");
+			document.getElementById("nums").innerHTML='总数'+oAlnk.length;
+			for(var i=0;i<oAlnk.length;i++)
+			{
+				//var j=i;
+				oAlnk[i].onclick = function(ev) {						
+					var e=ev||event;
+								
+					if(this.getAttribute('target')!='_blank'){
+						e.stopPropagation();
+						e.preventDefault();//阻止事件默认行为。
+						var src=null;					
+						src=this.href;
+						fsrc=src;
+						document.getElementById("myframe").setAttribute("src",src);	
+					}
+								
+				
+				  				 
+					//切换class
+					for(var j=0;j<i;j++)
+					{						
+						if(oAlnk[j].className=="active")
+						{
+							oAlnk[j].className="";    
+						}else{
+							this.className="active"; 
+						}
+					}
+					
+
+				} 				
+			}
+			
+			
+			////拖拽事件
+			var oBtn=document.getElementById("btnref");			
+			var disX=0;
+			var disY=0;
+			var x=getCooike("x");
+			var y=getCooike("y");
+			if(x)
+			{
+				oBtn.style.left=x+"px";
+				oBtn.style.top=y+"px";
+			}
+			
+			oBtn.onmousedown=function(ev){
+				var e=ev||event;
+				//按下创建一个div
+				var box = document.createElement("div");
+				box.style.cssText = "width:100%;height:100%;position: fixed;left: 0;top: 0;";
+				document.body.appendChild(box);
+				
+			
+				
+				var ox=e.clientX;				
+				
+				disX=e.clientX-oBtn.offsetLeft;
+				disY=e.clientY-oBtn.offsetTop;
+				
+				document.onmousemove=function(ev){
+					var e=ev||event;
+					document.documentElement.clientWidth;
+					var l=e.clientX-disX;
+					var t=e.clientY-disY;
+					if(l<0){
+						l=0;
+					}else if(l>document.documentElement.clientWidth-oBtn.offsetWidth)
+					{
+						l=document.documentElement.clientWidth-oBtn.offsetWidth;
+					}
+					if(t<0)
+					{
+						t=0;
+					}else if(t>document.documentElement.clientHeight-oBtn.offsetHeight)
+					{
+						t=document.documentElement.clientHeight-oBtn.offsetHeight;
+					}
+					oBtn.style.left=l+"px";
+					oBtn.style.top=t+"px";
+				};
+				document.onmouseup=function(ev){
+					var e=ev||event;
+					
+					//判断点击刷新按钮
+					if(ox==e.clientX)
+					{
+						oBtn.onclick=function(){
+							var flag=document.getElementById("myframe").getAttribute('src');							
+							if(flag=='content.html'){								
+								document.getElementById("myframe").setAttribute('src',flag); 
+							}else{
+								document.getElementById("myframe").setAttribute("src",fsrc);
+							}
+						}
+					}else{
+						oBtn.onclick=function(){
+							return false;
+						}
+					}
+					
+					
+					document.onmousemove=null;
+					document.onmouseup=null;
+					
+					//设置cookie
+					setCooike("x",oBtn.offsetLeft,7);
+					setCooike("y",oBtn.offsetTop,7);
+										
+					//删除div
+					document.body.removeChild(box);
+					
+				}
+				return false;
+			}
+
+
+		//缩小菜单
+		$("#suoxiao").on('click',function(){
+			$("#box-left").css({"width":"0px"});
+			$("#srcoll").css({"width":"0","overflow-y":"hidden"});
+			$("#box-right").css('width','100%');
+		});
+
+}
+		</script>
+					
+	</body>
+</html>

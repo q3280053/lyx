@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+		
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" style="margin: 0 auto;border: 1px solid #ddd;display: block;"></canvas>
+		<canvas id="test-shape-canvas"></canvas>
+		<script>
+			var can=document.getElementById("canvas");
+			var context=can.getContext("2d");
+			
+			can.width=800;
+			can.height=800;
+			//刘字
+			var lyx=[
+				{p:[{x:100,y:100},{x:150,y:150}],color:"#ddd"},
+				{p:[{x:50,y:160},{x:250,y:160}],color:"#f00"},
+				{p:[{x:60,y:170},{x:240,y:390}],color:"#f00"},
+				{p:[{x:240,y:230},{x:240,y:320}],color:"#f00"},
+				{p:[{x:240,y:170},{x:50,y:390}],color:"#f00"},
+				{p:[{x:270,y:120},{x:270,y:400}],color:"#f00"},
+				{p:[{x:270,y:400},{x:230,y:350}],color:"#f00"}
+			]
+			
+			for(var i=0;i<lyx.length;i++){
+					draw(lyx[i],context);
+				}
+			 	
+			 	//圆形
+			 	context.fillStyle="#CCCCCC";
+				context.arc(500,300,100,0,2*Math.PI);
+				context.fill();
+				
+		function draw(piece,cxt)
+				{
+					
+					cxt.beginPath();
+					cxt.moveTo(piece.p[0].x,piece.p[0].y);
+					for(var i=1;i<piece.p.length;i++){
+						cxt.lineTo(piece.p[i].x,piece.p[i].y);
+					}
+
+						cxt.closePath();
+
+						cxt.strokeStyle=piece.color;
+						cxt.lineWidth=3;
+						cxt.stroke();
+				}
+				
+				var canvas = document.getElementById('test-shape-canvas'),
+    			ctx = canvas.getContext('2d');
+				ctx.clearRect(0, 0, 200, 200); // 擦除(0,0)位置大小为200x200的矩形，擦除的意思是把该区域变为透明
+				ctx.fillStyle = '#dddddd'; // 设置颜色
+				ctx.fillRect(10, 10, 130, 130); // 把(10,10)位置大小为130x130的矩形涂色
+				// 利用Path绘制复杂路径:
+				var path=new Path2D();
+				path.arc(75, 75, 50, 0, Math.PI*2, true);
+				path.moveTo(110,75);
+				path.arc(75, 75, 35, 0, Math.PI, false);
+				path.moveTo(65, 65);
+				path.arc(60, 65, 5, 0, Math.PI*2, true);
+				path.moveTo(95, 65);
+				path.arc(90, 65, 5, 0, Math.PI*2, true);
+				ctx.strokeStyle = '#0000ff';
+				ctx.stroke(path);
+
+		</script>
+	</body>
+</html>

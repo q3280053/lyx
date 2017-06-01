@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+<!--	-->
+	<body>
+		<input id="btn1" type="button" value="按钮"   /><br />
+		<textarea id="text1" cols="50" rows="20"></textarea>
+	
+		<input type="text"  /><input type="button" value="设置" /><input type="button" value="获取" /><input value="删除" type="button" />
+		<script>
+			window.onload=function(){
+				
+				//地图信息
+				var oBtn=document.getElementById("btn1");
+				var oText=document.getElementById("text1");				
+				oBtn.onclick=function(){
+					//getCurrentPosition
+					//watchPosition 多次请求
+					navigator.geolocation.getCurrentPosition(function(success){
+						oText.value +=success.coords.longitude+'\n';						
+					},function(err){
+						oText.value=err.code;
+						//navigator.geolocation.clearWatch();
+					},{
+						enableHighAccuracy:true,//更精确的查找,默认false
+						timeout:5000,//运行最长时间
+						maximumAge:5000//缓存最大时间
+					});
+				}
+				
+				//本地存储
+				var oinput=document.getElementsByTagName("input");				
+				oinput[2].onclick=function(){					
+					//window.sessionStorage //临时性
+					window.localStorage.setItem("hello",oinput[1].value);//永久性
+				}
+				oinput[3].onclick=function(){
+					alert(window.localStorage.getItem("hello"));
+				}
+				oinput[4].onclick=function(){
+					window.localStorage.removeItem("hello");
+				}
+				
+				//当前页面无反应，需开多个页面，
+				window.addEventListener("storage",function(e){
+					e=e||event;
+					console.log(e.key);
+					console.log(e.newValue);
+					console.log(e.oldValue);
+					console.log(e.storageArea);
+					console.log(e.url);
+					
+				})
+			}
+		</script>
+	</body>
+</html>

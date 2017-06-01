@@ -1,0 +1,76 @@
+﻿<!DOCTYPE  html>
+<html>
+
+	<head>
+	<title>同域通信俩种方式</title>
+	<meta name="author" content="power" >
+	<meta charset="UTF-8" />
+    
+	
+ 	<script src="js/jquery-1.12.1.min.js" defer="defer" async="async"></script>
+	
+	<style>
+		ul{list-style: none;}
+		ul li{height: 30px;width: 100px;background-color: #F0AD4E;margin: 1px 0;}
+	</style>
+		<script>
+			//同域俩种通信方式
+		window.onload=function(){
+			//第一种iframe
+			var oBtn=document.getElementById("btn");
+			var oIframe=document.getElementById("myiframe");			
+			oBtn.onclick=function(){
+				//oIframe.contentWindow--->iframe里面的全局window
+				//当本页面和包含页面不在同一个域名下的时候，这样操作就会有跨域安全问题				
+				oIframe.contentWindow.document.body.style.background="red";
+			}
+			//第二个方法window
+			var oBtn2=document.getElementById("btn2");
+			var oBtn3=document.getElementById("btn3");
+			var newWindow=null;
+			oBtn2.onclick=function(){
+				//window.open 返回打开的window对象
+				newWindow=window.open('00000.html','_blank');
+			}
+			oBtn3.onclick=function(){
+				newWindow.document.body.style.background="red";
+			}
+			
+			
+			//postMessage  H5
+			//接收消息的窗口winddow对象
+			/*
+			 第一个参数：发送的数据
+			 第二个参数：接受数据的域名（带上协议）
+			 * */
+			var oBtn3=document.getElementById("kybtn");
+			var myiframe=document.getElementById("myiframe2");
+			oBtn3.onclick=function(){					
+				myiframe.contentWindow.postMessage('123','http://www.liuyongxi.cn');
+			}
+		}
+		</script>
+	</head>
+
+	<body>
+		<fieldset>
+			<legend>同域名</legend>
+			<p>第一种</p>
+			<input id="btn" type="button" value="操作iframe里面内容" />
+			<iframe id="myiframe" src="00000.html"></iframe>
+			
+			<p>第二种</p>
+			<input id="btn2" value="打开新窗口" type="button" />
+			<input id="btn3" value="操作新窗口事件" type="button" />
+		</fieldset>
+		<p></p>
+		
+		
+		<fieldset>
+			<legend>跨域</legend>
+			<input type="button" value="操作iframe里面内容" id="kybtn" />
+			<iframe id="myiframe2" src="http://www.liuyongxi.cn/00000.html"></iframe>
+		</fieldset>
+	</body>
+
+</html>

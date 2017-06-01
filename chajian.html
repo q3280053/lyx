@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	
+		<link rel="stylesheet" href="Boostrap/css/bootstrap.css" />
+		<script src="js/jquery-1.12.1.min.js"></script>
+		<script type="text/javascript" src="Boostrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="layer/layer.js"></script>
+	</head>
+	<body>
+			<style>
+				html,body{width: 100%;height: 100%;}
+			</style>
+		<!--提示框-->
+		<style >
+			.footer-colse-div{
+				width: 200px;min-height: 100px;border:1px solid #000000;border-bottom: 5px solid #f00;border-top-left-radius: 20px;border-top-right-radius: 20px;position: fixed;bottom: 5px;right: 5px;z-index: 9999;background-color: #fff;
+			}
+			.footer-colse-div .footer-alink-colse{float: right;margin-right: 10px;}
+			.footer-colse-content{width: 100%;float: left;padding:3px 5px;}
+		</style>		
+		<!--<div class="footer-colse-div">
+			<a href="" class="footer-alink-colse">X</a>
+			<div class="footer-colse-content">
+				提示框 <br />随着内容增多而自动填充高度
+			</div>
+		</div>-->
+		
+	<hr />	
+		
+		<!--弹出框-->
+		<style>
+			/*提示框*/
+			.maskshade{position: relative;height: 100%;width:100%;background-color: #000;opacity: 0.8;z-index: 8;}
+			.mask{border: 5px solid #cccccc;box-sizing: border-box;position: relative;left: 50%;top:0;z-index: 10;width: 100%;}
+			.mask .mask-title{color: #fff;width: 100%;background-color: #425363;padding-left: 25px;height: 40px;line-height: 40px;}
+			.mask .mask-close{color: #fff;float: right;margin-right: 25px;text-decoration: none;}
+			.mask .mask-content{width: 80%;margin: 32px auto;}
+			.mask .mask-footer{text-align: center;position: absolute;bottom: 26px;left: 0;width: 100%;}
+			.mask .mask-footer input[type='button']{color: #199E47;border: 1px solid #199E47;margin-left:27px;}			
+			.mask .mask-footer input[type='button']:first-child{margin: 0;}
+		</style>
+		<input value="封装的弹框" type="button" id="btn1" />
+		<div style=""><!--这个div用来决定他的宽高-->
+		<div class="mask">
+			<div class="mask-title">提示<a href="javascript:;" class="mask-close">X</a></div>
+			<div class="mask-content">确认删除  【弹出框】</div>
+			<div class="mask-footer"><input type="button" value="关闭" /><input type="button" value="关闭2" /></div>
+		</div>
+		</div>
+		<script>
+			/*			 
+			 //封装了一个弹框			 
+			 * */
+			 //开始
+   			function maskAlert(w,g){
+   				$(".mask").show();
+				$(".mask").css({"width":w+"px",height:g+"px"});
+				var maskwid=parseInt($(".mask").width())/2;								
+				$(".mask").css("margin-left",-maskwid+"px");
+				$(".mask-close,.mask input[type=button]").on("click",function(){$(".mask").hide();});
+			}
+   			$(function(){
+   				$(".mask").hide();
+   				$("#btn1").click(function(){maskAlert(300,200);});				
+			});
+			//---结束
+    </script>   
+		
+		<hr />
+		
+		
+   
+   <input type="button" value="信息弹出框" id="btnalert" />
+   <div id="mydiv">
+   	
+   </div>
+   <script>
+   //第一种插件形式
+	$.fn.sb=function(options){
+		this.css("color",options.color)
+	}
+	// 设定默认值:
+	$.fn.sb.defaults = {
+	    color: '#d85030',
+	    backgroundColor: '#fff8de'
+	}
+	$(function(){
+		$("div").sb({"color":"#f00"});
+		
+		//es6语法
+		/*var  x=[1,2,3,4,5,6,7];
+		_.sample([1,2,3,4,5,6,7]);
+		alert(s);//随机一个或者多个
+		_.shuffle([1, 2, 3, 4, 5, 6]); //随机所有*/
+		
+	});
+	//、、、、第二种插件形式		
+   (function ($) {
+		    $.fn.extend({
+		        "maskAlert": function (options) {
+		            var opts = $.extend({}, defaluts, options); //使用jQuery.extend 覆盖插件默认参数
+		            this.each(function () {  //这里的this 就是 jQuery对象
+		                //遍历所有的要高亮的dom,当调用 highLight()插件的是一个集合的时候。
+		                var $this = $(this); //获取当前dom 的 jQuery对象，这里的this是当前循环的dom
+		                //根据参数来设置 dom的样式
+		                $this.css({
+		                    backgroundColor: opts.background,
+		                    color: opts.foreground
+		                });
+		            });
+		
+		        }
+		    });
+		    //默认参数
+		    var defaluts = {
+		        width: 'red',
+		        height: 'yellow'
+		    };
+		})(window.jQuery);
+   /*
+    * 弹出框插件
+    * liuyongxi
+    * */
+   	(function($){
+	$.fn.maskAlert2 = function(options){//$.fn后面的tab是这个插件的函数名称。可以更具自己喜好进行修改
+		var defaults = {
+			evenname:'click',
+			title:'提示1',
+			key:'mydiv',
+			content:'默认文字',
+			height:'300'+'px',
+			width:'300'+'px',
+			delay:3000
+		}
+		var options = $.extend(defaults, options);
+		this.each(function(){
+			//实现的功能设置		
+			var tab=$(this);
+			$(tab).on(options.evenname,function(){
+					/*$("body").append("<div class='mask' style='width:"+options.width+";height:"+options.height+"'>"
+					+"<div class='mask-title'>"+options.title+"<a href='javascript:;' class='mask-close'>X</a></div>"
+					+"<div class='mask-content'>确认删除  【弹出框】</div>"
+					+"<div class='mask-footer'><input type='button' value='确认' id='mask-btnOk' /><input type='button' value='取消' id='mask-btnCancel' /></div>"
+					+"</div>");*/
+					$("body").append("<div class='footer-colse-div' style='width:"+options.width+";height:"+options.height+"'><a href='javascript:;' class='footer-alink-colse'>X</a><div class='footer-colse-content'>"+options.content+"</div>");					
+					
+					setTimeout(function(){$(".footer-colse-div").hide()},options.delay);
+					
+			});
+			//让弹出框居中
+		/*	$(".mask").css({"width":w+"px",height:g+"px"});
+				var maskwid=parseInt($(".mask").width())/2;								
+				$(".mask").css("margin-left",-maskwid+"px");
+				$(".mask-close").on("click",function(){$(".mask").hide();});*/
+           });	
+	};
+})(jQuery);
+	$("#btnalert").maskAlert2({height:'100px',width:'200px',content:'这不是默认的文字'});		
+
+   </script>
+   
+   
+   <hr />
+		<!--文字提示-->
+		<input class="input_test" value="请输入搜索关键 文字提示" style="color:#c3c9ce ;" />
+		<script>
+			$(function(){
+				$('.input_test').bind({ 
+					focus:function(){
+						if (this.value == this.defaultValue){ 
+							this.value="";
+							this.style.color="#000";
+						} 
+					}, 
+					blur:function(){ 
+						if (this.value == ""){ 
+							this.value = this.defaultValue; 
+							this.style.color="#c3c9ce";
+						} 
+					} 
+				});
+			})
+		</script>		
+	</body>
+</html>

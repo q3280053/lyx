@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>俄罗斯方块已失败告终》_《</title>
+		<script src="js/jquery-1.12.1.min.js"></script>
+		<style>
+		#box{width:600px;border:1px solid #797979;height: 600px;margin: 0 auto;position: relative;}
+		.cle{clear: both;}
+		#box div{position: absolute;}
+		table{	width:90px;height: 90px;
+				border: 0;
+				border-collapse: collapse;
+				border-spacing: 0;
+				
+				}
+		table tr td{width: 30px;border: 0;}
+		table tr td.kb{background-color: #fff;}
+		/*长方形*/
+		.cfx1{width: 120px;height: 30px;background-color: #f00;left: 240px;top: 0;}
+		.cfx2{width: 30px;height: 120px;background-color: #f00;left: 240px;top: 0;}
+		/*正方形*/
+		.zfx{width:60px;height: 60px;background-color: #F7E324;left: 0;top: 0;}
+		/*7形*/
+		.qx1,.qx2,.qx3,.qx4,.qx5,.qx6{background-color: #F62370;}			
+		/*Z形*/
+		.zx1{}
+		/*土形*/
+		.tx1,.tx2,.tx3,.tx4{background-color: #8BE632;}
+		</style>
+	</head>
+	<body>
+		
+		<div id="box" style="background-color: #d3d3d3;color: #000;">			
+			<script>
+			$(function(){
+			
+				/*$("#hehe").unbind();
+				$('#hehe').focus(function ()//得到教室时触发的时间 
+					{ 
+					 return;
+					}) */
+			});
+				
+			</script>
+			
+			<!--长方形-->
+			<div class="cfx1"></div>
+		<!--	<div class="cfx2"></div>-->
+			<!--正方形-->
+			<!--<div class="zfx"></div>-->
+			<!--7形-->
+			<!--<div class="qx1">
+				<table>
+					<tr><td class="kb"></td><td></td><td></td></tr>
+					<tr><td class="kb"></td><td class="kb"></td><td></td></tr>
+					<tr><td class="kb"></td><td class="kb"></td><td></td></tr>
+				</table>
+			</div>			
+			
+			<div class="qx2" style="left: 0;top: 100px;">
+				<table>
+					<tr><td class="kb"></td><td class="kb"></td><td></td></tr>
+					<tr><td class="kb"></td><td class="kb"></td><td></td></tr>
+					<tr><td class="kb"></td><td></td><td></td></tr>
+				</table>
+			</div>
+			
+			<div class="qx3" style="left: 0;top: 200px;">
+				<table>
+					<tr><td class="kb"></td><td class="kb"></td><td class="kb"></td></tr>
+					<tr><td class="kb"></td><td class="kb"></td><td></td></tr>
+					<tr><td ></td><td></td><td></td></tr>
+				</table>
+			</div>
+			
+			<div class="qx4" style="left: 0;top: 300px;">
+				<table>
+					<tr><td class="kb"></td><td class="kb"></td><td class="kb"></td></tr>
+					<tr><td></td><td class="kb"></td><td class="kb"></td></tr>
+					<tr><td ></td><td></td><td></td></tr>
+				</table>
+			</div>
+			
+			<div class="qx5"  style="left: 0;top: 400px;">
+				<table>
+					<tr><td></td><td></td><td></td></tr>
+					<tr><td class="kb"></td><td class="kb"></td><td></td></tr>
+					<tr><td class="kb"></td><td class="kb"></td><td class="kb"></td></tr>
+				</table>
+			</div>
+			<div class="qx6"  style="left: 0;top: 500px;">
+				<table>
+					<tr><td></td><td></td><td></td></tr>
+					<tr><td ></td><td class="kb"></td><td class="kb"></td></tr>
+					<tr><td class="kb"></td><td class="kb"></td><td class="kb"></td></tr>
+				</table>
+			</div>-->
+			<!--Z形-->
+			<!--<di class="zx1">
+				<table>
+					<tr><td></td><td></td><td class="kb"></td></tr>
+					<tr><td class="kb"></td><td ></td><td></td></tr>
+					<tr><td class="kb"></td><td class="kb"></td><td class="kb"></td></tr>
+				</table>
+			</di>
+			<di class="zx2" style="top:100px;left: 0;">
+				<table>
+					<tr><td class="kb"></td><td></td><td ></td></tr>
+					<tr><td></td><td ></td><td class="kb"></td></tr>
+					<tr><td class="kb"></td><td class="kb"></td><td class="kb"></td></tr>
+				</table>
+			</di>
+			<div class="zx3" style="top:200px;left: 0;">
+				<table>
+					<tr><td class="kb"></td><td></td><td class="kb"></td></tr>
+					<tr><td ></td><td ></td><td class="kb"></td></tr>
+					<tr><td ></td><td class="kb"></td><td class="kb"></td></tr>
+				</table>
+			</div>
+			<div class="zx4" style="top:300px;left: 0;">
+				<table>
+					<tr><td ></td><td class="kb"></td><td class="kb"></td></tr>
+					<tr><td></td><td></td><td class="kb"></td></tr>
+					<tr><td class="kb"></td><td></td><td class="kb"></td></tr>
+				</table>
+			</div>-->
+			<!--土形-->
+			<!--<div class="tx1" style="top:0px;left: 0;">
+				<table>
+					<tr><td ></td><td ></td><td></td></tr>
+					<tr><td class="kb"></td><td></td><td class="kb"></td></tr>
+					<tr><td class="kb"></td><td class="kb"></td><td class="kb"></td></tr>
+				</table>
+			</div>
+			<div class="tx2" style="top:100px;left: 0;">
+				<table>
+					<tr><td class="kb"></td><td class="kb"></td><td class="kb"></td></tr>					
+					<tr><td class="kb"></td><td></td><td class="kb"></td></tr>
+					<tr><td ></td><td ></td><td></td></tr>
+				</table>
+			</div>
+			<div class="tx3" style="top:200px;left: 0;">
+				<table>
+					<tr><td class="kb"></td><td></td><td class="kb"></td></tr>					
+					<tr><td ></td><td></td><td class="kb"></td></tr>
+					<tr><td class="kb"></td><td ></td><td class="kb"></td></tr>
+				</table>
+			</div>
+			<div class="tx4" style="top:300px;left: 0;">
+				<table>
+					<tr><td class="kb"></td><td></td><td class="kb"></td></tr>					
+					<tr><td class="kb"></td><td></td><td ></td></tr>
+					<tr><td class="kb"></td><td ></td><td class="kb"></td></tr>
+				</table>
+			</div>-->
+			<!--<div id="dd" style="width: 100px;background-color:#f00 ;">1</div>-->
+		</div>
+		
+		<script>
+		$(function(){
+			
+			var dd=$("#dd").clone(true);
+			$("#dd").append(dd);
+			//alert(dd)
+			$("#dd").empty();
+			
+			
+			/*$("#dd").css("width",function(index,value){
+				//alert(value);
+				return parseInt(value)+300+"px";
+			})*/
+		});
+		//19秒落地
+		var interval;
+		var bodyWidth = $("#box").width();        
+        var bodyHeight = $("#box").height();
+		interval=setInterval(function(){
+			var box=document.getElementById("box");
+			//alert(box.getBoundingClientRect().bottom)
+						
+			$("#box div").animate({"top":"+=30"});
+			var bbb=$("#box div").offset().top; //549 //459 getClientRects getBoundingClientRect  
+			//var sss=$("#box div").getClientRect().left;
+			//console.log(sss);
+			if(bbb>=549)
+			{
+				clearInterval(interval);							
+				
+			}
+			//console.log(bbb);
+		},1000)
+		
+		//var ronarr=arrcfx[Math.floor(Math.random()*arrcfx.length)]; //随机
+		var i=0;
+		$(document).keydown(function (event) {
+            switch (event.which) {
+                case 37:     //左  
+                	var sss=myParseInt($("#box div").offset().left);                	
+                	if(sss>=404)
+                	{                		                		
+                		$("#box div").animate({"left":"-=30"});
+                	}                		             
+	                break;
+                case 38:   //上              		              
+	               var arrcfx=["cfx1","cfx2"];//长方形
+	             //  var arrqx=["qx1","qx2","qx3","qx4","qx5","qx6"];
+	             //   alert(arrqx[i]);
+	              
+	               // $(this).has(arrcfx[i]);
+	                if(arrcfx[i]=="cfx2")
+	                {
+	                	i=0;
+	                }
+	                else{
+	                	i++;
+	                }
+	                 var cfxbs=$("#box div").attr("class");
+	               $("#box div").attr("class",arrcfx[i]);
+					/*for(var i=0;i<arrcfx.length;i++)
+					{						
+						if("cfx1"==arrcfx[i])
+						{
+							alert(arrcfx[i]);
+						}
+					}*/
+	                break;
+                case 39:        //右        	                
+	                var sss=myParseInt($("#box div").offset().left);
+                
+                	if(sss<=824)
+                	{                		                		
+                		$("#box div").animate({"left":"+=30"});
+                	}  
+	                break;
+                case 40:           //下     	               
+				$("#box div").animate({"top":"570"});
+				
+					clearInterval(interval);
+                	break;	
+                default: break;
+            }
+        });
+			
+			function myParseInt(s) {
+            var ret = parseInt(s);            
+            return (isNaN(ret) ? 0 : ret);
+        }
+			
+			window.onload=function(e){
+				//alert(typeof e);
+
+			}
+		var xxx=1;
+		function haha(){
+			xxx++;
+			document.getElementById("hehe").value=xxx;			
+			setTimeout("haha()",1000);
+		}		
+		
+		
+		</script>
+		
+	</body>
+</html>

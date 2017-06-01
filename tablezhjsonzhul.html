@@ -1,0 +1,170 @@
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.1.min.js"></script>
+	</head>
+	<body>
+		&gt;
+		&lt;
+	
+<button id="run">Run</button><div>111111</div>jQuery 代码:
+
+<div>John Resigo</div>
+<div>George Martin</div>
+<div>Malcom John Sinclair</div>
+<style>
+	#tab2{width: 100%;border: 0;}
+	#tab2 tr{}
+	#tab2 tr td{width: 50%;border: 1px solid #ddd;}
+	
+	#tab1{border: 1px solid #ddd;width: 100%;border-collapse: collapse;
+	border-spacing: 0;text-align: center;}
+	#tab1 tr td{border: 1px solid #ddd;}
+</style>
+
+<table id="tab1">
+	<thead>
+		<tr>
+		<td>处罚时间</td>
+		<td>违法地点</td>
+		<td>违法行为</td>
+		<td>处罚类型</td>
+		<td>处罚金额</td>
+		<td>驾驶证号</td>
+		<td>当事人身份证号</td>
+		<td>执勤警号</td>
+		<td>执勤民警</td>
+	</tr></thead>
+	<tbody>
+		<tr>
+			<td><em>处罚时间</em>：<span>2016-04-05 14:00:10</span></td>
+			<td><em>违法地点</em>：<span>长沙市曙光路</span></td>
+			<td><em>违法行为</em>：<span>驾驶机动车违反道路交通指挥灯（代码13475）</span></td>
+			<td><em>处罚类型</em>：<span>扣分</span></td>
+			<td><em>处罚金额</em>：<span>200元</span></td>
+			<td><em>驾驶证号</em>：<span>430111198709219820</span></td>
+			<td><em>当事人身份证号</em>：<span>430111198709219820</span></td>
+			<td><em>执勤警号</em>：<span>450293</span></td>
+			<td><em>执勤民警</em>：<span>张适</span></td>
+		</tr>
+		
+		
+		<tr>
+			<td><em>处罚时间1</em>：<span>2016-04-05 14:00:10</span></td>
+			<td><em>违法地点1</em>：<span>长沙市曙光路</span></td>
+			<td><em>违法行为1</em>：<span>驾驶机动车违反道路交通指挥灯（代码13475）</span></td>
+			<td><em>处罚类型1</em>：<span>扣分</span></td>
+			<td><em>处罚金额1</em>：<span>200元</span></td>
+			<td><em>驾驶证号1</em>：<span>430111198709219820</span></td>
+			<td><em>当事人身份证号1</em>：<span>430111198709219820</span></td>
+			<td><em>执勤警号1</em>：<span>450293</span></td>
+			<td><em>执勤民警1</em>：<span>张适</span></td>
+		</tr>
+	</tbody>
+</table>
+<style>
+	em{font-style: normal;}
+	ul{width: 100%;list-style: none;border-bottom: 1px dashed #000;height: 100%;margin: 0;padding: 0;}
+	ul li{width: 45%;float: left;padding: 8px 10px;}
+</style>
+<fieldset style="border: 1px solid #f00;" >
+	<legend>参照记录</legend>
+	<div id="apptable">
+		
+		<ul>
+		 <!-- <li><em>处罚时间:</em><span>2016-04-05 14:00:10</span></li>	
+		  <li><em>违法地点:</em><span>长沙市曙光路s</span></li>
+		  <li><em>违法行为:</em><span>驾驶机动车违反道路交通指挥灯（代码13475）</span></li>
+		  <li><em>处罚类型:</em><span>扣分</span></li>
+		  <li><em>处罚金额:</em><span>200元s</span></li>
+		  <li><em>驾驶证号:</em><span>430111198709219820s</span></li>
+		  <li><em>当事人身份证号:</em><span>430111198709219820s</span></li>
+		  <li><em>执勤警号:</em><span>450293s</span></li>
+		  <li><em>执勤民警:</em><span>张适s</span></li>
+		  <li><em>执勤民警:</em><span>张适s</span></li>	-->
+		</ul>
+	
+	</div>
+		<!--<table class="tab2" cellspacing="1" cellpadding="3">
+		 
+		</table>-->
+</fieldset>
+
+<script>
+/*var a=20;
+function cc(){	
+	alert(a);	
+	var a=10;
+	alert(a);
+}
+cc();*/
+
+	$(function(){
+		  /*var ulhr=$("ul").last();
+         ulhr.css("border-bottom","0");
+         
+		var a1=$("li em:contains('违法行为:')");
+		var ulwid=$("ul li").last();
+	    ulwid.css("width","100%");
+		console.log(a1);*/
+		//var a2=$("td:empty");
+		//console.log(a1[2]);
+		//a2.html("123");
+		//a1.parent().css("width","100%"); 
+		//a1.attr("colspan","2");
+		//a1.siblings().remove();
+		
+		
+		//a1.getAttribs("colspan","2");
+		//console.log(a1.parent())
+		//console.log(a1);
+		
+		//转换成json格式
+		var strjson="[";		
+		var tab=document.getElementById("tab1");		
+		var trlist = tab.getElementsByTagName('tbody')[0].getElementsByTagName('tr');		
+		for(var i=0;i<trlist.length;i++)
+		{
+			var tdlist=trlist[i].getElementsByTagName("td");
+			var str="{";
+			for (j=0;j<tdlist.length;j++)
+			{
+				str+=('"'+tdlist[j].getElementsByTagName("em")[0].innerHTML+'":"'+tdlist[j].getElementsByTagName("span")[0].innerHTML+'",');				
+			}
+			str=str.replace(/,$/,"");
+			str+="},";
+			strjson+=str;
+		}
+		 strjson=strjson.replace(/,$/,"");
+		 strjson+="]";
+		 strjson=eval(strjson);
+		 console.log(strjson);
+		
+		
+	     //把json数据拼成ul
+		 var li="";
+		 for(var i=0;i<strjson.length;i++)
+		 {
+		 	 var index=i===0?"":i;
+		 	
+		 	 li += "<li><em>处罚时间</em>:<span>"+strjson[i]["处罚时间"+index]+"</span></li>"+
+		 			"<li><em>违法地点</em>:<span>"+strjson[i]["违法地点"+index]+"</span></li>"+
+		 			"<li><em>违法行为</em>:<span>"+strjson[i]["违法行为"+index]+"</span></li>"+
+		 			"<li><em>处罚类型</em>:<span>"+strjson[i]["处罚类型"+index]+"</span></li>"+
+		 			"<li><em>处罚金额</em>:<span>"+strjson[i]["处罚金额"+index]+"</span></li>"+
+		 			"<li><em>驾驶证号</em>:<span>"+strjson[i]["驾驶证号"+index]+"</span></li>"+
+		 			"<li><em>当事人身份证号</em>:<span>"+strjson[i]["当事人身份证号"+index]+"</span></li>"+
+		 			"<li><em>执勤警号</em>:<span>"+strjson[i]["执勤警号"+index]+"</span></li>"+
+		 			"<li><em>执勤民警</em>:<span>"+strjson[i]["执勤民警"+index]+"</span></li>";		 			
+		 			
+		 	document.querySelectorAll("ul")[0].innerHTML=li;
+		 }
+		 
+		 
+	
+	});
+</script>
+	</body>
+</html>

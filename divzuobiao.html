@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			
+		</style>
+	</head>
+	<body style="height: 2000px;">
+		<div style="height: 100px;width: 100px;">11111<p style="width: 50px;height: 50px;"><a style="width: 10px;height: 10px;">222222</a></p></div>
+		<div id="div1" style="height: 100px;width: 100px;background-color: #f00;position:absolute;"></div>
+		<script>
+		window.onload=function(){						
+			//a.cancelBubble=true; //阻止冒泡
+			var oDiv=document.getElementsByTagName("div")[0];
+			var oAlink=document.getElementsByTagName("a")[0];
+			oAlink.onclick=function(ev){
+				var e=ev||event;
+				e.cancelBubble=true;
+				alert("这是A");
+			}
+			oDiv.onclick=function(){				
+				alert("这是div");				
+			}
+			//div跟随坐标移动
+			document.onmousemove=function(ev){
+				var e=ev||event;
+				var oDiv1=document.getElementById("div1");
+				var scolltop=document.documentElement.scrollTop||document.body.scrollTop;
+				var scollleft=document.documentElement.scrollLeft||document.body.scrollLeft;
+				oDiv1.style.left=e.clientX+scollleft+"px";
+				oDiv1.style.top=e.clientY+scolltop+"px";
+			}
+		}
+		</script>
+	</body>
+</html>

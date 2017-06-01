@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">  
+    function startmarquee(lh, speed, delay) {  
+        var t;  
+        var oHeight = 300;/** div的高度 **/　  
+        var p = false;  
+        var o = document.getElementById("show");  
+        var preTop = 0;  
+        o.scrollTop = 0;  
+        function start() {  
+            t = setInterval(scrolling, speed);  
+            o.scrollTop += 1;  
+        }  
+        function scrolling() {  
+            if (o.scrollTop % lh != 0  
+                    && o.scrollTop % (o.scrollHeight - oHeight - 1) != 0) {  
+                preTop = o.scrollTop;  
+                o.scrollTop += 1;  
+                if (preTop >= o.scrollHeight || preTop == o.scrollTop) {  
+                    o.scrollTop = 0;  
+                }  
+            } else {  
+                clearInterval(t);  
+                setTimeout(start, delay);  
+            }  
+        }  
+        setTimeout(start, delay);  
+    }  
+    window.onload=function(){  
+        /**startmarquee(一次滚动高度,速度,停留时间);**/　　  
+        startmarquee(20, 20, 1500);  
+    }  
+  
+</script>  
+<div id="show"  
+        style="height: 300px; overflow-y: scroll; overflow-x: scroll;">  
+        <table width="100%" border="1px" cellspacing="0px"  
+            style="border-collapse: collapse">  
+            <thead>  
+                <tr>  
+                    <td style="background: blue" width="10%">AAA</td>  
+                    <td style="background: blue" width="20%">BBB</td>  
+                    <td style="background: blue" width="50%">CCC</td>  
+                    <td style="background: blue" width="10%">DDD</td>  
+                    <td style="background: blue" width="">DDD</td>  
+                </tr>  
+            </thead>  
+  
+            <tbody>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+                <tr>  
+                    <td>AAA</td>  
+                    <td>BBB</td>  
+                    <td>CCC</td>  
+                    <td>DDD</td>  
+                    <td>DDD</td>  
+                </tr>  
+            </tbody>  
+        </table>  
+        <div>  
+	</body>
+</html>

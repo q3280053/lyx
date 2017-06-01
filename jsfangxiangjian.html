@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>*{margin: 0;padding: 0;}
+		#div1{margin: 0;height: 100px;width: 100px;border: 1px solid #333333;box-sizing: border-box;position: absolute;}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script>
+			window.onload=function(){
+				var oDiv=document.getElementById("div1");
+				var speed=10;
+				
+					
+				document.onkeydown=function(ev){
+					var e=ev||event;
+					var bwid=document.body.clientWidth-100;
+					var bhig=document.body.scrollHeight-100;
+					
+					if(e.keyCode==37)//左
+					{
+						if(oDiv.offsetLeft<=0){return;}
+						oDiv.style.left=oDiv.offsetLeft-speed+"px";
+					}
+					if(e.keyCode==39)//右
+					{						
+						if(oDiv.offsetLeft>=bwid){return;}
+						oDiv.style.left=oDiv.offsetLeft+speed+"px";
+					}
+					if(e.keyCode==38)//上
+					{
+						if(oDiv.offsetTop<=0){return;}
+						oDiv.style.top=oDiv.offsetTop-speed+"px";
+					}
+					if(e.keyCode==40)//下
+					{				
+						
+						if(oDiv.offsetTop>=bhig){return;}
+						oDiv.style.top=oDiv.offsetTop+speed+"px";
+					}
+					
+				}
+				
+			}
+			
+		</script>
+	</body>
+</html>

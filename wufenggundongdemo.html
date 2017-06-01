@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+				*,body{height: 100%;}
+		  #lock{width: 800px;position: relative;height: 178px;border: 1px solid #000;overflow: hidden;}
+		  ul{position: absolute;left: -100px;top: 0;margin:0;padding: 0;}
+		  ul li{width: 200px;float: left;height: 178px;list-style: none;margin: 0;}
+		</style>
+	</head>
+	<body>
+	<div id="lock">
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+	
+	</div>
+		<script>
+			window.onload=function(){
+			/*	var str="123456";
+				alert(str[0]);
+				alert(str.charAt(0))
+			*/
+			var odiv=document.getElementById("lock");
+			var oul=odiv.getElementsByTagName("ul")[0];
+			var oli=oul.getElementsByTagName("li");
+			var inter=null;
+			//alert(oul.offsetLeft)
+			 oul.innerHTML+=oul.innerHTML;
+			 oul.style.width=oli[0].offsetWidth*oli.length+"px";  //这句有什么用？(包括边线和滚动条的宽)
+		      setInterval(move,30);
+		     // alert(oul.offsetWidth)
+		      
+		      
+		      function move(){
+				   if(oul.offsetLeft<-oul.offsetWidth/2)
+				   {
+				   	oul.style.left="0";
+				   }
+				   if(oul.offsetLeft>0)
+				   {
+				   	oul.style.left=oul.offsetWidth/2+"px";
+				   	
+				   }
+					oul.style.left=oul.offsetLeft-2+"px";				
+				}
+		      
+		      
+			}
+			
+		</script>
+	</body>
+</html>

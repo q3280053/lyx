@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+		<script src="../js/jquery-1.12.1.min.js"></script>
+		<script src="zepto.min.js"></script>
+		<style>
+			html,body{height: 100%;width:100%;margin:0;padding:0;color: #fff;}
+			body{position: relative;overflow: hidden;}
+			section{position: absolute;left: 0;top: 0;background: url(../img/index-bj.jpg) no-repeat center;width: 100%;height: 100%;opacity: 0;}
+			section:nth-of-type(1){opacity: 1;}
+			section:nth-of-type(2){}
+			/*文字*/
+			header label:nth-of-type(1){color: #fff;display:block;text-align:center;padding-top:30%;font-size:30px;text-shadow: 5px 5px 5px #1ABC9C;
+				;opacity: 0; animation: headOP 2s;-webkit-animation-fill-mode: forwards;
+			}
+			@-webkit-keyframes headOP{								
+				40%{opacity: 0.4;}
+				70%{opacity: 0.7;}
+				100%{opacity: 1;}
+			}
+			header label:nth-of-type(2){float: left;padding-top:80px;display: block;				
+				transform:translateX(-100%);animation: headleft 1s;
+				-webkit-animation-fill-mode: forwards;}
+			header label:nth-of-type(3){float: right;padding-top:110px;transform: translateX(100%);display: block;
+				animation: headright 1.5s;-webkit-animation-fill-mode: forwards;animation-delay: 0.5s;}
+			@-webkit-keyframes headleft{
+				30%{transform:rotateZ(50deg) translateX(0px); }								
+				50%{transform:rotateZ(100deg) translateX(10%); }				
+				70%{transform:rotateZ(180deg) translateX(20%); }
+				90%{transform:rotateZ(300deg) translateX(30%); }	
+				100%{transform:rotateZ(360deg) translateX(40%); }
+			}
+			@-webkit-keyframes headright{								
+				from{transform: translateX(-5%) }								
+				to{transform: translateX(-40%) }
+			}
+						
+			/*下滑图片*/
+			#nextImg{ position:fixed;bottom:30px;left:50%;width: 23px;height:14px;display: block;margin-left:-17px;background:url(Appimg/alink.jpg) no-repeat;
+				background-size: cover;animation: nextImg 1.5s infinite;-webkit-animation-fill-mode: forwards;opacity: 0;z-index: 999;
+			}
+				
+				
+			@keyframes nextImg{
+				30%{transform: translateY(3px); opacity: 0.3;}
+				50%{transform: translateY(5px);opacity: 0.5;}
+				70%{transform: translateY(7px);opacity: 0.7;}
+				100%{transform: translateY(10px);opacity: 1;}
+			}
+			
+			@keyframes nextSec{
+				0%{transform: translateY(0);}
+				80%{transform: translateY(-100%);opacity: 1;}							
+				100%{transform: translateY(-100%);opacity: 0;}
+			}
+			
+			/*音乐按钮*/
+			#play{display: block;width: 30px;height:30px;background:url(Appimg/alink.jpg) no-repeat;background-size:contain;position:fixed;top:20px;right:30px;z-index: 999;}
+		</style>
+	</head>
+	<body>
+		<a href="javascript:;" id="nextImg"></a>
+		<a href="javascript:;" id="play"></a>
+		<audio src="TryEverything.mp3" id='audio' autoplay=""></audio>
+		<section>
+			<header>
+				<label>Power、</label>
+				<label>一入IT深似海</label>
+				<label>从此节操是路人</label>
+			</header>			
+		</section>
+		
+		<section>
+			<header>					
+				<label>Power2、</label>
+				<label>一入IT深似海</label>
+				<label>从此节操是路人</label>				
+			</header>
+		</section>
+		
+		<section>
+			<header>				
+				<label>Power3、</label>
+				<label>一入IT深似海</label>
+				<label>从此节操是路人</label>			
+			</header>
+		</section>
+				
+		<script type="text/javascript">
+			$(function(){
+				///切换页数
+				$("#nextImg").on('touchstart',function(){
+					var hig=$("section").height()+'px';	
+					
+						/*$("section").each(function(i){														
+							if($(this).css("opacity")=="1"){
+								var index=i+1;								
+								$(this).css('opacity','0');
+								$(this).css('animation','');
+								if($("section").length>index){													
+									$("section").eq(index).css("opacity",'1');
+								}else{																		
+									$("section").eq(0).css('opacity','1');
+								}																				
+								return false;
+							}*/
+							
+						$("section").each(function(i){														
+							if($(this).css("opacity")=="1"){
+								var index=i+1;
+								var ind=i;
+								//$(this).css('opacity','1');
+								if($("section").length>index){												
+									$("section").eq(index).css({"opacity":'1'});
+									$("section").eq(ind).css({"animation":'nextSec 3s','-webkit-animation-fill-mode':'forwards','z-index':index++});									
+								}else{
+									//$("section").eq(index).css({"opacity":'1'});
+									//$("section").eq(0).css({'animation':'nextSec 2s','-webkit-animation-fill-mode':'forwards'});									
+								}							
+								return false;
+							}	
+						});														
+				});
+				
+				//播放音乐				
+				var oV=document.getElementById("audio");
+				$("#play").on('touchstart',function(){				
+					if(oV.paused){
+						oV.play();
+					}else{
+						oV.pause();
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
+

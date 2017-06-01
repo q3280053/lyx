@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="author" content="power" >
+		<meta name="keywords" content="intro" >
+		<title>Work experience</title>
+		<link rel="shortcut icon" type="image/x-icon" href="img/ico.png" />
+		<!--<link href="css/common.css" rel="stylesheet" />-->
+		<link href="css/bootstrap.min.css" rel="stylesheet" />			
+		<script src="js/jquery-1.12.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="layer/layer.js"></script>
+		<script src="js/common.js"></script>
+		
+		<style>
+			
+			
+			#me_head{float: right;margin: 10px 30px 0 0;font-size: 12px;color: #fff;}
+			
+			.item_ul{width:100% ;float: left;color: #fff;padding: 0;}
+			.item_ul li{float: left;width: 50%;margin-bottom: 10px;padding-left: 30px;}
+			.item_ul li font{width:100%;float: left;}
+			.item_ul li.bortop{border-top:1px solid #fff ;}
+			.item_ul li a{color: #94E24F}
+			.item_ul li a:hover{padding-top: 3px;border-bottom: 1px solid #fff;color: #fff;}
+						
+			/*遮罩层*/
+			#mask{width: 100%;height: 100%;background: #000;position: fixed;left: 0;top:0;z-index: 9;display: none;}
+			
+			/*标题*/
+			.title{float: left;color: #00EE00;font-size: 20px;}
+			/*图片放大*/
+			.fangda{width:274px;height:523px;border:0;}
+						
+			
+			/*模块*/
+			#sel1{background: url(img/index-bj.jpg) top no-repeat;width:100%;background-size: cover;}
+			#sel2{background: url(img/section-bj2.jpg) bottom no-repeat;width:100%;background-size: cover;}
+			#sel3{background: url(img/section-bj3.jpg) bottom no-repeat;width:100%;background-size: cover;}
+			#sel4{background: url(img/section-bj4.jpg) bottom no-repeat;width:100%;background-size: cover;}
+			#sel5{background: url(img/section-bj7.jpg) bottom no-repeat;width:100%;background-size: cover;}
+			/*返回顶部*/
+			#btn-top{position:fixed;bottom:50px;right:20px;display: none;width: 38px;height: 38px;background:url(img/top.png) no-repeat;}
+			/*底部*/
+			footer{position:absolute;bottom:5px;color:#fff;width: 100%;border-top:1px solid #CCCCCC;text-align: center;padding-top:10px;font-size:12px;}
+			
+			.col{padding:20px 0;}
+			.media-body p:first-of-type{color:#0000FF;font-weight:bold;}
+			.media-body p{color: #8BC34A;}
+		</style>
+	</head>
+	<body onload="timedCount();">	
+		
+	<section id="sel1" class="selhigh" >
+		<!--导航条-->		
+		<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		  <div class="container-fluid">
+		    <!-- 品牌和获得更好的移动分组切换显示 -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="duang.html">Power、</a>
+		    </div>
+		
+		    <!-- 收集导航链接、表单和其他内容切换 -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		        <li ><a href="duang.html">Home<span class="sr-only">(current)</span></a></li>
+		        <li><a href="#">Link</a></li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">Action</a></li>
+		            <li><a href="#">Another action</a></li>
+		            <li><a href="#">Something else here</a></li>
+		            <li role="separator" class="divider"></li>
+		            <li><a href="#">Separated link</a></li>
+		            <li role="separator" class="divider"></li>
+		            <li><a href="#">One more separated link</a></li>
+		          </ul>
+		        </li>
+		      </ul>
+		      <form class="navbar-form navbar-left" role="search">
+		        <div class="form-group">
+		          <input type="text" class="form-control" placeholder="Please input...">
+		        </div>
+		        <button type="button" class="btn btn-default" >Search</button>
+		      </form>
+		      <form method="get">
+		      <ul class="nav navbar-nav navbar-right">	   
+		        <li id="time" style="color:#fff;height:50px;line-height:50px;"></li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li class="active"><a href="items.html">Work experience</a></li>
+		            <li><a href="#">Another action</a></li>
+		            <li><a href="#">Something else here</a></li>
+		            <li role="separator" class="divider"></li>
+		            <li><a href="#">Separated link</a></li>
+		          </ul>
+		        </li>
+		      </ul>
+		       </form>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<!--导航条结束-->
+		<div style="height:50px;clear: both;"></div>
+			<span id="me_head">已经过了 <i id="txt"></i> 秒钟,确定还不关闭？</span>
+		<div>
+			<ul class="item_ul">
+				<li>
+					<font class="title">2012.12--2014.5</font>
+					<font>软件公司做系统功能</font>
+					<font>采用的技术.net、mysql技术</font>
+				</li>
+				<li>
+					<font class="title">2014.6--2014.12</font>
+					<font>电商公司做静态界面</font>
+					<img id="imgsmall" src="img/items_01.png" style="width: 210px;height: 210px;" />
+				</li>
+				<li class="bortop">
+					<font class="title">2014.12--2015.2</font>
+					<font>外包公司做企业网站</font>
+					<font>写完静态页面后,再用php模版套进去</font>
+					<a href="http://reach.review.webfoss.com/" target="_blank">瑞成</a><br />
+					<a href="http://fengshui.review.webfoss.com/" target="_blank">峰水</a><br />
+					<a href="http://joton.review.webfoss.com/" target="_blank">约顿(已废弃)</a><br />
+					<a href="http://photography.review.webfoss.com/" target="_blank">摄影</a><br />
+					<a href="http://tmrc.review.webfoss.com/" target="_blank">Tmrc</a>			
+				</li>
+				<li class="bortop">
+					<font class="title">2015.2--至今</font>
+					<font>软件公司做政府管理项目</font>					
+					<font>采用的技术是ajax、json、easyui、highcharts插件前后台交互</font>
+					<a href="highchartsDemo.html">分组显示报表</a>
+				</li>
+			</ul>
+			<div class="clearfix"></div>
+			<div class="text-center">
+				<a href="javascript:GoPage(document.getElementById('sel2').offsetTop-50);" class="btn btn-default btn-lg" style="background:transparent;color: #ccc;">开启旅途</a>
+			</div>
+		</div>
+	
+	</section>
+	
+	<section id="sel2" class="selhigh" >
+		<div class="text-center">
+			<a href="javascript:GoPage(document.getElementById('sel3').offsetTop-50);" class="btn btn-info btn-lg" style="margin-top:50px;">开启下一张</a>
+		</div>
+		<p></p>
+	<div class="carousel slide center-block" id="myCarousel"  data-ride="carousel" style="width: 500px;">
+			<!--小图标-->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+			<!--图片-->
+			<div class="carousel-inner">
+				<div class="item active">				
+					<img src="img/lunbo1.png" alt="第一张"  />					
+					<div class="carousel-caption">
+						<h3>第一张</h3>
+						<p>11111111</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="img/lunbo2.png" alt="第二张"  />
+					<div class="carousel-caption">
+						<h3>第二张</h3>
+						<p>2222222</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="img/lunbo3.png" alt="第三张"  />	
+					<div class="carousel-caption">
+						<h3>第三张</h3>
+						<p>33333333</p>
+					</div>
+				</div>	
+			</div>
+		
+			
+			<!--按钮-->
+			<a href="#myCarousel" data-slide = "prev" class="carousel-control left">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
+			<a href="#myCarousel" data-slide = "next" class="carousel-control right">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+		</div>	
+		
+	</section>	
+	
+	<section id="sel3" class="selhigh">
+		<div class="container">
+			<div class="text-center">
+				<a href="javascript:GoPage(document.getElementById('sel4').offsetTop-50);" class="btn btn-warning btn-lg">开启下一张</a>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col">
+					<div class="media">
+						<div class="media-left">
+							<a href=""><img src="img/ico-jj.png" alt="" /></a>
+						</div>
+						<div class="media-body">
+							<h3 class="media-heading">工作一</h3>
+							<p>.net开发</p>
+							<p>报表，操作sql的增删改查</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col">
+					<div class="media">
+						<div class="media-left">
+							<a href=""><img src="img/ico-jj.png" alt="" /></a>
+						</div>
+						<div class="media-body">
+							<h3 class="media-heading">工作二</h3>
+							<p>网页制作</p>
+							<p>ps切图,网页排版，静态页面制作</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col">
+					<div class="media">
+						<div class="media-left media-middle">
+							<a href=""><img src="img/ico-jj.png" alt="" /></a>
+						</div>
+						<div class="media-body">
+							<h3 class="media-heading">工作三</h3>
+							<p>前端工程师</p>
+							<p>ps切图，网页排版，静态页面制作，php套模版</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col">
+					<div class="media">
+						<div class="media-left media-middle">
+							<a href=""><img src="img/ico-jj.png" alt="" /></a>
+						</div>
+						<div class="media-body">
+							<h3 class="media-heading">工作四</h3>
+							<p>前端工程师</p>
+							<p>网页排版,网页制作</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+	</section>
+	<section id="sel4" class="selhigh">
+		<div class="text-center">
+			<a href="javascript:GoPage(document.getElementById('sel5').offsetTop-50);" class="btn btn-danger btn-lg">开启下一张</a>
+		</div>
+	</section>
+	<section id="sel5" class="selhigh" style="position:relative;">
+		
+		<footer>
+			个人网站----by Power&copy备案审核xxx			
+		</footer>
+	</section>
+	
+	
+	
+		<!--遮罩层-->
+		<div id="mask"></div>
+		<a href="javascript:GoTop();"   id="btn-top" ></a>
+	
+<script type="text/javascript"> 
+	var currentPosition=0; 
+	var timerPage,timerTop;
+	//下一个模块
+	function GoPage(speed){				
+		clearInterval(timerPage);
+		timerPage=setInterval(function(){
+			currentPosition=document.documentElement.scrollTop || document.body.scrollTop;
+			currentPosition+=1;
+		 if(currentPosition>0) 
+		{	
+			window.scrollTo(0,currentPosition);			
+			if(currentPosition==speed){
+				clearInterval(timerPage);				
+			}			
+		} 
+		else 
+		{ 	
+			window.scrollTo(0,0); 
+			clearInterval(timerPage); 
+		} 
+		},1);
+	} 
+	//返回顶部
+	function GoTop(){
+		
+		clearInterval(timerTop);
+		timerTop=setInterval(function(){
+			currentPosition=document.documentElement.scrollTop || document.body.scrollTop;		
+			currentPosition-=15;
+			if(currentPosition>0) 
+			{				
+				window.scrollTo(0,currentPosition);						
+			} 
+			else 
+			{ 
+				window.scrollTo(0,0); 
+				clearInterval(timerTop); 
+			} 			
+		},10);				
+	}	
+	
+	
+</script> 
+<script>	
+ window.onload=function(){
+ 	//设置高度
+ 	var selhig=$("body").height();
+ 	$(".selhigh").height(selhig+'px'); 	
+
+ }
+ window.onscroll=function(){
+ 	var scoll=document.documentElement.scrollTop || document.body.scrollTop;
+ 	if(scoll!=0)
+ 	{
+ 		setTimeout(function(){
+ 			$("#btn-top").show();
+ 		},2000) 		
+ 	}else{ 		
+ 		setTimeout(function(){
+ 			$("#btn-top").hide();
+ 		},2000)
+ 	}
+ }
+</script>
+
+		
+		<script>
+		var c=1;
+		var t;
+		
+		//弹出密码框
+	function prom() {  
+		$("#mask").show();
+        var name = prompt("请输入密码", ""); //将输入的内容赋给变量 name ，   
+        //这里需要注意的是，prompt有两个参数，前面是提示的话，后面是当对话框出来后，在对话框里的默认值  
+        if (name=="789")//如果返回的有内容  
+        {  
+            $("#mask").hide();
+        }  
+        else{
+        	var userAgent = navigator.userAgent;
+			if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Chrome") !=-1) {
+			   window.location.href="about:blank";
+			} else {
+			   window.opener = null;
+			   window.open("", "_self");
+			   window.close();
+			};
+        }
+  
+    } 
+    //点击图片放大
+       $("#imgsmall").click(function(){
+       	 var imgsrc=$(this).attr("src");
+	  layerIndex=layer.open({
+			    type: 1,
+			    scrollbar: false,
+			    shadeClose: true,//开启遮罩层关闭
+			    title: false, //不显示title
+			    closeBtn: true,//不显示关闭按钮
+			    shade: [0.8, '#000'],
+			    offset: ['10%',''],
+			    area: ['400px', '550px'],
+			    content: "<div style='overflow:hidden;text-align:center;'><img id='msg' src='"+imgsrc+"' class='fangda' /></div>"
+			}); 
+       	
+       });
+       
+         //关闭弹出层
+	  function closewin(){	
+	    layer.close(layerIndex);
+
+	  }
+		$(function(){
+			 $("#mask").show();
+			 setTimeout(prom,1000);
+			 //prom();//初始加载弹出框
+			 /*if(!confirm("重中之重! 患有心脏病者禁止浏览!"))
+			 {
+			 	window.close();
+			 }*/
+			 setTimeout("metime()",1000);
+		});
+          function metime(){
+          	$("#txt").html(c);
+			c=c+1;
+			t=setTimeout("metime()",1000);
+          }
+           
+		</script>
+		<!--分享插件-->
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"8","bdPos":"right","bdTop":"100"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+	</body>
+</html>

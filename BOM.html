@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>BOM</title>
+	</head>
+	<body style="height: 2000px;">
+		<textarea id="text1"  rows='15' cols='50'></textarea>		
+		<input id="btn1" type="button" value="运行" />
+		<script>
+			window.onload=function(){
+			//alert(window.navigator.userAgent)
+			 //var dsj=prompt("你叫什么?","张三");
+			 //confirm()
+			 
+			var oText=document.getElementById("text1");
+			var oBtn=document.getElementById("btn1");
+			
+			 oBtn.onclick=function(){
+			 	var str=window.open("about:blank","_blank");
+			 	
+			 	str.document.write(oText.value);
+			 }
+			 //滚动条事件
+			 document.onscroll=function(){
+			 	 var scrolltop=document.documentElement.scrollTop||document.body.scrollTop;
+				 alert(scrolltop);
+			 }
+			 //浏览器大小事件
+			 window.onresize=function(){
+			 	var h=document.documentElement.clientHeight;
+			 	alert(h);
+			 }
+			 
+			}
+			
+		</script>
+	</body>
+</html>

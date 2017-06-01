@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<input type="text" id="txt" />
+		<input type="button" value="开始" id="kaishi" />
+		<input type="button" value="停止" id="tingzhi" />
+		<label>要随机的范围内</label>
+		<input type="text" id="fw" />
+		<script>
+			window.onload=function(){
+				var timer=null;
+				var ks=document.getElementById("kaishi");
+				var tz=document.getElementById("tingzhi");
+				var txt=document.getElementById("txt");
+				
+				//开始
+				ks.onclick=function(){		
+					var speed=document.getElementById("fw").value;					
+					timer=setInterval(function(){
+						txt.value=parseInt(Math.random()*speed);
+					},30);
+				}
+				//停止
+				tz.onclick=function(){
+					clearInterval(timer);
+				}
+			}
+		</script>
+	</body>
+</html>

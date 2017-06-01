@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery.js"></script>
+		<script src="My97DatePicker/My97DatePicker/WdatePicker.js"></script>
+	</head>
+	<body>
+	<div id="header">
+			<ul id="qul"></ul>
+			<input type="button" value="查询" onclick="query();" />
+		</div>
+		<script>
+	$(function(){
+		var str = 'd@cete@开始时间@结束时间,name@姓名';
+		//alert(str);
+		//如果有数据
+		   $("#btnquery").hide();
+if(str!=""&&str!="null"&&str!=null){
+		//var str="dh@电话,FRDH@法人电话,d@sj@开始时间@结束时间";
+		$("#btnquery").show();
+		var mes = str.split(",");
+	    var mesleng=mes.length;
+	   for(var i=0;i<mesleng;i++){
+	   	//alert(mes[i][0]);
+	   	var dd=mes[i][0]+mes[i][1];
+	    if (dd == 'd@') {
+				 var m=mes[i].replace(/d@/g,'').split("@");
+	   	 		  var mleng=m.length;
+	
+			    // if(m[i]=="undefined"){return;}
+			    mtxt="<li><span>"+m[1]+"</span><input type='text' id='stime' name='"+m[0]+"' class='Wdate' onfocus='WdatePicker({dateFmt :\"yyyyMMdd\" ,maxDate: \"#F{$dp.$D(\etime\)}\" })'  id='stime' /><span>"+m[2]+"</span><input type='text'  class='Wdate' onfocus='WdatePicker({dateFmt :\"yyyyMMdd\",minDate: \"#F{$dp.$D(\stime\)}\"})' id='etime'  /></li>";
+	 			console.log(mtxt);
+	 			$("#header ul").append($(mtxt));
+
+			}
+	    else{
+		    	var nosj=mes[i].split("@");
+		 		var nosjleng=nosj.length;
+	 			notxt="<li><span>"+nosj[1]+"</span><input type='text'  id='"+nosj[0]+"' ></li>";
+	 			$("#header ul").append($(notxt));
+	    }
+	   }
+   
+   
+   }
+ 
+   
+});
+	//查询
+	function query(){
+		var aa=$("#qul input[type='text']");		
+		var num="";
+		var numd="";
+		var oTab = document.getElementById('qul');
+        var txt = oTab.getElementsByTagName('input');
+        
+		
+			for(var i=0;i<txt.length;i++)
+			{
+				if(aa.hasClass('Wdate'))
+				{
+					numd +="d@"+txt[i].id+"@"+txt[i].value+",";
+				}
+				//numd=numd.substring(0,num.length-1);
+				//alert(num);
+				else{
+					num +=txt[i].id+"@"+txt[i].value+",";
+					
+				}
+		}
+		
+		//否则
+		/*else{
+
+			for(var i=0;i<txt.length;i++)
+			{
+				num +=txt[i].id+"@"+txt[i].value+",";
+			}
+				//num=num.substring(0,num.length-1);
+				//alert(num);
+		}*/
+		alert(num+numd);
+		
+	}
+	
+		</script>
+	</body>
+</html>

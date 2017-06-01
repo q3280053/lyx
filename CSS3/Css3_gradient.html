@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>渐变</title>
+		<style>
+		
+		h1{display: inline-block;font:50px/100px "微软雅黑";color: rgba(255,255,255,0.2);
+		background: -webkit-linear-gradient(-30deg,rgba(255,255,255,0) 100px,
+					rgba(255,255,255,1) 180px,
+					rgba(255,255,255,1) 240px,
+					rgba(255,255,255,0) 300px) -300px 0 no-repeat; -webkit-background-clip: text;}
+							
+		</style>
+	</head>
+	<body style="text-align: center;background-color: #000000;">
+		<h1>my name's POWER,haha</h1>
+		<script>
+			var oh1=document.getElementsByTagName("h1")[0];
+			var timed=null;
+			var Ileft=-300;
+			document.title=0;
+			
+			function smove(){
+				timed=setInterval(function(){
+					Ileft+=15;
+					if(Ileft>=1000){
+						Ileft=-300;
+						clearInterval(timed);	
+					}
+					
+					oh1.style.backgroundPosition=Ileft+"px 0px";
+				},20);
+			}
+			smove();
+			setInterval(function(){document.title++;smove();},5000);
+		</script>
+	</body>
+</html>

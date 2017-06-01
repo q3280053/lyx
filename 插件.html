@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.1.min.js"></script>
+		<style>
+		body{margin: 0;padding:0;}
+			/*提示框*/
+			.maskshade{position:absolute;left: 0;top:0;height: 100%;width:100%;background-color: #000;opacity: 0.5;z-index: 8;filter: alpha(opacity=50)}
+			.mask{border: 5px solid #cccccc;box-sizing: border-box;position: fixed;left: 50%;top:50%;z-index: 10;background-color:#fff;}
+			.mask .mask-title{color: #fff;width: 100%;background-color: #425363;padding-left: 25px;height: 40px;line-height: 40px;box-sizing: border-box;}
+			.mask .mask-close{color: #fff;float: right;margin-right: 25px;text-decoration: none;}
+			.mask .mask-content{width: 80%;margin: 10px auto;}
+			.mask .mask-content iframe{width:100%;height:100%;border:1px solid #ccc;}
+			.mask .mask-footer{text-align:center;height:40px;width: 100%;}
+			.mask .mask-footer input[type='button']{color: #199E47;border: 1px solid #199E47;margin-left:27px;}			
+			.mask .mask-footer input[type='button']:first-child{margin: 0;}
+			
+			/*信息提示框*/
+			.footer-colse-div{
+				width: 200px;min-height: 80px;border:1px solid #000000;border-bottom: 5px solid #f00;border-top-left-radius: 20px;border-top-right-radius: 20px;position: fixed;bottom: 0;right: 5px;z-index: 9999;background-color: #fff;text-align: center;
+			}
+			.footer-colse-div .footer-alink-colse{float: right;margin-right: 10px;text-decoration: none;}
+			.footer-colse-content{width: 100%;float: left;padding:3px 5px;}
+						
+		</style>
+	</head>
+	<body>		
+		<input type="button" value="点击" id="btnalert" style="height: 30px;"/>
+		
+		  <script>  		  
+   /*
+    * 弹出框插件
+    * By liuyongxi
+    * */
+   	(function($){
+		$.fn.maskAlert = function(options){//$.fn后面的tab是这个插件的函数名称。
+			var defaults = {
+				url:'xingkong.html',
+				form:'msg', //tooltip alert
+				evenname:'click',//事件触发
+				title:'提示',//表头
+				content:'hello',//内容
+				keyid:'mydiv',//id
+				height:'80px',//高度
+				width:'250px',//宽度
+				isdelay:true, //不允许延迟关闭 //true
+				delay:3000		//默认3秒
+			}
+			var options = $.extend(defaults, options);			
+				//实现的功能设置		
+				var tab=$(this);
+				$(tab).on(options.evenname,function(){
+					if(options.form=="alert"){
+						//生成弹出框
+							$("body").append("<div class='maskshade'></div><div class='mask' style='width:"+options.width+";height:"+options.height+"'>"
+							+"<div class='mask-title'>"+options.title+"<a href='javascript:;' class='mask-close'>X</a></div>"
+							+"<div class='mask-content'><iframe src='"+options.url+"' style=''></iframe></div>"
+							+"<div class='mask-footer'><input type='button' value='确认' id='mask-btnOk' />"
+							+"<input type='button' value='取消' id='mask-btnCancel' /></div>"
+							+"</div>");				
+						
+						//弹出框居中显示				
+						var maskleft=parseInt(parseInt(options.width)/2);					
+						var masktop=parseInt(parseInt(options.height)/2);				
+						$(".mask").css({"margin-left":-maskleft+"px","margin-top":-masktop+"px"});
+						var asd=parseInt(options.height)-100+'px';
+						$(".mask-content").height(asd);
+						
+						//取消事件
+						$("#mask-btnCancel,.mask-close").click(function(){$(".maskshade,.mask").remove()});	
+						
+						//判读是否延迟关闭					
+						if(options.isdelay==true){
+							//延迟关闭
+							setTimeout(function(){
+								$(".maskshade,.mask").remove();
+							},options.delay);
+						}
+					}
+					
+					else if(options.form=="msg"){
+						$("body").append("<div class='footer-colse-div' style='width:"+options.width+";height:"+options.height+"'>"
+							+"<a href='javascript:;' class='footer-alink-colse'>X</a>"
+							+"<div class='footer-colse-content'>"+options.content+"</div>"
+							+"</div>");
+							
+							//取消事件
+						$(".footer-alink-colse").click(function(){$(".footer-colse-div").remove()});
+						
+							if(options.isdelay==true){
+							//延迟关闭
+							setTimeout(function(){
+								$(".footer-colse-div").remove();
+							},options.delay);
+						}
+							
+					}
+					else{
+						
+					}
+					
+				});
+	    
+		};
+	})(jQuery);
+	
+		$("#btnalert").maskAlert({content:'撒旦撒'});
+   </script>
+	</body>
+</html>

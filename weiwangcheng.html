@@ -1,0 +1,203 @@
+<html>
+<head>
+	<meta charset="UTF-8" />
+<style>
+body{position:relative;}
+div{display:none;background:#98bf21;height:10px;width:10px;position:absolute;top:20px;;}
+
+b{float: left;position: fixed;left:50%;top:50%;margin-left:-150px;margin-top:-10px;width:300px;height: 20px;border:2px solid #f00;-webkit-transform: rotate(90deg);-moz-transform:rotate(90deg);filer:progid:DXImageTransform.Microsoft.BasicImage(Rotation=0.90);display:block ;}
+del {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid red;
+    display: block;
+    position: fixed;
+    right: 100px;
+}
+.triangle1{
+    width:30px;
+    height:30px;
+    border-width:20px;
+    border-style:solid;
+    border-color:#e66161 #f3bb5b #ddd #85bfda;
+    position: fixed;
+    left:400px
+}
+.triangle { 
+border: 30px solid transparent; 
+width: 0; 
+height: 0; 
+&.v-top { 
+border-top-color: #0075a9; 
+} 
+&.v-right { 
+border-right-color: #a89a00; 
+} 
+&.v-bottom { 
+border-bottom-color: #19a800; 
+} 
+&.v-left { 
+border-left-color: #a90000; 
+} 
+} 
+.test{display: none;background: orange;margin-right: 5px;padding: 5px;float: left;}
+
+.box{float: right;height:100px;width: 150px;background: orange;position: relative;right: 30px;top:70px;}
+</style>
+
+
+<script src="js/jquery-1.12.1.min.js"></script>
+</head>
+<body>
+
+
+<div class="txt" id="d1" style="left:100px;"></div>
+<div class="txt" id="d2" style="top:0px;left:160px;"></div>
+<div class="txt" id="d3" style="top:0px;left:300px;"></div>
+<div class="txt" id="d4" style="top:110px;left:130px;"></div>
+<div class="txt" id="d5" style="top:110px;left:130px;"></div>
+<div class="txt" id="d6" style="top:110px;left:330px;"></div>
+<div class="txt" id="d7" style="top:175px;left:130px;"></div>
+<div class="txt" id="d8" style="top:240px;left:130px;"></div>
+<div class="txt" id="d9" style="top:280px;left:100px;"></div>
+<div class="txt" id="d10" style="top:260px;left:230px;"></div>
+
+
+<b></b>
+<del></del>
+<div class="" style="position: fixed;left: 450px;">
+	<div class="triangle v-top"></div>
+	<div class="triangle v-right"></div>
+	<div class="triangle v-bottom"></div>
+	<div class="triangle v-left"></div>
+</div>
+<span class="triangle1"></span>
+<button class="start">开始动画</button>
+<button class="stop">停止动画</button>
+<h2></h2>
+<input type="button" class="show" value="显示" />
+<input type="button" class="hide" value="隐藏" />
+
+
+	<span class="test">你</span>
+	<span class="test">好</span>
+	<span class="test">吗</span>
+	<span class="test">？</span>
+
+
+<!--<div class="box"></div>-->
+<script>
+    	
+                
+    $(document).ready(function () {
+    	var cli=0;
+    	var temd=1000;
+        $(".start").click(function () {
+        	cli++;
+        	$("h2").html("点击了"+cli+"次")
+        if ($("div:animated").length == 0) {  //多次点击只运行一次          
+            $("#d1").show().animate({ width: '280px' }, temd, function () {    
+                $("#d2").show().animate({ height: '100px' }, temd, function () {                 
+                    $("#d3").show().animate({ height: '100px' }, temd, function () {
+                        $("#d4").show().animate({ height: '130px' }, temd, function () {
+                            $("#d5").show().animate({ width: '200px' }, temd, function () {
+                                $("#d6").show().animate({ height: '130px' }, temd, function () {
+                                    $("#d7").show().animate({ width: '200px' }, temd, function () {
+                                        $("#d8").show().animate({ width: '210px' }, temd, function () {
+                                            $("#d9").show().animate({ width: '280px' }, temd, function () {
+                                                $("#d10").show().animate({ height: '200px' }, temd);
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                   });
+                });
+
+        };
+       
+             function aniDiv() {
+                  $("#d10").animate({ height: 200 }, "slow");
+                  $("#d10").animate({ height: 100 }, "slow", aniDiv);
+              }
+              aniDiv();
+           
+       
+   });
+       $(".stop").click(function(){
+       	$("div").stop(true);
+       });
+       
+       //循环运动
+       $(".box").slideToggle('slow',function(){
+       $(this).slideToggle('slow',arguments.callee);	
+       });
+       
+       ///
+        /*$(".start").click(function(){  	
+	  		$(".txt").first().show("fast",function txtshow(){
+	  			$(this).next().show("fast",txtshow);
+	  		})
+  		})*/
+       
+    });
+    
+
+
+    $(function(){
+//旋转
+   var time=90;
+   setInterval(function(){  
+   time =parseInt( /^\d*/.exec(time)[0])+1+'deg';
+    	$("b").css({"-webkit-transform":"rotate("+time+")"});
+    },100);
+
+  //jq循环
+   $("div").each(function(){
+    index=$(this).index();
+    $(this).addClass("pp"+index);
+   });
+	
+
+/*var as=[10,20,30,40,50];
+	for(var i=0;i<as.length;i++)
+	{		
+	   sum2 += as[i];
+	   alert(sum2);
+	
+	}*/
+
+   });
+    
+
+</script> 
+<script>
+//$.fn.interval=200;  //关闭动画
+//显示
+  $(".show").click(function(){
+  	$(".test").first().show('fast',function testshow(){
+  		$(this).next().show('fast',testshow);	
+  	});
+  });
+//隐藏
+  $(".hide").click(function(){
+  	var i=0;
+  	$(".test").last().hide('fast',function testshow(){
+		i++;
+  		
+  		console.log(i);
+  		if(i!=4){
+  			$(this).prev().hide('fast',testshow);	
+  		}
+  		
+  		
+  		// console.log($(this).get(0).tagName); 		
+  	});
+  });
+</script>
+</body>
+</html>

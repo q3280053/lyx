@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>玩数组</title>
+		<script src="js/jquery-1.12.1.min.js"></script>
+	
+	</head>
+	<body>
+			var asd=[1,3,10,20];
+			var asd1=[100,200,300];
+			/*for(var i in asd){
+				console.log(asd[i]+"<br />");
+			}*/
+			
+			/*$.each(asd, function(index,value) {
+				console.log(index+"---"+value);
+				//$(".col-md-6").html($(".col-md-6").html()+value);
+				$(".col-md-6").append(value);
+			});*/
+			
+			//筛选 数据
+			/*var arrGrep=$.grep(asd,function(ele,index){
+				return ele<6 && index<5;
+			})
+			console.log(arrGrep)*/
+			
+			//修改数据
+			/*var arrMap=$.map(asd,function(ele,index){
+				return ele+1;
+			})
+			console.log(arrMap)
+			*/
+			
+			//合并数据
+			//console.log($.merge(asd,asd1));
+			
+			//
+			/*console.log(Math.floor("1.13x"));//不能对字符串操作
+		    console.log(parseInt("1.13x")); //能对字符串操作*/
+		    
+		    //取数组的最小值
+			/*var arr=[11,22,44,55,3];
+			var a=Math.min.apply(null,arr); 
+			console.log(a);*/
+
+			//取下标
+				/*var arr = [ 10, 25, 3, 0, -3 ];
+				console.log( $.inArray( 25, arr ) ); // 1				
+				console.log( $.inArray( 10, arr ) ); // 0*/
+				
+			//判断是否为数组
+			/*var asdasd=[1,2];
+			alert($.isArray(asdasd));*/
+	 <input value="按钮" type="button" />
+	<script>
+		$(function(){
+			//兼容IE8
+			Array.prototype.indexOf=function(n){
+		for(var i=0;i<this.length;i++){
+			if(this[i]==n){
+				return i
+			}
+		}
+		return -1
+		
+	}	
+			//俩个数组比较，取不同的数据
+			var a1=["战三","李四","王五","赵六","孙七"];
+			var a2=["王五","李四","孙七"];
+			var a3=[];
+			for(var i=0;i<a1.length;i++)
+			{
+				if(a2.indexOf(a1[i])==-1){
+						a3.push(a1[i])
+					}
+
+			}			
+			//alert(a3);	
+			
+			var a = [1,2,3,4,5,6,7];
+			var b = [1,2,5];
+			var c = [];
+			var tmp = a.concat(b);
+			var o = {};
+			for (var i = 0; i < tmp.length; i ++) (tmp[i] in o) ? o[tmp[i]] ++ : o[tmp[i]] = 1;
+			for (x in o) if (o[x] == 1) c.push(x);
+			//alert(c);
+		});
+		
+	//show time
+		
+		$("input").on("click",function(){
+			var asd=[1,3,10,20];
+			var asd1=[100,200,300];
+			/*for(var i in asd){
+				console.log(asd[i]+"<br />");
+			}*/
+			
+			/*$.each(asd, function(index,value) {
+				console.log(index+"---"+value);
+				//$(".col-md-6").html($(".col-md-6").html()+value);
+				$(".col-md-6").append(value);
+			});*/
+			
+			//筛选 数据
+			/*var arrGrep=$.grep(asd,function(ele,index){
+				return ele<6 && index<5;
+			})
+			console.log(arrGrep)*/
+			
+			//修改数据
+			/*var arrMap=$.map(asd,function(ele,index){
+				return ele+1;
+			})
+			console.log(arrMap)
+			*/
+			
+			//合并数据
+			//console.log($.merge(asd,asd1));
+			
+			//
+			/*console.log(Math.floor("1.13x"));//不能对字符串操作
+		    console.log(parseInt("1.13x")); //能对字符串操作*/
+		    
+		    //取数组的最小值
+			/*var arr=[11,22,44,55,3];
+			var a=Math.min.apply(null,arr); 
+			console.log(a);*/
+
+			//取下标
+				/*var arr = [ 10, 25, 3, 0, -3 ];
+				console.log( $.inArray( 25, arr ) ); // 1				
+				console.log( $.inArray( 10, arr ) ); // 0*/
+				
+			//判断是否为数组
+			/*var asdasd=[1,2];
+			alert($.isArray(asdasd));*/
+			
+			//--------------工具函数，，李炎辉00000000000000000000
+		})
+	</script>
+	</body>
+</html>

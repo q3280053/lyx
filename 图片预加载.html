@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>图片预加载</title>
+	</head>
+	<body>
+		<script>
+			//预加载图片
+			//图片的按比例缩放
+			window.onload=function(){
+				var img=new Image();
+				img.src="../graphics/skies.jpg";
+				img.onload=function(){
+					alert("成功");
+				}
+				img.onerror=function(){
+					alert("失败");
+				}
+			}
+		</script>
+		<img src="src/cover.png" onmouseover="this.src='../graphics/skies.jpg'" onmouseout="this.src='src/cover.png'">
+	</body>
+</html>

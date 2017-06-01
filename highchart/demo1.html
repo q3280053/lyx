@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/jquery-1.12.1.min.js"></script>
+		<script src="highcharts.js"></script>
+		<style>
+				
+		</style>
+	</head>
+	<body>
+		<div id="containera" style="width:800px;"></div><hr />
+		<div id="containerb" style="width:800px;"></div><hr />
+		<div id="containerc" style="width:800px;"></div><hr />
+		<div id="containerd"></div>
+		<script type="text/javascript">
+$(function () {
+    $('#containera').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '舆情按标签统计'
+        },
+         colors: ['#4f81bd', '#c0504d',"#f00"],
+        subtitle: {
+            text: '2010-12-12至2011-11-11'
+        },
+        xAxis: {
+            categories: ['舆情按标签统计']
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Rainfall (mm)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>'
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+             name: '标签一',
+            data: [49.9]
+
+        }, {
+            name: '标签二',
+            data: [83.6]
+
+        }, {
+            name: '标签三',
+            data: [48.9]
+
+        }]
+
+    });
+    /////////////////////////////////////////////////////////////
+    $('#containerb').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: true
+        },       
+        title: {
+            text: '舆情标签统计'
+        },
+        tooltip: {
+        	enabled: true,
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+         plotOptions: {
+            pie: {
+                allowPointSelect: false,
+                cursor: 'pointer',               
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                },
+
+                showInLegend: true
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Browser share',
+            enabled:true,
+            data: [
+                ['标签一',   45],
+                ['标签二',   45],                
+                ['标签三',   10]
+            ]
+        }]
+    });
+    /////////////////////////////////////////////////////////
+     $('#containerc').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '舆情按频道统计'
+        },
+        subtitle: {
+            text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: 0,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Population (millions)'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>'
+        },
+        series: [{
+            name: 'Population',
+            data: [
+                ['频道一', 23.7],
+                ['频道二', 16.1],
+                ['频道三', 14.2]               
+            ],
+            dataLabels: {
+                enabled: true,
+                rotation: 0,
+                color: '#FFFFFF',
+                align: 'center',
+                format: '{point.y:.1f}', // one decimal
+                y: 30, // 10 pixels down from the top
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        }]
+    });
+});				
+</script>
+	</body>
+</html>

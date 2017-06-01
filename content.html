@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+		<style>
+			body,html{width: 100%;padding: 0;margin: 0;height: 100%;}
+			.container-nr{display: -webkit-flex;display:-ms-flex ;display: flex;justify-content: center;align-items: center;height: 100%;writing-mode : lr-tb;text-align: center;font-size: xx-large;}
+			.waring{padding: 5px 0;text-align: center;width:100%;position:fixed;left:0;top:0;background-color: crimson;color: #fff;}
+			.container-nr label{display:none;}
+		</style>
+		
+		<script src="js/jquery-1.12.1.min.js"></script>
+	</head>
+	<body>
+		<div class="container-nr">
+			<label>一</label>
+			<label>入</label>
+			<label>I</label>
+			<label>T</label>
+			<label>深</label>
+			<label>似</label>
+			<label>海</label>
+			<label>，</label>
+			<label>从</label>
+			<label>此</label>
+			<label>节</label>
+			<label>操</label>
+			<label>是</label>
+			<label>路</label>
+			<label>人</label>			
+		</div>
+	
+		<div class="waring"></div>
+		
+		<script>
+			$(function(){
+				var strTmp = "您当前的浏览器为：";
+	        	var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串	        
+			    if (userAgent.indexOf("Opera") > -1) {
+			        strTmp+="Opera"; 
+			    } //判断是否Opera浏览器
+			    else if (userAgent.indexOf("Firefox") > -1) {			        
+			        strTmp+="Firefox";
+			    } //判断是否Firefox浏览器
+			    else if (userAgent.indexOf("Chrome") > -1){				  	
+				  	//strTmp+="Chrome";	
+				  	$(".waring").hide();
+				 }
+			    else if (userAgent.indexOf("Safari") > -1) {			        
+			        strTmp+="Safari";
+			    } //判断是否Safari浏览器
+			    else if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 ) {			        
+			        strTmp+="IE";
+			    }; //判断是否IE浏览器
+			    strTmp+="，请使用chrome效果更佳";
+	            $(".waring").html(strTmp);
+				
+				$("label").first().show(300,function testshow(){
+  					$(this).next().show(300,testshow);	
+  				});
+			});
+		</script>
+	</body>
+</html>

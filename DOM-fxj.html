@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>请按←↑→↓键 查看预览效果</title>
+		<script src="js/jquery-1.12.1.min.js"></script>
+	</head>
+	<body>请按←↑→↓键 查看预览效果
+<div id="box" style="width: 900px;height: 500px;outline: 1px solid #0000CC;position: relative;top: 30px;left: 50%;margin-left: -450px;">
+ 
+    <img id="pic" src="img/ico.png" style="position:absolute;top:420px">
+
+        <script type="text/javascript">
+       /* function jqstr(hello){
+        	//hello=parseInt("hello");
+        	return  hello.substring(0,hello.length-2);
+        }*/
+     function myParseInt(s) {
+            var ret = parseInt(s);            
+            return (isNaN(ret) ? 0 : ret);
+        }
+        var x = 0;//水平方向位移
+        var y = 420;//垂直方向位移   //这个和img的top值必须一样，才可以放在任意位置
+       var bodyWidth = $("#box").width();        
+       var bodyHeight = $("#box").height();
+     
+       var box=document.getElementById("pic");
+        $(document).keydown(function (event) {
+            switch (event.which) {
+                case 37:                  
+	                if(myParseInt(box.style.left)>0)
+	                {
+	                	x=x-20;$("#pic").css("left",x+"px");
+	                }	               
+	                break;
+                case 38:                 	
+	                if(myParseInt(box.style.top)>0)
+	                {
+	                	y=y-20;$("#pic").css("top",y+"px");	
+	                }
+	                break;
+                case 39:                
+	                if(myParseInt(box.style.left)<=bodyWidth-100)
+	                {                	
+	                	 x=x+20;$("#pic").css("left",x+"px");	
+	                }	               
+	                break;
+                case 40:                
+	                if(myParseInt(box.style.top)<=bodyHeight-100)
+	                {
+	                	y=y+20;$("#pic").css("top",y+"px");
+	                }
+                	break;	
+                default: break;
+            }
+        });
+    </script>
+    
+    
+    <div id="element" style="left:0;top:0;position: absolute;">
+   		 <img src="img/ico-jj.png" style="width: 100px;height: 100px;"/>
+	</div>
+
+
+</div>
+<script>
+        
+        document.onkeydown=function(e){     
+       var bodyWidth = $("#box").width();        
+       var bodyHeight = $("#box").height();
+                       
+          e=window.event||e;
+          var el = document.getElementById("element");
+          switch(e.keyCode){
+            case 37: //左键
+               if(myParseInt(el.style.left)>0){
+                el.style.left =(myParseInt(el.style.left) - 100) + "px";
+               }
+              break;
+            case 38: //向上键             	
+               if(myParseInt(el.style.top)>0){
+              
+                el.style.top =(myParseInt(el.style.top) - 100) + "px";
+               }
+              break;
+            case 39: //右键
+               if(myParseInt(el.style.left)<= bodyWidth-200){               	
+                 el.style.left =(myParseInt(el.style.left) + 100) + "px";
+               }               
+              break;
+            case 40: //向下键
+                if(myParseInt(el.style.top)<= bodyHeight-200){                	
+                 el.style.top =(myParseInt(el.style.top) + 100) + "px";
+               }
+               
+              break;            
+            default:
+       
+              break;
+          }
+        }
+ 
+ 
+</script>
+	</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<style>
+		table{border-collapse:collapse;border-spacing:0;}
+	</style>
+	
+	<script src="js/jquery-1.12.1.min.js"></script>
+<script >
+$(function(){
+	drawtable();
+})
+function drawtable()
+{
+  var i, imax, shtml;
+  /*var inputjson = "{'records':[
+                               {'id':'234','name':'marco','age':24},
+                               {'id':'0783', 'name':'silvia','age':33}
+                              ]
+                   }";*/
+/*             var    inputjson={"records":[
+	{"dwbm":"嘟嘟刚刚#00001222222","dwmc":"长沙公安局#123gdfg","zt":"在线#1333323","zt2":"在线#1333323","ztggg":"在线#1333323"},
+{"dwbm":"嘟嘟拜拜#00001223333","dwmc":"长沙公安局#12ffff3","zt":"在线#123344444"},
+{"dwbm":"嘟嘟的嘟#00001224444","dwmc":"长沙公安局#1gggg23","zt":"在线#1235555"}
+]};*/
+ 
+ var inputjson=[
+{"dwbm":"嘟嘟刚刚#00001222222","dwmc":"长沙公安局#123gdfg","zt":"在线#1333323","zt2":"在线#1333323","ztggg":"在线#1333323","ztggfw2g":"在线#1333323","ztfffggg":"在线#1333323"},
+{"dwbm":"嘟嘟拜拜#00001223333","dwmc":"长沙公安局#12ffff3","zt":"在线#123344444"},
+{"dwbm":"嘟嘟的嘟#00001224444","dwmc":"长沙公安局#1gggg23","zt":"在线#1235555"}
+];
+console.log(inputjson)
+   // var myJSONobj = eval_r('(' + inputjson + ')'); //convert the data to an object - prefer JSON parse here
+ 
+    var irowmax = inputjson.length;
+ 
+    if (irowmax < 1) {
+        alert ('No rows in table');
+        return;
+    }
+ 
+ 
+    var cols = new Array();
+    //get an array of column names
+    for (var key in inputjson[0]) {  //assumign all columns present in first record
+        cols[cols.length] = key;
+    }
+ 
+    icolmax = cols.length
+ 
+    shtml = "<table border=1><tr>";          //创建标题行
+   /* for (i=0;i<icolmax;i++) {                    //表头
+        shtml += "<th>" + cols[i] + "</th>";
+    }*/
+    shtml += "</tr>";
+ 
+ 
+    var irowmax = inputjson.length;
+ 
+    for (irow = 0; irow < irowmax; irow++) {  //添加行
+        shtml += "<tr>";
+        for (i=0;i<icolmax;i++) {
+            shtml += "<td>" + inputjson[irow][cols[i]] + "</td>";
+        }
+        shtml += "</tr>";
+    }
+ 
+    document.getElementById('mydiv').innerHTML = shtml;   //表写入mydiv
+}
+//把table转换成json格式;
+	var pldata="[";
+	var table = document.getElementById("Sbtable"); 
+	var trlist = table.getElementsByTagName("tr");
+	//判断是否有数据
+	  if(trlist.length=="1")
+        {
+       	   showInfo('提示',"请至少选择一台设备");
+           return;
+        }  
+        //循环tr
+	for(var i=1;i<trlist.length;i++)
+	{	
+		var tdlist = trlist[i].getElementsByTagName("input");
+		var temdata="{";
+		//循环td
+		for(var j=0;j<tdlist.length;j++)
+		{		
+			temdata += "\"" +tdlist[j].name + "\":\"" + tdlist[j].value + "\","; 
+		}
+		temdata=temdata.replace(/,$/,"");
+		temdata+="},";
+		pldata+=temdata;
+		
+	}
+	pldata=pldata.replace(/,$/,"");
+	pldata+="]";
+
+	console.log(pldata);
+	
+	
+	//取checkbox的值
+	var tablecheck = document.getElementById("tablechell"); 
+	var checklist = tablecheck.getElementsByTagName("input");
+	var plcheck="";
+	for(var i=0;i<checklist.length;i++){ 
+            if(checklist[i].checked){ 
+               plcheck += checklist[i].value+";";  
+           } 
+        }
+	plcheck=plcheck.substring(0,plcheck.length-1);//去掉最后一个符号
+	console.log(plcheck);
+</script>
+</head>
+ 
+<body>
+Test
+<div id='mydiv'><div>
+</body>
+</html>

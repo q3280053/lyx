@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery.js"></script>
+	</head>
+	<body>
+	
+		<canvas id="canvas" style="border: 1px solid #CCCCCC;display: block;margin: 10px auto;">
+				版本这么低，还上什么网
+		</canvas>
+			<script>
+				window.onload=function(){
+	var canvas=document.getElementById("canvas");
+	var context=canvas.getContext("2d")
+	
+	canvas.width=1024;
+	canvas.height=768;
+	//绘制
+	context.beginPath()//新的绘制
+	context.moveTo(100,100)
+	context.lineTo(700,700)
+	context.lineTo(100,700)
+	context.lineTo(100,100)
+	context.closePath()
+	
+//		conext.lineCap="round";
+	context.fillStyle="red"
+	context.fill()
+	context.lineWidth=5
+	context.strokeStyle="yellow";
+	 
+	context.stroke()
+	
+	context.beginPath()
+	context.moveTo(700,400)
+	context.lineTo(900,100)
+	context.closePath()
+	
+//		conext.lineCap="square";
+	context.lineWidth=5
+	context.strokeStyle="yellow";
+	context.stroke()
+	
+	context.beginPath()
+	context.moveTo(700,100)
+	context.lineTo(900,400)
+	context.closePath()
+	
+	context.lineWidth=5
+	context.strokeStyle="yellow";
+	 
+	
+	context.stroke()
+	
+	context.beginPath();
+	context.arc(400,100,50,0,2*Math.PI)
+	context.closePath();
+	context.fillStyle="#98BF21"
+	context.strokeStyle="#CCCCCC"
+
+	context.fill();
+	context.stroke();
+	
+	
+	drawRect(context,500,100,100,100,5,"#f00","#666666");
+	
+	context.lineWidth=10
+	context.lineJoin="miter";
+	context.miterLimit=20;
+	drawStar(context,50,100,800,500,0);
+	
+	
+//	context.translate(100,100);
+//	context.fillRect()
+//	context.strokeRect()
+}
+
+//矩形
+function drawRect(cxt,x,y,bwidth,bheight,bwid,bcolor,bfill){
+	cxt.beginPath();
+	cxt.rect(x,y,bwidth,bheight);
+	cxt.closePath();
+	
+	cxt.lineWidth=bwid;
+	cxt.fillStyle=bfill;
+	cxt.strokeStyle=bcolor;
+	
+	cxt.fill();
+	cxt.stroke();
+}
+
+//五角星
+function drawStar(cxt2,r,R,x,y,rot){
+	cxt2.beginPath();
+	for(var i=0;i<5;i++)
+	{
+		cxt2.lineTo(Math.cos((18+i*72-rot)/180*Math.PI)*R+x,-Math.sin((18+i*72-rot)/180*Math.PI)*R+y);
+		cxt2.lineTo(Math.cos((54+i*72-rot)/180*Math.PI)*r+x,-Math.sin((54+i*72-rot)/180*Math.PI)*r+y);
+	}
+	cxt2.closePath();
+	cxt2.stroke();
+}
+			</script>
+	</body>
+</html>

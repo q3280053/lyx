@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="author" content="power" >
+		<meta name="keywords" content="html5,css3,bootstrap" >
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" id="viewport">
+		<link rel="shortcut icon" type="image/x-icon" href="img/ico.png" />
+		<title>duang</title>
+		<style>
+			
+			/*头部*/
+			header .headtop{display: inline-block;width: 100%;text-align: center;color: rgba(255,255,255,0.3);padding-top:10%;
+			background:-webkit-linear-gradient(-30deg,rgba(255,255,255,0) 100px,
+				rgba(255,255,255,1) 180px,
+				rgba(255,255,255,1) 240px,
+				rgba(255,255,255,0) 300px) -300px 0 no-repeat;-webkit-background-clip: text;}
+			header span{padding: 10 30px;font-size: 50px;}
+			header input[type='text'],header input[type='password']{width: 100px;}
+			header fieldset{text-align: right;}
+			header fieldset legend{text-align: left;}
+
+			/*内容*/
+			.sound{width:600px;height: 225px;margin:120px auto 0 auto;font-size: 0;position: fixed;left: 50%;margin-left: -300px;}
+			.sound-content{width: 300px;height: 225px;display: inline-block;font-size: 12px;}
+			.sound-content p{text-align: center;}
+			.sound-content a{display: inline-block;width: 300px;text-align: center;}
+			img{border-radius: 100%;width:82px;height: 82px;transform:rotate(0deg);
+			  transition: transform 5s ease; box-shadow:0px 0px 100px #fff;
+			}
+			.divcontent{border: 1px solid #ccc; width: 100px;height: 80px;position: absolute;left: 50%;top:-100px;margin-left:-50px;border-radius: 100%;
+			opacity:0;line-height: 40px;
+			-ms-transform: -ms-translate(0,-20px);
+			transform: translate(0,-20px);
+			transition: opacity 1s ease,
+						transform 1s ease;
+						
+			}
+			.divcontent p{padding: auto 0;} 
+			
+			.sound-content a:hover .divcontent{
+				-ms-transform:-ms-translate(0,0);
+				transform:translate(0,0);
+				opacity: 1;
+				}
+				.sound-content a:hover img{
+				transform:rotate(360deg);
+				
+				}
+				
+				/*底部*/
+				.footer{height: 30px;width: 100%;text-align: center;border-top:1px solid #CCCCCC;line-height: 30px; font-size: 12px;color: #fff;position: absolute;bottom: 0;left: 0;}
+				
+				.txt{width: 100px;margin-right: 10px;margin-top: 12px;}
+				#lxkf{background: url(img/lxkf.png) no-repeat;width: 35px;height: 35px;position: fixed;bottom: 30px;left: 0px;box-shadow:0px 0px 100px #fff;display: inline-block;box-shadow: 0 0 10px #fff;}
+				
+				/*图片倒计时*/
+				.duangbgimg{width: 170px;height: 288px;background: url(images/duang-djs.jpg) no-repeat ;position: fixed;top:50%;left: 50%;margin-top:-100px;margin-left: -85px;background-position: -825px 0;box-shadow:0px 0px 30px #fff;border-radius: 10%;z-index: 99999;}
+				/*遮罩层*/
+				#mask{position: fixed;left: 0;top:0;width: 100%;height:100%;background: #000;z-index: 9999;opacity: 0.7;-webkit-opacity: 0.7;-moz-opacity: 0.7;filter:alpha(opacity=70);}
+				
+				/*随机文字*/
+				.sjbox span{color: rgba(255,255,255,0.2);position: absolute;}
+		</style>
+		
+		<link href="css/common.css" rel="stylesheet" />
+		<script src="js/jquery-1.12.1.min.js"></script>
+		<!--<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>-->
+		<link href="css/bootstrap.min.css" rel="stylesheet" />
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/common.js"></script>
+		<style>
+			
+		</style>
+	</head>
+	<body onkeydown="stopCount();" onload="timedCount();" style="position: relative;">
+			<div id="mask" ></div>
+		<div class="duangbgimg" ></div>
+	<div>
+		
+		<!--导航条-->
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+    <!-- 品牌和获得更好的移动分组切换显示 -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="duang.html" style="text-shadow: 2px 0px 0px #fff;">Power、</a>
+    </div>
+
+    <!-- 收集导航链接、表单和其他内容切换 -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="duang.html">Home<span class="sr-only">(current)</span></a></li>      
+        <li><a href="0mulu.html">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="daojishi.html">Count down</a></li>
+            <li><a href="jishiqi.html">The timer</a></li>
+            <li><a href="lyx.html">Canvas</a></li>
+            <li><a href="#">AngularJS</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">NodeJS</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="DOM-shdz.html">DOM-shdz</a></li>
+            <li><a href="DOM-zyyd.html">DOM-zyyd</a></li>
+            <li><a href="DOM-fxj.html">DOM-fxj</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Please input...">
+        </div>
+        <button type="button" class="btn btn-default" >Search</button>
+        
+        
+      </form>
+      <form method="get">
+
+      <ul class="nav navbar-nav navbar-right">
+		<li style="width: 150px;">
+		<div style="height: 35px;margin-top: 6px;text-align:right;padding-right: 20px;">
+			 <div id="ck-div" style="">
+		        <div class="input-group">
+		        	<span class="input-group-addon" id="sizing-addon1">U</span>
+		          <input type="text" class="form-control" placeholder="..." id="username" required="required" style="width: 60px;">
+		          <span class="input-group-btn">
+		            <button class="btn btn-default" type="button" id="login">Go!</button>            
+		          </span>
+		        </div>             
+      		</div>      
+      		<input  class="btn btn-default" type="button" id="logout" value="" title="点击退出帐号">
+		</div>
+		
+		</li>
+        <li id="time" style="color:#fff;height:50px;line-height:50px;"></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="items.html">Work experience</a></li>
+            <li><a href="intro">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+       </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!--导航条结束-->
+
+		<header>	
+			<div class="headtop"><span>Power</span>____<em style="font:13px '微软雅黑'">再不疯狂我们就老了</em></div>
+			
+		</header>
+		<script>
+			//文字渐变
+			$(function (){
+				var headtop=document.querySelector('.headtop');
+				var timegrad=null;
+				var Ileft=-300;
+				
+				function tomove(){
+					timegrad=setInterval(function(){
+						Ileft+=6;
+						if(Ileft>=1000){
+							Ileft=-300;
+							clearInterval(timegrad);
+						}
+						headtop.style.backgroundPosition=Ileft+"px 0px";
+					},20)
+				}
+				tomove();
+				setInterval(tomove,4000);
+			});
+		</script>
+		<article class="sound">
+			<section class="sound-content">
+				
+				<a href="intro.html" style="color: #fff;position: absolute;">
+					<img src="img/logo.png" />
+					<div class="divcontent">
+						<p>本叼头像</p>
+					</div>
+				</a>
+				
+			</section>
+			<section class="sound-content">
+				
+				<a href="javascript:;" style="color: #fff;position: absolute;">
+					<img src="img/jingjing.jpg" />		
+					<div class="divcontent">
+						<p>预留位</p>
+					</div>
+				</a>
+				
+			</section>
+					
+		</article>
+		
+		<div class="footer">
+			个人网站----by Power&copy备案审核xxx
+		</div>
+		<a id="lxkf" href="tencent://message/?uin=546676098&amp;Menu=yes" title="联系QQ" ></a>
+	</div>
+		<a href="http://q3280053.h5release.com/h5/e40885b8-f9f4-8ae9-c1ad-b36eebaab36f.html" id="lxzz" style="text-decoration: none;display: none;position: absolute;background: #000;color: #fff;border: 1px solid #333;box-shadow:0px 0px 20px #fff;">wap版</a>
+		
+		<!--随机文字定位-->
+		<div class="sjbox">
+			<span>Css</span>
+			<span>Css3</span>
+			<span>Html</span>
+			<span>Html5</span>
+			<span>Jquery</span>
+			<span>Photoshop</span>
+			<span>Bootstrap</span>
+			<span>Easyui</span>
+			<span>Angularjs</span>
+			<span>vue</span>
+			<span>React</span>
+			<span>Ajax</span>
+			<span>Json</span>
+			<span>Oracle</span>
+			<span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span>
+			<span>🌙</span><span>🌙</span><span>🌙</span><span>🌙</span><span>🌙</span>
+			<span>☀</span><span>☀</span><span>☀</span><span>☀</span><span>☀</span>
+		</div>
+		<script>
+			$(function(){
+				//获取高宽
+				var hig=$("body").height()-150;
+				var wid=$("body").width()-100;
+				//随机分布文字
+				$(".sjbox span").each(function(){
+					var sjhig=parseInt(Math.random()*hig);//随机top
+					var sjwid=parseInt(Math.random()*wid);//随机left
+					var sjds=parseInt(Math.random()*361);//随机deg
+					$(this).css({"left":sjwid+"px","top":sjhig+"px",'transform':'rotate('+sjds+'deg)'});					
+				});
+				//随机闪星星
+				setInterval(function(){
+					var len=$(".star").length;
+					var index=parseInt(Math.random()*len);//随机deg					
+					$(".star").css({"color":"rgba(255,255,255,0.2)"});
+					$(".star").eq(index).css({"color":"rgba(255,255,255,1)"});				
+				},2000);
+			})
+		</script>
+		<script>
+			var t;
+		//图片倒计时
+		var timer=null;
+		var speed=2;
+		
+		
+		
+		//关闭网页
+		function showkeycode()
+	    {	    
+	    	t=setTimeout(function(){
+
+			var userAgent = navigator.userAgent;
+			if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Chrome") !=-1) {
+			   window.location.href="about:blank";
+			} else {
+			   window.opener = null;
+			   window.open("", "_self");
+			   window.close();
+			};
+	    		//window.open("about:blank","_self").close();
+	    		},500);
+	    }
+	    
+	    //停止关闭网页
+	    function stopCount()
+		{ 			
+			//var e=ev||event;			
+   			 var theEvent = window.event || arguments.callee.caller.arguments[0];//兼容火狐方法
+		  if (theEvent.keyCode==27) 
+			{ 
+				clearTimeout(t);
+				clearInterval(timer);
+				$(".duangbgimg").hide();
+				$("#mask").hide();
+			}
+		}
+
+			
+			//图片倒计时
+			function dsj(){
+				/*var posx=$(".duangbgimg").css("background-position-x");//不兼容火狐
+				posx=parseInt(posx.substring(0,posx.length-2));*/
+				var posx=$(".duangbgimg").css("background-position");
+				posx=parseInt(posx.replace(/px 0px$/,''));
+								
+				//console.log(posx);
+				if(posx>-25)
+				{
+					clearInterval(timer);
+					showkeycode();
+					
+				}
+			   $(".duangbgimg").css("background-position",posx+speed+"px 0px");			
+			}
+			
+	    timer=setInterval(dsj,20);
+
+	    //showkeycode();//初始调用关闭网页
+	 
+	
+
+
+			       /* 回车提交 */
+	    document.onkeydown=function(event){
+			e = event ? event :(window.event ? window.event : null);
+				if(e.keyCode==13){
+					//执行的方法
+					//_submit();
+					//$("#btnsub").click();
+					  //document.getElementById("myform").submit();					
+				}
+				if(e.keyCode==123)//f12
+				{					
+					return false;
+				}
+
+		}; 
+		
+		//提交方法
+		function _submit(){
+			  //window.location.href="canvas.html";
+			 
+			 // document.myform.submit();
+			}
+		
+		//点击消失联系作者
+        $(function(){
+        	document.onclick=function(){
+        		$("#lxzz").hide();
+        	}
+        })
+     
+		
+      	//打印
+      	function print(){
+      		window.print();	
+      	}
+      	
+		</script>
+		<!--判断浏览器版本-->
+		<script type="text/javascript"> 
+			var browser=navigator.appName;
+			var b_version=navigator.appVersion; 
+			var version=b_version.split(";"); 
+			var trim_Version=version[1].replace(/[ ]/g,""); 
+			function closewin(){
+				self.opener=null;  
+				self.open('', '_self');  
+				self.close();  
+			};
+			
+			if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE6.0") 
+			{ 
+			alert("IE6浏览器不兼容,确认关闭"); closewin();
+			} 
+			else if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE7.0") 
+			{ 
+			alert("IE7浏览器不兼容,确认关闭");closewin();
+			} 
+			else if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE8.0") 
+			{ 
+			alert("IE8浏览器不兼容,确认关闭"); closewin();
+			} 
+			else if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE9.0") 
+			{ 
+			//alert("IE 9.0"); closewin();
+			} 
+			/* if(isFirefox=navigator.userAgent.indexOf("Firefox")>0){   
+			  alert("火狐浏览器");
+			}*/
+			 else{
+			 	 /*if(!confirm("重中之重! 患有心脏病者禁止浏览!"))
+					 {
+					 	window.close();
+					 	//closewin();
+					 }*/
+			 	
+			 }
+			
+					 
+					 
+</script>
+
+<!--cookie插件-->
+<script>
+	$(function(){			
+			$("#logout").hide();
+			
+			//页面加载判断有无cookie
+			if($.cookie("user")){					
+				$("#logout").show();
+				$("#ck-div").hide();
+				$("#logout").val($.cookie("user"));
+			}else{
+				$("#ck-div").show();
+				$("#logout").hide();
+			}
+   		
+			//登录
+			$("#login").click(function(){				
+				var name=$("#username").val();
+				if(name!=""){
+				$("#ck-div").hide();
+				$.cookie("user",$("#username").val(),{expires:7}); //添加cookie
+					$("#logout").show();
+					$("#logout").val($.cookie("user"));
+				}
+				else{
+					alert("不能为空");
+				}
+			});
+			
+			//退出
+			$("#logout").click(function(){				
+				$.removeCookie('user');//删除cookie
+			    window.location.href='duang.html';
+			});
+			
+			var aaa=$(".sound").height();
+			//alert(aaa);
+			
+		});
+		
+</script>
+<!--分享插件-->
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"8","bdPos":"right","bdTop":"100"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+	</body>
+</html>

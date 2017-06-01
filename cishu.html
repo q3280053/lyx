@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+		<script src="js/jquery-1.12.1.min.js"></script>
+		<style>
+			*{margin:0;padding:0;}
+			ul{list-style: none;}
+			ul li{float: left;width:100%;height:35px;line-height: 35px;margin-top:5px;}
+			ul li span{display: inline-block;width:100px;text-align: right;margin-right:10px;}
+			ul li .txt{height:28px;}
+			ul li #btn{float: left;margin-left: 200px;height: 28px;padding: 0 15px;cursor: pointer;}
+			.shuchu{padding-left: 5px;margin-left: 5px;}
+		</style>
+	</head>
+	<body>
+		
+		<ul>
+		<li><span>要循环的语句</span><input class="txt" id="yuju" type="text" /></li>
+		<li><span>次数</span><input id="cishu" type="text" class="txt" /></li>
+		<li><input type="button" id="btn" value="提交" /></li>
+		</ul>
+		<div id="shuchu">
+		</div>
+		<script>
+		
+			$(function(){
+					
+					$("#btn").click(function(){
+						$(".sp").remove();
+						$("br").remove();
+						
+						var tem=/^[0-9]*[1-9][0-9]*$/;
+						var yuju=$("#yuju").val();
+						var cishu=$("#cishu").val();
+						if(!tem.test(cishu))
+						{
+							alert("请输入整数");
+							return;
+						}
+						for(var i=0;i<cishu;i++)
+						{
+							$("#shuchu").append("<span class='sp'>"+yuju+"</span><br />");
+						}
+					
+					});
+				});
+				$(document).bind("click",function(e){
+				//alert(e.pageX+','+e.screenX+","+e.clientX);
+				//alert(e.pageY+','+e.screenY+","+e.clientY);
+			});
+		</script>
+	</body>
+</html>

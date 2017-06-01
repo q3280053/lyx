@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" ng-app="TodoApp">
+<head >
+	<meta charset="UTF-8" />
+	<title>任务清单</title>
+	<link href="Boostrap/css/bootstrap.css" rel="stylesheet" />
+	
+	<script src="js/angular.min.js"></script>
+	<style>
+		body{max-width: 600px;}
+		.checkbox{margin-right: 20px;margin-bottom: 0;}
+		input[type="checkbox"]{margin:0;}
+		.done{color: #ccc;}
+		.done>
+	</style>
+</head>
+<body class="container" ng-controller="myCtrl">
+	<div style="justify-content: center;align-items: center;display: -webkit-flex;height: 100%;">
+		<hello>ni hao</hello>
+	</div>
+	<header>
+		<h1 class="display-3">任务清单</h1>
+		<hr>
+	</header>
+	<section>
+		<form class="input-group input-group-lg">
+			<input type="text" class="form-control"  ng-model="text" />
+			<span class="input-group-btn">
+				<input type="button" class="btn btn-default" value="添加" ng-click="add()" />
+			</span>			
+		</form>
+		
+		<ul class="list-group media" >
+			<li class="list-group-item" ng-repeat="item in todolist" ng-class="{'done':item.done}">
+				<button type="button" class="close" aria-label="close" ng-click="delete(item)">
+					<span aria-hidden="true">&times;</span>
+					<span class="sr-only">Close</span>
+				</button>
+				<div class="checkbox">
+					<label><input type="checkbox" ng-model="item.done" /><span>{{item.name}}</span></label>
+				</div>
+			</li>
+			
+		</ul>
+		<p>总共<strong>{{todolist.length}}</strong>个任务,已完成<strong>{{doneCount()}}</strong>个</p>
+	</section>
+	<script type="text/javascript">
+	
+		var app = angular.module('TodoApp', []);
+		app.controller('myCtrl', function($scope) {					   
+		      
+		//自定义一个指令
+		//restrict：E元素 A 属性 C样式 M注释
+		app.directive('hello', function() {
+		    return {
+		        restrict: 'E',
+		        template: '<div>Hi there</div>',
+		        replace: true
+		    };
+		});
+		
+		
+		      $scope.text='';
+		      $scope.todolist=[{name:'学习1',done:false},{name:'学习2',done:false}];
+		      //添加
+		      $scope.add=function(){
+		      	var text=$scope.text.trim();
+		      	if(text)
+		      	{
+		      		$scope.todolist.unshift({name:text,done:false});
+		      		$scope.text='';
+		      	}
+		      }
+		      //删除
+		      $scope.delete=function(todo){
+		      	var index=$scope.todolist.indexOf(todo);
+		      	$scope.todolist.splice(index,1);
+		      }
+		      //已完成(如果数据会变,我们一般使用函数方式)
+		      $scope.doneCount=function(){
+		      	var temp=$scope.todolist.filter(function(item){		      		
+		      		return item.done;//返回true表示当item满足条件	
+		      	});
+		      	return temp.length;
+		      }
+		});
+	</script>
+</body>
+</html>

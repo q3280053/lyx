@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en" ng-app="myApp" >
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>angulajs</title>
+		<script src="js/angular.min.js"></script>
+	</head>
+
+	<body ng-controller="myCtrl">
+		<div>
+			<h1>ng-model && ng-if</h1>
+			名字 : <input type="text" ng-model="name">----
+			<b >Hello {{name}}</b>			
+			<hr>
+			
+			<h1>ng-init 类似var变量</h1>
+			 变量: <input type="text" ng-init="fName='这是变量'" ng-model="fName">----{{fName}}
+			<hr>
+			
+			<h1>ng-repeat 类似for循环 && $index</h1>
+			<p ng-init="names=[{name:'Jani',country:'Norway'},{name:'Hege',country:'Sweden'},{name:'Kai',country:'Denmark'}]">				
+			</p>			
+			<p>循环对象：</p>
+	  		<ul>
+		    <li ng-repeat="x in names">
+	
+				{{$index}}--{{ x.name + ', ' + x.country }}
+		    </li>
+	  		</ul>
+	  		<hr>
+	  		
+	  		<h1>ng-show</h1>
+	  		<form  name="myForm" novalidate>
+			    Email:
+			    <input type="email" name="myAddress" ng-model="text" required >
+			    <span ng-show="myForm.myAddress.$error.email" >不是一个合法的邮箱地址</span>	
+			    
+			</form>
+		    <hr>
+		    
+		    <h1>ng-click</h1>
+		    <input type="text" value="" ng-model="xc" />
+		    <input type="button" value="*2" ng-click="doCalc()" />每次乘以2
+		    
+		    <button ng-init="count=0" ng-click="count = count + 1">点我！</button>---{{ count }}
+		    <hr>
+		    
+		    <h1>过滤器</h1>
+		    <input type="text" ng-init="ceshi='uppercase'" ng-model="ceshi" />变大写---{{ceshi|uppercase}}<br />
+		    <input type="text" ng-init="ceshi2='LOWERCASE'" ng-model="ceshi2" />变小写---{{ceshi2|lowercase }}<br />
+		    <input type="text" ng-init="ceshi3='33'" ng-model="ceshi3" />化为货币格式---{{ceshi3|currency  }}<br />		    	
+		   <!-- <input type="text" ng-model="test">filter--orderBy.name---<br />
+		    <ul>
+			  <li ng-repeat="xh in guoluqi | filter:test | orderBy">
+			    {{xh}}
+			  </li>
+			</ul>-->
+		    <hr>
+		    
+		    <h1>ng-disabled</h1>
+		    <button  ng-init="mySwitch=true" ng-disabled="mySwitch">点我!</button>
+		    <input type="checkbox" ng-model="mySwitch"/>按钮---{{ mySwitch }}
+		    <hr>
+		    
+		    <h1>ng-show && ng-hide</h1>
+		    <p ng-show="true">我是可见的。</p>
+			<p  ng-init="hour=13" ng-show="hour>14">我是不可见的。</p>
+		    <p ng-hide="true">不可见</p>
+		    <input type="button" value="切换" ng-click="toggle()" />
+		    <p ng-hide="myVar">222</p>
+		    <hr>
+		    
+		    <h1>$location类似window.location</h1>
+		    <label ng-model="myUrl">手动控制输出当前路径</label>----{{myUrl}}
+		    <hr>
+		    
+		    <h1> $http 类似ajax</h1>
+		    <p>{{mytest}}</p>
+		    <p>{{myjson}}</p>
+		    <hr>
+		    
+		    <h1>$timeout 类似setTimeout</h1>
+		    <p >{{myHeader}}</p>
+		    <hr />
+		    
+		    <h1>$interval 类似setInterval</h1>
+		    <p>{{theTime}}</p>
+		    <hr />
+		    
+		  <!--  <h1>创建自定义服务</h1>
+		    <p>{{hex}}</p>-->
+		    
+		    <h1>ng-options(极少用)类似ng-repeat</h1>
+		    <select ng-model="selectedName" ng-options="sel.site for sel in selectName"></select>
+		    <select  ng-model="selectedSite">
+				<option ng-repeat="hh in selectName" value="{{hh.url}}">{{hh.site}}</option>
+			</select>
+			----您选择的是:{{selectedSite}}
+			<hr />
+			
+			<h1>$index</h1>
+			<table>
+			  <tr ng-repeat="xx in guoluqi">
+			    <td ng-if="$odd" style="background-color:#f1f1f1">
+				    {{ xx }}</td>
+				    <td ng-if="$even" style="background-color:#f00">
+				    {{ xx }}</td>
+			    
+			  </tr>
+			</table>
+			<hr />
+			
+			<h1>textarea</h1>
+			<textarea ng-model="mytextarea"></textarea>剩余次数<label  ng-bind="mytextareanums()" >100</label>
+			<hr />
+		</div>
+		
+		<script>
+		(function(window){
+			//不会污染全局作用域
+		})(window);
+		 
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function($scope,$location, $http,$timeout,$interval) {					   
+		      //$scope.bianliang= "手动控制model值";
+		      $scope.guoluqi = ["Emil", "Tobias", "Linus",'abot'];
+		      
+		      //ng-click
+		      $scope.xc='10';
+		      $scope.doCalc=function(){
+		      	$scope.xc=$scope.xc *2;
+		      }
+		      //$location
+		      $scope.myUrl = $location.absUrl();
+		      
+		      //$http
+		      $http.get("mytest.txt").then(function (response) {
+			      $scope.mytest = response.data;
+			  });
+			   $http.get("mytest.json").success(function(response) {
+			   	   $scope.myjson = response.rows;
+			   	   //alert(response.records)
+			   });
+			  
+			  //$timeout
+			  $scope.myHeader = "Hello World!";
+			    $timeout(function () {
+			        $scope.myHeader = "How are you today?";
+			   }, 2000);
+			   
+			  //$interval
+			  $scope.theTime = new Date().toLocaleTimeString();
+			    $interval(function () {
+			        $scope.theTime = new Date().toLocaleTimeString();
+			  }, 1000);
+			  
+			  //ng-options
+			  $scope.selectName=[
+				    {site : "Google", url : "http://www.google.com"},
+				    {site : "Runoob", url : "http://www.runoob.com"},
+				    {site : "Taobao", url : "http://www.taobao.com"}
+				];
+				
+			   //切换 <p ng-hide="myVar">
+			    $scope.toggle= function() {
+			        $scope.myVar = !$scope.myVar;
+			    }
+			    
+			    //剩余次数			
+			    $scope.mytextareanums=function(){			    				   	
+			      	return 100-$scope.mytextarea.length;			     
+			    }
+		        //mytextareanums();
+		});
+		
+		//此处创建自定义服务和过滤器起冲突，暂时注释，，， http://www.runoob.com/angularjs/angularjs-services.html
+		/*var app1 = angular.module('myApp', []);
+		app1.service('hexafy', function() {
+			this.myFunc = function (x) {
+		        return x.toString(16);
+		    }
+		});
+		app1.controller('myCtrl', function($scope, hexafy) {
+  			$scope.hex = hexafy.myFunc(13);
+		});*/
+		//ng-app指令 模块
+		//ng-controller="myCtrl" 控制器		
+		//兼容ie8用1.2x，兼容ie9用1.3x，不兼容ie可以用1.4或者1.5
+		//ng-init="quantity=1;cost=44" 定义变量
+		//ng-bind 输出	
+		//ng-repeat="x in names" {{x}}{{ x.name + ', ' + x.country }}		
+		//ng-if
+		// ng-show 属性返回 true 的情况下显示。
+		//ng-model 指令可以为应用数据提供状态值(invalid, dirty, touched, error):
+		//Scope(作用域)
+		//ng-click
+		//formName.inputFieldName.$pristine; 没改变过内容
+		//formName.inputFieldName.$dirty 改变过内容
+		//formName.inputFieldName.$valid 验证通过
+		//formName.inputFieldName.$invalid 验证未通过
+		//{{myForm.myAddress.$error.myText}} error后面带model名
+		// $scope.x2 = angular.isString($scope.x1); 是否是字符串//返回bool类型
+		//$scope.x2 = angular.isNumber($scope.x1); 是否是数字,返回bool类型
+	</script>
+	</body>
+
+</html>

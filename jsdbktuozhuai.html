@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>带边框拖拽</title>
+		<script src="js/mycookie.js"></script>
+		<style>
+			.box{border: 1px dashed black;position: absolute;}
+		</style>
+	</head>
+	<body>
+
+		<div id="btnref" style="position: absolute;width: 100px;height: 100px;background-color: #f00;" ></div>
+		
+		<script>		
+		window.onload=function(){			
+			
+			
+			
+			var oBtn=document.getElementById("btnref");
+			
+			
+			var disX=0;
+			var disY=0;
+			var x=getCooike("x");
+			var y=getCooike("y");
+			if(x)
+			{
+				oBtn.style.left=x+"px";
+				oBtn.style.top=y+"px";
+			}
+			
+			oBtn.onmousedown=function(ev){
+				
+				//创建
+				var oDiv=document.createElement("div");
+				oDiv.className="box";
+				oDiv.style.width=oBtn.offsetWidth+"px";
+				oDiv.style.height=oBtn.offsetHeight+"px";
+				oDiv.style.left=oBtn.offsetLeft+"px";
+				oDiv.style.top=oBtn.offsetTop+"px";
+				document.body.appendChild(oDiv);
+				//创建--end
+				
+				var e=ev||event;
+				disX=e.clientX-oBtn.offsetLeft;
+				disY=e.clientY-oBtn.offsetTop;
+				
+				document.onmousemove=function(ev){
+					var e=ev||event;
+					document.documentElement.clientWidth;
+					var l=e.clientX-disX;
+					var t=e.clientY-disY;					
+					oDiv.style.left=l+"px";
+					oDiv.style.top=t+"px";
+				};
+				document.onmouseup=function(){
+					document.onmousemove=null;
+					document.onmouseup=null;
+					
+					oBtn.style.left=oDiv.offsetLeft+"px";
+					oBtn.style.top=oDiv.offsetTop+"px";
+					document.body.removeChild(oDiv);
+					
+					setCooike("x",oBtn.offsetLeft,7);
+					setCooike("y",oBtn.offsetTop,7);
+				}
+				return false;
+			}
+			
+		}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,8 @@
+html{padding: 0;margin: 0;font-family: "微软雅黑";color: #fff;}
+body{margin:0;padding:0; background: url(../img/index-bj.jpg) no-repeat bottom;background-size:cover;height:100%;width:100%;}
+
+img{border: none;}			
+ul,ol{list-style: none;}
+em,i{font-style: normal;}
+a{text-decoration: none;}
+

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>vue</title>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div>
+  <input v-model="parentMsg">
+  <br>
+  <child v-bind:my-message="parentMsg"></child>
+</div>
+<hr />
+		<span v-once id="aaa">This will never change: {{ msg }}</span>
+		<div id="app">
+		  {{ message }}
+		</div>
+		<div id="app-2">
+		  <span v-bind:title="message">
+		    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+		  </span>
+		</div>
+		<div id="app-4">
+		  <ol>
+		    <li v-for="todo in todos">
+		      {{ todo.text }}
+		    </li>
+		  </ol>
+		</div>
+		<div class="app-5">
+		  <p>{{ message }}</p>
+		  <button v-on:click="reverseMessage">逆转消息</button>
+		</div>
+		<div id="app-7">
+		  <ol>
+		    <!-- 现在我们为每个todo-item提供待办项对象    -->
+		    <!-- 待办项对象是变量，即其内容可以是动态的 -->
+		    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+		  </ol>
+		</div>
+		<div id="example1">
+		  <p>Original message: "{{ message }}"</p>
+		  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+		</div>
+		<div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
+		<script>
+		/*
+		 * 指令带有前缀 v-是 Vue 提供的特殊属性。
+		 * */
+			
+			var app = new Vue({
+			  el: '#app',
+			  data: {
+			    message: 'Hello Vue!'
+			  }
+			})
+			var aaa = new Vue({
+			  el: '#aaa',
+			  data: {
+			    message: 'Hello Vue!'
+			  }
+			})
+			var app2 = new Vue({
+			  el: '#app-2',
+			  data: {
+			    message: '页面加载于 ' + new Date()
+			  }
+			})
+			var app4 = new Vue({
+			  el: '#app-4',
+			  data: {
+			    todos: [
+			      { text: '学习 JavaScript' },
+			      { text: '学习 Vue' },
+			      { text: '整个牛项目' }
+			    ]
+			  }
+			})
+			var app5 = new Vue({
+			  el: '.app-5',
+			  data: {
+			    message: 'Hello Vue.js!'
+			  },
+			  methods: {//methods:不是计算属性 但效果和computed 一样的 没缓存
+			  	  		//computed: //计算属性 有缓存
+			    reverseMessage: function () {
+			      this.message = this.message.split('').reverse().join('')
+			    }
+			  }
+			})
+			
+			Vue.component('todo-item', {
+			  props: ['todo'],
+			  template: '<li>{{ todo.text }}</li>'
+			})
+			var app7 = new Vue({
+			  el: '#app-7',
+			  data: {
+			    groceryList: [
+			      { text: '蔬菜' },
+			      { text: '奶酪' },
+			      { text: '随便其他什么人吃的东西' }
+			    ]
+			  }
+			})
+			var vm1 = new Vue({
+			  el: '#example1',
+			  data: {
+			    message: 'Hello'
+			  },
+			  computed: {//计算属性 有缓存
+			    // a computed getter
+			    reversedMessage: function () {
+			      // `this` points to the vm instance
+			      return this.message.split('').reverse().join('')
+			    }
+			  }
+			})
+			
+		</script>
+	</body>
+</html>

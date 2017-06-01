@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{font-family: "微软雅黑";}
+			ul{list-style: none; border: 1px solid #D3D3D3;height: 350px;width: 150px;float: left;padding: 0;margin: 0;}
+			ul li{border:1px solid #0099CC;width: 80%; text-align: center;display: block;margin: 10px auto;cursor: pointer;}
+			ul li.active{background-color: #ddd;}
+			
+			.btndiv{float: left;width: 100px;padding-top: 100px;}
+			.btndiv input{float: left;width: 100%;margin:5px 0;}
+		</style>
+		<script src="js/jquery-1.12.1.min.js"></script>
+		<!--<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>-->
+	</head>
+	<body>
+		
+	<div style="width: 100%;height: 100%;">
+			<ul class="ul-left">
+				<li>刘一</li>
+				<li>陈二</li>
+				<li>张三</li>
+				<li>李四</li>
+				<li>王五</li>
+				<li>赵六</li>
+				<li>孙七</li>
+				<li>周八</li>
+				<li>吴九</li>
+				<li>郑十</li>
+			</ul>
+			
+			<div class="btndiv">
+				 <input type="button" value="右移" id="btnyy" />
+				 <input type="button" value="左移" id="btnzy"/>
+				 <input type="button" value="全右移" id="btnqyy" />
+				 <input type="button" value="全左移" id="btnqzy" />
+			</div>
+			
+			<ul class="ul-right">				
+			</ul>
+			<div style="clear: both;"></div>
+	</div>
+		<script>
+			var arrleft=[];//数组
+			var arrright=[];//数组
+		$(function(){
+			//选中事件
+			$(".ul-left li").click(function(){				
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");						
+					arrleft.splice($.inArray($(this).text(),arrleft),1);
+				}
+				else{
+					$(this).addClass("active");	
+					arrleft.push($(this).text());
+				}				
+			});
+			
+			//选中事件
+			$(".ul-right li").click(function(){					
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");						
+					arrright.splice($.inArray($(this).text(),arrright),1);
+				}
+				else{
+					$(this).addClass("active");	
+					arrright.push($(this).text());
+				}				
+			});
+			
+			
+			//右移
+			$("#btnyy").click(function(){	
+				//$(".ul-right").html("");
+				$(".ul-right li").unbind( "click" );
+				if($(".ul-left li").hasClass("active"))
+				{
+					$(".ul-left li.active").remove();		
+				}
+				for(var i=0;i<arrleft.length;i++)
+				{					
+					var li="<li>"+arrleft[i]+"</li>";
+					$(".ul-right").append(li);						
+				}
+					arrleft =[];
+				
+				//绑定事件
+					$('.ul-right li').bind('click',function(){ 
+						if($(this).hasClass("active")){
+							$(this).removeClass("active");						
+							arrright.splice($.inArray($(this).text(),arrright),1);
+						}
+						else{
+							$(this).addClass("active");	
+							arrright.push($(this).text());
+						}
+						
+					});
+					
+				
+			});
+			
+		
+			
+			//左移
+			$("#btnzy").click(function(){
+				$(".ul-left li").unbind( "click" );
+				if($(".ul-right li").hasClass("active"))
+				{
+					$(".ul-right li.active").remove();		
+				}				
+				for(var i=0;i<arrright.length;i++)
+				{					
+					var li="<li>"+arrright[i]+"</li>";
+					$(".ul-left").append(li);					
+				}
+				arrright =[];
+				
+				$('.ul-left li').bind('click',function(){ 
+						if($(this).hasClass("active")){							
+							$(this).removeClass("active");						
+							arrleft.splice($.inArray($(this).text(),arrleft),1);
+						}
+						else{
+							
+							$(this).addClass("active");	
+							arrleft.push($(this).text());
+						}
+					
+					});
+				
+				
+			});
+			
+			//全左移
+			$("#btnqzy").click(function(){
+				$(".ul-left li").unbind( "click" );
+				var str=$(".ul-right").html();			 
+				$(".ul-left").append(str);
+				$(".ul-right li").remove();
+				$(".ul-left li").removeClass("active");
+				
+				$(".ul-left li").bind("click",function(){						
+					if($(this).hasClass("active")){
+						$(this).removeClass("active");						
+						arrleft.splice($.inArray($(this).text(),arrleft),1);
+					}
+					else{
+						$(this).addClass("active");	
+						arrleft.push($(this).text());
+					}
+				});
+			});
+			
+			//全右移
+			$("#btnqyy").click(function(){
+				$(".ul-right li").unbind( "click" );
+				var str=$(".ul-left").html();				
+				$(".ul-right").append(str);
+				$(".ul-left li").remove();	
+				$(".ul-right li").removeClass("active");
+				
+					$(".ul-right li").bind("click",function(){						
+					if($(this).hasClass("active")){
+						$(this).removeClass("active");						
+						arrright.splice($.inArray($(this).text(),arrright),1);
+					}
+					else{
+						$(this).addClass("active");	
+						arrright.push($(this).text());
+					}
+					
+				});
+					
+				
+				
+				
+				
+			});
+			
+		});
+		
+		</script>
+		
+	</body>
+</html>

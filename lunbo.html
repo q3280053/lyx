@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="content-language" content="zh-cn" />
+		<title>完美左右切换</title>
+		<meta name="keywords" content=" " />
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+				list-style-type: none;
+			}
+			/*.v_out{width:748px;margin:20px auto;overflow:hidden;}*/
+			
+			.v_show {
+				width: 900px;
+				position: relative;
+				height: 250px;
+				margin: 0 auto;
+				overflow: hidden;
+				
+			}
+			
+			.v_cont {
+				width: 100%;
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				height: 250px;
+				
+			}
+			
+			.v_cont ul {
+				float: left;
+				text-align: center;
+				line-height: 50px;
+				
+			}
+			
+			.v_cont ul li {
+				width: 300px;
+				height: 250px;				
+				float: left;
+				margin-top: 3px;
+			}
+			
+			.v_cont ul li img {
+				width: 300px;
+				height: 250px;
+			}
+			/*---圆圈---*/
+			/*.v_out_p{position:relative;overflow:visible}*/
+			/*.circle{position:absolute;left: 40px;top: 290px;}
+			.circle li{width:120px;height:60px;float:left;margin-right:10px;background:#ccc}
+			.circle .circle-cur{background:#f00}*/
+			/*下面的所有图片*/
+			
+			#divsro{overflow-x:scroll;overflow-y: hidden;width: 450px;height: 82px;margin: 30px auto;border: 1px solid #ddd;}
+			.circle {
+				float: left;
+				height: 62px;
+				overflow: hidden;
+			}
+			
+			.circle li {
+				cursor: pointer;
+				width: 120px;
+				height: 60px;
+				float: left;
+				overflow: hidden;
+				margin-left: 5px;
+			}
+			
+			.circle li img {
+				width: 120px;
+				height: 60px;
+			}
+			
+			.circle .circle-cur {
+				border: 1px solid #000000;
+			}
+			/*清除浮动*/
+			.cfl{*zoom:1}
+			.cfl:after{content:"\0020";display:block;height:0;clear:both;overflow:hidden;visibility:hidden}
+
+			/*---箭头---*/
+			#jiantou{position: absolute;left: 300px;top: 0px; z-index: 9;width: 300px;height: 250px;line-height: 250px;}
+			/*#jiantou:hover .prev,.next{display: block;}*/
+			#jiantou .prev{float: left;width: 150px;display: block;height: 250px;cursor:url("prev.ico"),auto;}			
+			#jiantou .next{float: right;width:150px;display: block;height: 250px;cursor:url("next.ico"),auto;}
+			
+			/*鼠标指向*/
+		/*	#jiantou .prev:hover{background: #ddd;}
+			#jiantou .next:hover{background: #ddd;}*/
+			
+			/*遮罩层*/
+			.maskleft{position: absolute;left: 0;top: 0;z-index: 8;width: 300px;height: 250px;background: #000000;opacity: 0.6;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)"; filter:alpha(opacity=60);}
+			.maskright{position: absolute;right:0;top: 0;z-index: 8;width: 300px;height: 250px;background: #000000;opacity: 0.6;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)"; filter:alpha(opacity=60);}
+		</style>		
+		<script src="js/jquery-1.12.1.min.js"></script>
+
+	</head>
+
+	<body onload="Load();">
+		<div class="v_out">
+			
+			<div>
+				<div class="v_show">
+					<!--箭头-->
+					<div id="jiantou">
+						<a href="javascript:void(0)" class="prev"></a>
+						<a href="javascript:void(0)" class="next"></a>
+					</div>
+					<!--遮罩层-->
+					<div class="maskleft"></div>
+					<div class="maskright"></div>
+					<!--轮播-->
+					<div class="v_cont">
+						<ul>
+							<li index="1"><img src="images/sc1.jpg" /></li>
+							<li index="2"><img src="images/sc2.jpg" /></li>
+							<li index="3"><img src="images/sc3.jpg" /></li>
+							<li index="4"><img src="images/sc4.jpg" /></li>
+							<li index="5"><img src="images/sc5.jpg" /></li>
+							<li index="6"><img src="images/sc6.jpg" /></li>
+						</ul>
+
+					</div>
+				</div>
+			</div>
+						
+
+		</div>
+		<div class="cfl" ></div>
+		<!--所有图片-->
+		<div id="divsro">
+			<ul class="circle">
+				<li><img src="images/sc1.jpg" /></li>
+				<li class="circle-cur"><img src="images/sc2.jpg" /></li>
+				<li><img src="images/sc3.jpg" /></li>
+				<li><img src="images/sc4.jpg" /></li>
+				<li><img src="images/sc5.jpg" /></li>
+				<li><img src="images/sc6.jpg" /></li>
+			</ul>
+		</div>
+		<div id="con">鼠标点击哪里，我就出现在哪里！</div>
+		<!--图片显示大图-->
+		<div id="maskdiv" style="display: none;width: 439px;height: 400px;position: fixed;left: 0;top: 10%;z-index: 10;">
+			<img id="maskimg" src="" style="width: 439px;height: 400px;">
+		</div>
+		<script>
+			$(function() {
+				//设置ul的宽度， 才会显示滚动条
+				var wid = $(".circle li").length * 125 + 5 + "px";				
+				$(".circle").css("width", wid);
+			});
+			
+		</script>
+		<script type="text/javascript">
+				$(function() {
+
+					//绑定下一张事件
+ 					$(".next").on('click',nextscroll);
+					//绑定上一张事件
+					$(".prev").on('click',prevscroll);
+					//  /*======btn====circle======		
+					setTimeout(function(){$(".circle li").eq(0).click()},400)
+					var animateEnd = 1;
+					$(".circle li").click(function() {
+						if (animateEnd == 0) {
+							return;
+						}
+						$(this).addClass("circle-cur").siblings().removeClass("circle-cur");
+						var nextindex = $(this).index();
+						var currentindex = $(".v_cont li").first().attr("index");
+						var curr = $(".v_cont li").first().clone();
+						if (nextindex > currentindex) {
+							for (var i = 0; i < nextindex - currentindex; i++) {
+								var firstItem = $(".v_cont li").first();
+								$(".v_cont ul").append(firstItem);
+							}
+							$(".v_cont ul").prepend(curr);
+							var offset = ($(".v_cont li").width()) * -1;
+							if (animateEnd == 1) {
+								animateEnd = 0;
+								$(".v_cont").stop().animate({
+									left: offset
+								}, "slow", function() {
+									$(".v_cont ul li").first().remove();
+									$(".v_cont").css("left", "0px");
+									animateEnd = 1;
+								});
+							}
+						} else {
+							var curt = $(".v_cont li").last().clone();
+							for (var i = 0; i < currentindex - nextindex; i++) {
+								var lastItem = $(".v_cont li").last();
+								$(".v_cont ul").prepend(lastItem);
+							}
+							$(".v_cont ul").append(curt);
+							var offset = ($(".v_cont li").width()) * -1;
+							$(".v_cont").css("left", offset);
+							if (animateEnd == 1) {
+								animateEnd = 0;
+								$(".v_cont").stop().animate({
+									left: "0px"
+								}, "slow", function() {
+									$(".v_cont ul li").last().remove();
+									animateEnd = 1;
+								});
+							}
+						}
+					});
+				})
+				
+				//next下一张方法
+					function nextscroll() {						
+						var vcon = $(".v_cont ");
+						var offset = ($(".v_cont li").width()) * -1;
+						vcon.stop().animate({
+							left: offset
+						}, "slow", function() {
+							var firstItem = $(".v_cont ul li").first();
+							vcon.find("ul").append(firstItem);
+							$(this).css("left", "0px");
+							circle();						
+						});	
+						//一秒钟只能执行一次
+						$(".next").unbind("click");
+					    setTimeout('$(".next").bind("click",nextscroll);',1000);
+					};
+					//prev上一张方法
+					function prevscroll(){
+						var vcon = $(".v_cont ");
+						var offset = ($(".v_cont li").width() * -1);
+						var lastItem = $(".v_cont ul li").last();
+						vcon.find("ul").prepend(lastItem);
+						vcon.css("left", offset);
+						vcon.animate({
+							left: "0px"
+						}, "slow", function() {
+							circle();							
+						});
+						//一秒钟只能执行一次
+						$(".prev").unbind("click");
+					    setTimeout('$(".prev").bind("click",prevscroll);',1000);
+					}
+					
+				//单击选中图片事件
+				function circle() {
+						var currentItem = $(".v_cont ul li").first();
+						var currentIndex = currentItem.attr("index");
+						$(".circle li").removeClass("circle-cur");
+						$(".circle li").eq(currentIndex).addClass("circle-cur");
+					} 
+					//自动轮播
+					//setInterval(nextscroll,2000);
+					
+					$(function(){
+						// 所有图片下的--鼠标放上去
+						/*$(".circle li").hover(function(){
+							alert(1);
+						});*/
+						$(".circle li").mouseover(function(){
+							$("#maskdiv").show();
+							var aa=$(this).children("img").attr("src");
+							$("#maskimg").attr("src",aa);
+							var mX=event.clientX+30+"px";//获得鼠标坐标，并记录当前坐标给变量
+      						var  mY=event.clientY+"px";//获得鼠标坐标，并记录当前坐标给变量，以便后面计算
+
+         				   $("#maskdiv").css({"left":mX,"top":"20px"});
+						});
+						$(".circle li").mouseout(function(){
+								$("#maskdiv").hide();
+							//alert(2);
+						});
+						
+						$("#jiantou").mouseover(function(){
+							$("#maskdiv").show();
+							var ss=$(".circle-cur").children("img").attr("src");
+							var mX=event.clientX+80+"px";//获得鼠标坐标，并记录当前坐标给变量
+							$("#maskimg").attr("src",ss);
+							$("#maskdiv").css({"left":mX,"top":"20px"});
+						});
+						$("#jiantou").mouseout(function(){
+							$("#maskdiv").hide();
+							
+						});
+					});
+					
+ function Load() {
+        setInterval("sptime.innerHTML=new Date().toLocaleString()+' '.charAt(new Date().getDay());", 1000);
+    }
+			</script>
+			<span id="sptime"></span>
+	</body>
+
+</html>

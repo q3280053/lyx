@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+		<script src="js/jquery-1.12.1.min.js"></script>
+	</head>
+	<body>
+		<textarea id="txthf" onfocus="lostAddFocus();" onblur="getAddFocus();"></textarea> 
+		<style>
+			.qwert{width: 300px;height:106px;border: 1px solid #000000;overflow: hidden;margin: 0;}
+			.qwert li{margin-top: 0;}
+		</style>
+		<ul class="qwert">
+			<li><a>这是一顿撒打算的</a></li>
+			<li><a>这是一顿撒打算的1</a></li>
+			<li><a>这是一顿撒打算的2</a></li>
+			<li><a>这是一顿撒打算的3</a></li>
+			<li><a>这是一顿撒打算的4</a></li>
+			<li><a>这是一顿撒打算的5</a></li>
+			<li><a>这是一顿撒打算的6</a></li>
+		</ul>
+		<script>
+		$(function(){
+		 var _wrap=$('ul.qwert');//定义滚动区域
+		 var _interval=3000;//定义滚动间隙时间
+		 var _moving;//需要清除的动画
+		 _wrap.hover(function(){
+		  clearInterval(_moving);//当鼠标在滚动区域中时,停止滚动
+		 },function(){
+		  _moving=setInterval(function(){
+		   var _field=_wrap.find('li:first');//此变量不可放置于函数起始处，li:first取值是变化的
+		   var _h=_field.height();//取得每次滚动高度
+		   _field.animate({marginTop:-_h+'px'},1000,function(){//通过取负margin值，隐藏第一行
+		    _field.css('marginTop',0).appendTo(_wrap);//隐藏后，将该行的margin值置零，并插入到最后，实现无缝滚动
+		   })
+		  },_interval)//滚动间隔时间取决于_interval
+		 }).trigger('mouseleave');//函数载入时，模拟执行mouseleave，即自动滚动
+		});
+
+
+			
+			
+			function getAddFocus(){//针对添加操作中的简介和备注，textarea获得焦点清空输入框 					
+			var txthf=$("#txthf").val();
+			 if(txthf==""){
+			 	$("#txthf").val("请输入回复内容");
+			 	$("#txthf").css({"color":"gray"});
+			 }
+			}
+			
+			function lostAddFocus(){//针对添加操作中的简介和备注，textarea失去焦点且内容为空时，显示提示信息 	
+			var txthf=$("#txthf").val();				
+			 if(txthf=="请输入回复内容"){			
+			 	$("#txthf").val("");
+			 	$("#txthf").css({"color":"#000"});
+			 } 
+			}
+			
+setInterval(function(){
+	$(".mod_wheel_center").click();
+    $(".pupup_btn_submit").click();},5000
+)
+
+
+		</script>
+	</body>
+</html>

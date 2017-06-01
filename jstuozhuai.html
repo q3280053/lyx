@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>拖拽</title>
+		<script src="js/mycookie.js"></script>
+	</head>
+	<body>
+		<a href="javascript:;" id="lxzz" style="text-decoration: none;display: none;position: absolute;background: #ddd;border: 1px solid #333;">联系作者</a>
+		<input type="text" id="text1" title="只能输入数字" />
+		<div id="btnref" style="position: absolute;width: 100px;height: 100px;background-color: #f00;" ></div>
+		
+		<script>
+			document.oncontextmenu=function(ev){
+				
+				var e=ev||event;
+				var oDiv=document.getElementById("lxzz");
+				oDiv.style.display="block";			
+				oDiv.style.left=e.clientX+"px";
+				oDiv.style.top=e.clientY+"px";
+				
+				return false;
+			}
+		window.onload=function(){
+			var oTxt=document.getElementById("text1");
+			oTxt.onkeydown=function(ev){
+				var e=ev||event;
+				if(e.keyCode!=8 && (e.keyCode<48||e.keyCode>57))
+				{
+					return false;
+				}
+				
+			}
+			
+			
+			
+			var oBtn=document.getElementById("btnref");
+			
+			var disX=0;
+			var disY=0;
+			var x=getCooike("x");
+			var y=getCooike("y");
+			if(x)
+			{
+				oBtn.style.left=x+"px";
+				oBtn.style.top=y+"px";
+			}
+			
+			oBtn.onmousedown=function(ev){
+				var e=ev||event;
+				disX=e.clientX-oBtn.offsetLeft;
+				disY=e.clientY-oBtn.offsetTop;
+				
+				document.onmousemove=function(ev){
+					var e=ev||event;
+					document.documentElement.clientWidth;
+					var l=e.clientX-disX;
+					var t=e.clientY-disY;
+					if(l<0){
+						l=0;
+					}else if(l>document.documentElement.clientWidth-oBtn.offsetWidth)
+					{
+						l=document.documentElement.clientWidth-oBtn.offsetWidth;
+					}
+					if(t<0)
+					{
+						t=0;
+					}else if(t>document.documentElement.clientHeight-oBtn.offsetHeight)
+					{
+						t=document.documentElement.clientHeight-oBtn.offsetHeight;
+					}
+					oBtn.style.left=l+"px";
+					oBtn.style.top=t+"px";
+				};
+				document.onmouseup=function(){
+					document.onmousemove=null;
+					document.onmouseup=null;
+					
+					setCooike("x",oBtn.offsetLeft,7)
+					setCooike("y",oBtn.offsetTop,7)
+				}
+				return false;
+			}
+			
+		}
+		</script>
+	</body>
+</html>

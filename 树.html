@@ -1,0 +1,67 @@
+<!DOCTYPE>
+  <html >
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset="utf-8" />
+  <title>无标题文档</title>
+  <style type="text/css">
+   			/* 已选中 */
+#TreeLists,#leftztree {width:100%;}
+#TreeLists ul,#leftztree ul{list-style: none;padding:0;margin:0;height: auto;}
+#TreeLists ul.zfjd,#TreeLists ul.zfjd{width:100%;}
+#TreeLists ul.fjd,#TreeLists ul.fjd{width:100%;padding-left:15px;box-sizing: border-box;}
+#TreeLists ul li,#TreeLists ul li{width:100%;}
+#TreeLists ul.fjd li,#TreeLists ul.zfjd li,#TreeLists ul.fjd li,#TreeLists ul.zfjd li{background:url(res/img/selectbig.png) left no-repeat;padding-left:20px;}
+#TreeLists ul.zjd,#TreeLists ul.zjd{width:100%;padding-left:45px;box-sizing: border-box;}
+#TreeLists li,#TreeLists li {float: left;width: 100%;height:20px;line-height:20px;}
+#TreeLists ul li:hover,#TreeLists ul li:hover{background-color:#E8F3ED;cursor: pointer;}
+#TreeLists ul li:hover a,#TreeLists ul li:hover a{background-position: 0 -13px;}
+#TreeLists ul li a,#TreeLists ul li a {float: right;display:block;background:url(res/img/index/acrossTab-close.png) no-repeat;width:13px;height:13px;margin-top:4px;}
+
+
+ </style>
+ </head>
+ 
+ <body>
+ 		 <div id="leftztree"></div>
+     <div id="TreeLists"></div>
+ </body>
+ </html>
+ 
+ <script src="js/jquery-1.12.1.min.js"></script>
+ <script language="javascript">
+     //模拟数据
+     var data = [{"id":4000200000001135,"isParent":"true","name":"湖南省公安厅","pId":0},
+     {"id":4000200000001136,"isParent":"true","name":"长沙市公安局","pId":4000200000001135},
+     {"id":4000200000001137,"isParent":"true","name":"科信支队","pId":4000200000001136},
+     {"id":4000200000001138,"isParent":"true","name":"技侦支队","pId":4000200000001136},
+     {"id":4000200000001140,"isParent":"true","name":"技侦支队2","pId":4000200000001136},
+     {"id":40002000000011311,"isParent":"true","name":"长沙市公安局2","pId":4000200000001135},
+     {"id":40002000000011312,"isParent":"true","name":"长沙","pId":40002000000011311}];
+     
+     
+      $(function(){
+    	for (var i = 0; i < data.length; i++) {
+                    if (data[i].pId == 0) {
+                        var ul="<ul class='zfjd'><li>"+ data[i].name+ "<input value="+data[i].id+" type='hidden' /><a href='javascript:;' id='"+data[i].id+"' onclick='alinkClose($(this))'></a></li></ul>";
+                        $("#leftztree").append(ul);                        
+                  		    for (var k = 0; k < data.length; k++) {
+	                            if (data[k].pId == data[i].id) {                               
+	                                var ul2="<ul class='fjd'><li>"+ data[k].name+ "<input value="+data[k].id+" type='hidden' /><a href='javascript:;' id='"+data[k].id+"' onclick='alinkClose($(this))'></a></li></ul>";
+	                                 $("#leftztree").append(ul2); 	                                 
+	                                 for(var j=0;j<data.length;j++){
+		                            	if (data[j].pId == data[k].id) { 
+		                            		var ul3="<ul class='zjd'><li>"+ data[j].name+ "<input value="+data[j].id+" type='hidden' /><a href='javascript:;' id='"+data[j].id+"' onclick='alinkClose($(this))'></a></li></ul>";
+		                            		$("#leftztree").append(ul3);
+		                            	}
+			                        }
+	                            }
+	                            
+                        	}
+                        	
+                        
+                    }
+    	}
+     });
+     
+     
+ </script>

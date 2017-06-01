@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>过度</title>		
+		<meta http-equiv="Page-Enter" content="revealTrans(Duration=1.0,Transition=23)">
+		<meta http-equiv="Page-Exit" content="revealTrans(duration=5, transition=2)">
+		<style>			
+			.box{border: 1px solid #000;height: 100px;width: 100px;padding: 100px;-webkit-transform-style: preserve-3d;-webkit-perspective: 100px; margin: 100px auto;}
+			.box div{height: 100px;width: 100px;background: #ddd;transition: 2s all;}
+			.box:hover div{-webkit-transform: translateZ(70px);}
+		</style>
+	</head>
+	<body>
+				
+		<div class="box">
+			<div>1111</div>
+		</div>
+		
+		
+		<script>
+		
+		</script>
+	</body>
+</html>

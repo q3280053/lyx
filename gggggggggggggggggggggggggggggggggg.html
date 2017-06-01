@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.1.min.js"></script>
+	</head>
+	
+	<body>
+		<div style="height: 100px;background: #000;opacity: 0.3;font-weight: bold;font-size: 30px;position: relative;"><span style="position: relative;color: #fff;left: 0;top:0;">123123123</span></div>
+		<div id="" style="height: 2000px;width: 100%;">
+			
+			<p>1</p>
+			<p>2</p>
+			<p>3</p>
+			<p>4</p>
+			<p>5</p>
+			<p>6</p>
+			<p>7</p>
+			<p>8</p>
+			<p>9</p>
+			<p >0</p>
+			<p>0</p>
+			<p>0</p>
+			<p>1</p>
+			<p>2
+			<input type="button" value="按钮"  /></p>
+			<p>3</p>
+			<p>4</p>
+			<p>5</p>
+			<p>6</p>
+			<p>7</p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p id="p0">0000</p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+		</div>
+		
+		<script>
+	
+		 var sp=0,t=0,p=0;
+		 $(window).scroll(function(e){		 	
+			var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+			console.log(scrollTop);
+			if(scrollTop==100)
+			{
+				setScrollTop(300);
+			}
+			if(scrollTop==400)
+			{
+				alert(1);
+				setScrollTop(1000);
+			}
+		 });
+		 
+		 function getScrollTop() {
+			var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+			return scrollTop;
+		}
+		 function setScrollTop(scroll_top) {
+			document.documentElement.scrollTop = scroll_top;
+			window.pageYOffset = scroll_top;
+			document.body.scrollTop = scroll_top;
+		}
+		
+		$(function(){
+			$("input").on('click',function(){
+				var asd=getScrollTop();
+				alert(asd);
+			})
+		})
+		
+		</script>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ajax无刷新上传</title>
+		<style>
+			#div1{width:300px;height:30px;position: relative;border: 1px solid #000000;}
+			#div2{width:300px;height: 30px;background: #ccc;}
+			#div3{text-align: center;position: absolute;top:0;left:0;line-height: 30px;width: 300px;}
+		</style>
+	</head>
+	<body>
+		<input type="file"  id="myfile" />
+		<input value="上传" type="button" id="btn1" />
+		<div id="div1">
+			<div id="div2"></div>
+			<div id="div3">0%</div>
+		</div>
+		<script>
+			window.onload=function(){
+				var obtn=document.querySelector("#btn1");
+				var oFile=document.querySelector("#myfile");
+				var oDiv2=document.querySelector("#div2");
+				var oDiv3=document.querySelector("#div3");
+				//IE不支持
+				obtn.onclick=function(){
+					//oFile.files//文件列表对象
+					//oFile.files[0] 把这个传入到后台
+					
+					var xhr=new XMLHttpRequest();
+					//返回的数据
+					xhr.onload=function(){
+						//var d=JSON.parse(this.responseText);
+					}
+					//进度条
+					var oupload=xhr.upload;
+					oupload.onprogress=function(ev){
+						console.log(ev.total+"------"+ev.loaded);
+						var iScale=ev.loaded/ev.total;
+						//进度条
+						oDiv2.style.width=300*iScale+"px";
+						oDiv3.innerHTML=iScale*100+"%";
+					}
+					
+					xhr.open('post',"liuyongxi.cn",true);
+					xhr.setRequestHeader('X-Request-With','XMLHttpRequest');
+					var ofromdata=new FormData();//通过fromdata来构建提交数据
+					ofromdata.append('file',oFile.files[0]);
+					xhr.send(ofromdata);
+				}
+			}
+		</script>
+	</body>
+</html>

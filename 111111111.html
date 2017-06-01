@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.1.min.js"></script>
+	</head>
+	<body style="margin: 0;padding: 0;">
+		<div id="asd" style="border: 1px solid #000000;margin-left: 10px;position: fixed;left:0px;top:10px;">
+		  <img src="img/HBuilder.png" style="width:100px;height:100px;">
+		</div>
+		
+		<p class="woshi">222</p>
+		<p class="woshi">111</p>
+		<p class="woshi">333</p>
+		<p class="woshi">444</p>
+		<script>
+		//var asd=$("#asd").offset().left;		
+		$(function(){
+
+		
+	/*var tingzhi1=setInterval(function(){				
+				var asd=$("body").offset().left;
+				var aaa=$("body").width()-300;
+				var bbb=$("#asd").css("left");
+				bbb=bbb.substring(0,bbb.length-2);					
+				var ccc=$("#asd").offset().left;
+				//alert(parseInt(ccc)+",,,"+parseInt(aaa));
+					if(parseInt(ccc)>parseInt(aaa))
+				{						
+					$("#asd").animate({left:"0"},300);
+					//clearInterval(tingzhi1);
+					//setInterval(tz2,300);					
+				}
+				else{
+					$("#asd").animate({left:"+=100"},300);					
+				}
+			},500);*/
+		
+		 	 
+		/* function tz1(){
+		 	
+		 	    var asd=$("body").offset().left;
+				var aaa=$("body").width()-300;
+				var bbb=$("#asd").css("left");
+				bbb=bbb.substring(0,bbb.length-2);					
+				var ccc=$("#asd").offset().left;
+				//alert(parseInt(ccc)+",,,"+parseInt(aaa));
+					if(parseInt(ccc)>parseInt(aaa))
+				{	
+					//$("#asd").animate({left:"-=50"},300);
+					clearInterval(tz1);
+					setInterval(tz2,300);
+
+				}
+				else{
+
+					$("#asd").animate({left:"+=50"},300);
+					console.log(ccc);
+				}
+		 }
+		 var ss=setInterval(tz1,300);*/
+		 
+		 
+		//var ddd=setInterval(tz2,300);
+		 /*function asd(){
+		 	var aaa=window.screen.width;
+		 	//alert(aaa);
+		 	var bbb=$("#asd").width();
+		 	var ccc=aaa-bbb;
+		 	var p=$("#asd").css("left");
+		 	var lb=$("#asd");
+		 	//alert(p)
+		 	if(p==0+"px")
+		 	{
+		 		lb.animate({left:"+=100"})
+		 	}else{
+		 		lb.animate({left:"-=100"})
+		 	}
+		 }
+		  var y=setInterval(asd,500);*/
+		 
+		 
+		});
+		
+		var tingzhi1=setInterval(function(){				
+				var asd=$("body").offset().left;
+				var aaa=$("body").width()-300;
+				var bbb=$("#asd").css("left");
+				bbb=bbb.substring(0,bbb.length-2);					
+				var ccc=$("#asd").offset().left;
+				//alert(parseInt(ccc)+",,,"+parseInt(aaa));
+					if(parseInt(ccc)>parseInt(aaa))
+				{											
+					clearInterval(tingzhi1);
+					setInterval(tz2,500);					
+				}
+				else{
+					$("#asd").animate({left:"+=100"},500);					
+				}
+			},500);
+			
+		 function tz2(){	 	
+		 	   var ccc=$("#asd").offset().left;		 		
+		 		if(parseInt(ccc)<100)
+		 		{
+		 			 clearInterval(tz2);
+		 			 //setInterval(tingzhi1,300);
+		 			 //tingzhi1();
+		 		}
+		 		else{
+		 			$("#asd").animate({left:"-=100"},500);
+		 			//console.log(parseInt(ccc));
+		 		}
+		 }
+		 	
+		 	//模拟js classname方法 --返回的是数组
+		    var getclass = function (key) {
+            var ele = document.getElementsByTagName("*");
+            var aw = [];
+            for (var i = 0; i < ele.length; i++) {
+                if (ele[i].className === key) {
+                    aw.push(ele[i]);
+                }
+            }
+            	return aw;
+        	}
+		    window.onload=function(){
+		   		var ss=getclass("woshi");
+		   		for(var i=0;i<ss.length;i++)
+		   		{
+		   			ss[i].style.color="#f00";
+		   		}
+		   		
+		   		/*var ss=document.querySelectorAll(".woshi");
+		   		for(var i=0;i<ss.length;i++)
+		   		{
+		   			ss[i].style.color="#f00";
+		   		}*/
+		   	
+		    	
+		    }
+		   
+		   //alert(ss);
+        //  console.log(getclass("dd"))
+		 /*setTimeout(function(){
+		 	clearInterval(tingzhi1);
+		 	setInterval(tz2,300);
+		 },6000);*/
+		</script>
+	</body>
+</html>

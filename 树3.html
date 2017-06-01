@@ -1,0 +1,395 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>添加接收方</title>
+
+<style>
+.tabsmenus {
+	width: 190px;
+	border: 1px solid #ccc;
+	height: 260px;
+	float: left;
+	overflow: auto;
+}
+
+.jsfdiv {
+	width: 100%;
+	box-sizing: border-box;
+	height: 100%;
+	background-color: #FBFCFD;
+	border-bottom: 1px solid #ccc;
+	position: relative;
+}
+
+.lefttabs {
+	width: 45%;
+	float: left;
+	height: 100%;
+	padding-left: 15px;
+	box-sizing: border-box;
+}
+
+.rigtabs {
+	width: 45%;
+	float: left;
+	height: 100%;
+	padding-left: 15px;
+	box-sizing: border-box;
+}
+
+.middletabs {
+	width: 10%;
+	height: 100%;
+	float: left;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+.middletabs input {
+	color: #199E47;
+	border: 1px solid #199E47;
+	padding: 5px 10px;
+	margin-top: 100px;
+	background-color: #fff;
+}
+
+.title {
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	color: #667481;
+	font-weight: 600;
+}
+
+/* 已选中 */
+#TreeLists {width:100%;}
+#TreeLists ul{list-style: none;padding:0;margin:0;height: auto;}
+#TreeLists ul.zfjd{width:100%;}
+#TreeLists ul.fjd{width:100%;padding-left:15px;box-sizing: border-box;}
+#TreeLists ul li{width:100%;}
+#TreeLists ul.fjd li,#TreeLists ul.zfjd li{background:url(res/img/selectbig.png) left no-repeat;padding-left:20px;}
+#TreeLists ul.zjd{width:100%;padding-left:45px;box-sizing: border-box;}
+#TreeLists li {float: left;width: 100%;height:20px;line-height:20px;}
+#TreeLists ul li:hover{background-color:#E8F3ED;cursor: pointer;}
+#TreeLists ul li:hover a{background-position: 0 -13px;}
+#TreeLists ul li a {float: right;display:block;background:url(res/img/index/acrossTab-close.png) no-repeat;width:13px;height:13px;margin-top:4px;}
+
+
+/* 底部按钮 */
+.fot-btns{width:100%;position: fixed;bottom:0;left:0;text-align: center;height:40px;}
+.fot-btns input{color: #199E47;border: 1px solid #199E47;padding: 5px 15px;background-color: #fff;margin-left:20px;}
+</style>
+</head>
+
+<body>
+	<div class="jsfdiv">
+		<div class="lefttabs">
+			<div class="title">所有用户</div>
+			<div class="tabsmenus">
+				
+				<div id="deptmenu" class="demo ztree"></div>
+
+			</div>
+		</div>
+		<div class="middletabs">
+			<div class="title"></div>
+			<input type="button" value="添加" onclick="adddpet()" />
+
+		</div>
+				<!-- 	<ul class="zfjd">
+						<li class="">aasdasd1<a href="javascript:;"onclick="alinkClose($(this))"></a>
+					</ul>
+					<ul class="fjd">
+						<li class="">aasdasd2<input value="" type='hidden' /><a href="javascript:;"onclick="alinkClose($(this))"></a>												
+					</ul>
+					<ul class="zjd">
+						<li class="">aasdasd3<a href="javascript:;"onclick="alinkClose($(this))"></a>
+					</ul> -->
+		<div class="rigtabs">
+			<div class="title">已选接收方</div>
+			<div class="tabsmenus">
+				<div class="ms-list" tabindex="-1" id="TreeLists">
+			
+				</div>
+				<p style="clear:both;">
+			</div>
+			<p style="clear:both;">
+				<p></p>
+				<input type="checkbox" class="icheckbox" value="1" name="zycd" ><span class="checkboxfortitle">所有用户</span>
+			</p>
+		</div>
+		
+		<div class="fot-btns">
+			<input type="button" value="确认" onclick="btnOK();" />
+			<input type="button" value="取消" onclick="btnqx();" />
+		</div>
+	</div>
+	
+
+</body>
+<script type="text/javascript">
+	var URL = "${pageContext.request.contextPath}";
+</script>
+<script	src="${pageContext.request.contextPath}/res/js/selecttreeDetp.js?vision=<%=nowtime%>"type="text/javascript"></script>
+<script>
+	
+	$(function() {
+	
+			$('.icheckbox').iCheck({
+				checkboxClass: 'icheckbox_square-green',
+				radioClass: 'iradio_square-green',
+				increaseArea: '20%' // optional
+			});
+		//初始化树
+		var urldept = URL + "/basicData/deptedropbox.action";
+		var setting3 = {
+			async : {
+				url : urldept,
+				autoParam : [ "id" ]
+			},
+			callback : {
+				onClick : OnClickByCondition
+			}
+		};
+		selecttree(setting3, 'deptmenu', urldept);
+	
+	
+
+	});
+
+	//下拉框触发事件
+	function OnClickByCondition(e, treeId, treeNode) {
+		var zTree = $.fn.zTree.getZTreeObj(treeId), nodes = zTree.getSelectedNodes(), v = "", name = "";
+		nodes.sort(function compare(a, b) {
+			return a.id - b.id;
+		});
+		for ( var i = 0, l = nodes.length; i < l; i++) {
+			v += nodes[i].id + ',';
+			name += nodes[i].name + ',';
+		}
+
+		if (nodes.length > 0) {
+			v = v.substring(0, v.length - 1);
+			name = name.substring(0, name.length - 1);
+		}
+		var cityname = $("#" + treeId).parent().parent().find('.citySel');
+		cityname.attr("value", name);
+		var cityvalue = $("#" + treeId).parent().parent().find('input[type=hidden]');
+		cityvalue.attr("value", v);
+
+	}
+	
+	var arrdataName = [];	
+	var arrdataId = [];
+		
+	//添加		
+	function adddpet() { 
+		var treeObj = $.fn.zTree.getZTreeObj("deptmenu");
+		var nodes = treeObj.getSelectedNodes(); //获取选中
+		//是否选中全部
+		if($('.icheckbox_square-green').hasClass("checked")){
+			$("#TreeLists").html('');
+			arrdataId.length=0;
+			for (var i = 0; i < strdept.length; i++) {
+                    if (strdept[i].pId == 0) {
+                        var ul="<ul class='zfjd'><li onclick='togglejd()'>"+ strdept[i].name+ "<input value="+strdept[i].id+" type='hidden' /><a href='javascript:;' id='"+strdept[i].id+"' onclick='alinkClose($(this))'></a></li></ul>";
+                        $("#TreeLists").append(ul);                        
+                  		    for (var k = 0; k < strdept.length; k++) {
+	                            if (strdept[k].pId == strdept[i].id) {                               
+	                                var ul2="<ul class='fjd'><li onclick='togglejd("+strdept[k].id+")'>"+ strdept[k].name+ "<input value="+strdept[k].id+" type='hidden' /><a href='javascript:;' id='"+strdept[k].id+"' onclick='alinkClose($(this))'></a></li></ul>";
+	                                 $("#TreeLists").append(ul2); 	                                 
+	                                 for(var j=0;j<strdept.length;j++){
+		                            	if (strdept[j].pId == strdept[k].id) { 
+		                            		var ul3="<ul class='zjd "+strdept[j].pId+"' id='"+strdept[j].pId+"'><li>"+ strdept[j].name+ "<input value="+strdept[j].id+" type='hidden' /><a href='javascript:;' id='"+strdept[j].id+"' onclick='alinkClose($(this))'></a></li></ul>";
+		                            		$("#TreeLists").append(ul3);
+		                            		
+		                            		//去掉多余的ID元素
+		                            		var arrzjd=$("#TreeLists .zjd."+strdept[j].pId);
+		                            		for(var x=1;x<arrzjd.length;x++){
+		                            			arrzjd[x].removeAttribute("id");
+		                            		}
+		                            	}
+			                        }
+	                            }
+	                            
+                        	}
+                        	
+                        
+                    }
+                    arrdataId.push(strdept[i].id);
+                
+     	 }
+     	 //未选中所有用户
+		}else{
+			if (nodes.length > 0) {
+			var level = nodes[0].level;
+			var node = nodes[0].getParentNode();
+			var type = false;		
+			
+			//没有数组的话 例第一次点击
+		 	if(arrdataId==0){
+					getsData(nodes,level,node);
+					//已存在数组
+			}else{
+				//判断是否重复
+				for(var i=0;i<arrdataId.length;i++){
+					if(nodes[0].id==arrdataId[i]){
+						type=true;
+					}
+				} 
+				if(!type){
+					getsData(nodes,level,node);
+				
+				}
+			
+			}
+			
+		}	
+		}
+		
+		
+	}
+	
+	//dom操作切换隐藏
+	var nums=1;
+	function togglejd(str){	
+		if(str){
+			$("ul."+str+"").toggle();
+		}else{
+			//$("ul.fjd,ul.zjd").toggle();
+			//$("#TreeLists ul:not('.zfjd')").toggle();
+			if(nums==1){
+				$("ul.fjd,ul.zjd").hide();
+				nums=2;
+			}else{
+				$("ul.fjd,ul.zjd").show();
+				nums=1;
+			}
+		}
+	}
+	//确认
+	function btnOK(){
+		/* if($('.icheckbox_square-green').hasClass("checked")){
+			var strdataid=[];
+			var strdataname=[];
+			for(var i=0;i<strdept.length;i++){
+				strdataid.push(strdept[i].id);
+				strdataname.push(strdept[i].name);
+			}						
+			window.parent.closelayer(strdataid,strdataname);
+		
+		}else{
+			var arrid=[];
+			var arrname=[];
+			$("#TreeLists ul li").each(function(){
+				arrid.push($(this).find('input').val());
+				arrname.push($(this).text());
+			});					
+			window.parent.closelayer(arrid,arrname);
+		} */
+			var arrid=[];
+			var arrname=[];
+			$("#TreeLists ul li").each(function(){
+				arrid.push($(this).find('input').val());
+				arrname.push($(this).text());
+			});					
+			window.parent.closelayer(arrid,arrname);				
+		
+	}
+	//删除
+	function alinkClose($this,e) {		
+		//阻止冒泡
+		window.event ? window.event.cancelBubble = true : e.stopPropagation();//组织冒泡
+	 	//id
+		var scid=parseInt($this.parent("li").find('input').val());
+		arrdataId.splice($.inArray(scid,arrdataId),1);
+		//name
+	/*	var scname=$this.parent("li").text();
+		arrdataName.splice($.inArray(scname,arrdataName),1); */	
+		//console.log($this.parent().length);
+		$('.icheckbox_square-green').removeClass("checked");
+		var str=$this.parents('ul').find('li').length;
+		if(str==1){
+			$this.parents('ul').remove();
+		}
+		else{
+			$this.parent().remove();
+		}
+
+	}
+	//取消
+	function btnqx(){
+		window.parent.closewin();
+	}
+	
+	//封装方法
+	function getsData(nodes,level,node){
+		//判断节点显示位置
+					if(level==0){
+							$("#TreeLists").prepend("<ul class='zfjd'><li onclick='togglejd()'>"+ nodes[0].name+ "<input value="+nodes[0].id+" type='hidden' /><a href='javascript:;' id='"+nodes[0].id+"' onclick='alinkClose($(this))'></a></li></ul>");
+							arrdataId.push(nodes[0].id);				
+						}else if(level=="1"){						
+							//判断有当有第三级的时候，第二级加在他前面							 
+							  var flg=false;							 						
+							  $("#TreeLists ul").each(function(){
+									var str=$(this)[0].id;																																												
+									if(nodes[0].id==str){																																																						
+										flg=true;										
+										$(this).before("<ul class='fjd'><li onclick='togglejd("+nodes[0].id+")'>"+ nodes[0].name+ "<input value="+nodes[0].id+" type='hidden' /><a href='javascript:;' id='"+nodes[0].id+"' onclick='alinkClose($(this))'></a></li></ul>");
+										arrdataId.push(nodes[0].id);																																																	
+									}						
+								});
+							 	if(!flg){								 							 							 		
+								 	 $("#TreeLists").append("<ul class='fjd'><li onclick='togglejd("+nodes[0].id+")'>"+ nodes[0].name+ "<input value="+nodes[0].id+" type='hidden' /><a href='javascript:;' id='"+nodes[0].id+"' onclick='alinkClose($(this))'></a></li></ul>");
+									 arrdataId.push(nodes[0].id);					
+								} 
+							
+								  							
+						}else if(level=="2"){
+							//判断当有第二级的时候，第三级加在第二级									
+					 		var flag=false;					 	
+							$("#TreeLists ul li").each(function(){
+								var str=$(this).find('input').val();
+								if(node.id==str){									
+									flag=true;
+									$(this).parent().after("<ul class='zjd "+node.id+"' id='"+node.id+"'><li>"+ nodes[0].name+ "<input value="+nodes[0].id+" type='hidden' /><a href='javascript:;' id='"+nodes[0].id+"' onclick='alinkClose($(this))'></a></li></ul>");
+									arrdataId.push(nodes[0].id);
+									
+									//去掉多余的ID元素
+                            		var arrzjd=$("#TreeLists .zjd."+node.id);
+                            		for(var x=1;x<arrzjd.length;x++){
+                            			arrzjd[x].removeAttribute("id");
+                            		}
+																												
+								}							
+							});
+							//当没有第二级的时候,第三级随便加
+							if(!flag){
+								var flags=false;								
+								 $("#TreeLists ul").each(function(){
+									var str=$(this)[0].id;
+									if(node.id==str){																			
+										flags=true;	
+										$("#"+node.id).append("<li>"+ nodes[0].name+ "<input value="+nodes[0].id+" type='hidden' /><a href='javascript:;' id='"+nodes[0].id+"' onclick='alinkClose($(this))'></a></li>");
+										arrdataId.push(nodes[0].id);				
+									}
+											
+								});
+								if(!flags){																																	
+									$("#TreeLists").append("<ul id='"+node.id+"' class='zjd "+node.id+"'><li>"+ nodes[0].name+ "<input value="+nodes[0].id+" type='hidden' /><a href='javascript:;' id='"+nodes[0].id+"' onclick='alinkClose($(this))'></a></li></ul>");
+									arrdataId.push(nodes[0].id);
+									
+								}
+						
+																					
+							}
+							
+					}
+		}
+		
+</script>
+
+</html>

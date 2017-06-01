@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>cookie</title>
+	</head>
+	
+	<form id="myform" action="http://www.baidu.com">
+		用户名<input type="text" name="user" />
+		随机取5位数不重复<input type="text" name="pass" id="dd" />
+		<input type="submit" value="登录" id="btn" />
+		<a href="javascript:;">清除记录</a>
+	</form>
+	<body>
+		<script>
+		window.onload=function(){	
+			var str="1234567890";
+		        var arry=[];
+		        for(i=0;i<5;i++){
+		                arry[i]=str.substr(Math.floor(str.length*Math.random()),1);											
+						for(var j=0;j<i;j++){
+				             if(arry[j]==arry[i]){i--;break;};
+						}
+		       	}
+		        document.getElementById("dd").value=arry.toString();
+			
+			var oForm=document.getElementById("myform");
+			var oName=document.getElementsByName("user")[0];
+			var oPass=document.getElementsByName("pass")[0];
+			var oBtnClear=document.getElementsByTagName("a")[0];
+			oForm.onsubmit=function(event){
+				e = event ? event :(window.event ? window.event : null);
+				e.preventDefault();
+				setCooike("haha",oName.value,7);								
+			}
+			oName.value=getCooike("haha");
+			oBtnClear.onclick=function(){
+				removeCooike("haha");
+				oName.value='';
+			}
+		};
+		
+		//设置cookie
+			function setCooike(name,value,iDay)
+			{
+				var oDate=new Date();
+				oDate.setDate(oDate.getDate()+iDay);
+				document.cookie=name+"="+value+";expires="+oDate;
+			}
+			//setCooike("name","zhangsan",7);
+			//alert(document.cookie);
+		 	//获取cookie
+			function getCooike(name)
+			{
+				var arr=document.cookie.split("; ");
+				for(var i=0;i<arr.length;i++)
+				{
+					var arr2=arr[i].split("=");
+					if(arr2[0]==name)
+					{
+						return arr2[1];
+					}
+				}
+				return '';
+			}
+			//alert(getCooike("12222"));
+			//删除cookie
+			function removeCooike(name)
+			{
+				setCooike(name,'1',-1);
+			}
+			//removeCooike("name");
+			//alert(document.cookie);
+		</script>
+	</body>
+</html>

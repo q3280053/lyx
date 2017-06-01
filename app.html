@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		body,html{padding:0;margin:0;height: 100%;}
+		#zq{margin: 100px auto;width: 600px;position: relative;text-align: center;height: 530px;}
+		#zq div{position: absolute;left: 50%;top:0;}
+		#zq div:nth-of-type(1){background: url(img/app/skill_bg.png) no-repeat; background-position: -24px -26px;width: 450px;height:450px;z-index: 3;margin-left: -225px;top:40px;}
+		#zq div:nth-of-type(2){background: url(img/app/skill_bg.png) no-repeat; background-position: -498px -8px;width: 550px;height:530px;z-index: 4;margin-left: -275px;top:-5px;
+			animation:round1 8s linear infinite;}
+		#zq div:nth-of-type(3){top:88px;
+			background: url(img/app/skill_bg.png) no-repeat; background-position: -960px -91px;width: 500px;height:350px; z-index: 5;margin-left:-250px;
+			animation:round2 8s linear infinite;
+		}
+		/*#zq div:nth-of-type(3):hover,#zq div:nth-of-type(2):hover{animation-play-state: paused;}*/
+		
+		@keyframes round1{
+			0%{transform:rotate(0deg);}
+			50%{transform:rotate(-180deg);}
+			100%{transform:rotate(-360deg);}
+		}
+		@keyframes round2{
+			0%{transform:rotate(0deg) scale(1,1);}
+			50%{transform:rotate(180deg) scale(1.5,1.5);}
+			100%{transform:rotate(360deg) scale(1,1);}
+		}
+		#zq:hover{animation-play-state: paused;-webkit-animation-play-state:paused;border: 1px solid #ccc;}
+		</style>
+		<script src="js/jquery-1.12.1.min.js"></script>
+	</head>
+	<body>
+		<!--转圈-->
+		<div id="zq">
+			<div></div>
+			<div></div>
+			<div></div>
+			<label style="text-shadow: 5px 4px 7px #000;font-size: 30px;font-weight: bold;color: #000;line-height: 530px;">Power</label>
+		</div>
+		
+	</body>
+</html>

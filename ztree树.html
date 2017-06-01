@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>发布通告</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	
+	
+	
+	
+		<style>
+		.hig100px{height:100px !important;resize:none}
+		.hig120px{height:120px !important;}
+		.line100px{line-height: 100px;};
+		.shyj{width:83% !important;height:100px !important;}
+		.aj .inputcon{width:83% !important;}
+		
+		/* 底部按钮 */
+		.footer-btns{text-align:right;padding-right:100px;}
+		.footer-btns input{border:1px solid #199E47;background-color:#fff;color:#199E47;padding:5px 10px;margin-left:10px;border-radius:4px;}
+		.footer-btns input:hover{border-color: #65d78d;color: #65d78d;}
+		
+		#txtjsf{cursor: pointer;background-color:#fff;}
+		.layui-layer-btn{text-align:center;}
+		</style>
+		<style>
+.tabsmenus {
+	width: 210px;
+	border: 1px solid #ccc;
+	height: 260px;
+	float: left;
+	overflow: auto;
+}
+.tabright1{float:right;margin-right:15px}
+
+.jsfdiv {
+	width: 100%;
+	box-sizing: border-box;
+	height: 90%;
+	background-color: #FBFCFD;
+	border-bottom: 1px solid #ccc;
+	position: relative;
+}
+
+.lefttabs {
+	width: 40%;
+	float: left;
+	height: 100%;
+	padding-left: 15px;
+	box-sizing: border-box;
+}
+
+.rigtabs {
+	width: 40%;
+	float: left;
+	height: 100%;
+	padding-left: 35px;
+	box-sizing: border-box;
+}
+
+.middletabs {
+	width: 20%;
+	height: 100%;
+	float: left;
+	text-align: center;
+	box-sizing: border-box;
+	padding-top:100px;
+}
+
+.middletabs input {
+	color: #199E47;
+	border: 1px solid #199E47;
+	padding: 5px 10px;
+	margin-top:10px;	
+	background-color: #fff;
+}
+
+.title {
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	color: #667481;
+	font-weight: 600;
+}
+
+/* 已选中 */
+/* #TreeLists {width:100%;}
+#TreeLists ul{list-style: none;padding:0;margin:0;height: auto;}
+#TreeLists ul.zfjd{width:100%;}
+#TreeLists ul.fjd{width:100%;padding-left:15px;box-sizing: border-box;}
+#TreeLists ul li{width:100%;}
+#TreeLists ul.fjd li,#TreeLists ul.zfjd li{background:url(res/img/selectbig.png) left no-repeat;padding-left:20px;}
+#TreeLists ul.zjd{width:100%;padding-left:45px;box-sizing: border-box;}
+#TreeLists li {float: left;width: 100%;height:20px;line-height:20px;}
+#TreeLists ul li:hover{background-color:#E8F3ED;cursor: pointer;}
+#TreeLists ul li:hover a{background-position: 0 -13px;}
+#TreeLists ul li a {float: right;display:block;background:url(res/img/index/acrossTab-close.png) no-repeat;width:13px;height:13px;margin-top:4px;}
+ */
+
+/* 底部按钮 */
+.fot-btns{width:100%;text-align: center;height：40px;box-sizing: border-box;}
+.fot-btns input{color: #199E47;border: 1px solid #199E47;padding: 5px 15px;background-color: #fff;margin:0 10px;}
+.node_name{color:#000;}
+.disnode{color:#939DA8 !important;}
+.layui-layer-shade,#layui-jsf{display:none;} 
+
+/* 发布成功 */
+#successdiv{background-color:#fff;width:100%;height:100%;z-index: 99999;position: fixed;left: 0;top:0;display: none;}
+</style>
+  </head>
+  
+  <body class="aj">
+  
+		<div class="workspacecentrain">
+				<div class="tablediv aj">
+					<div class="form-group">
+						<label class=" control-label" for="ds_host">接收方</label>
+						<div class="inputcon">
+							<input class="form-control behavior" onclick="options(this)" readonly="readonly"  type="text" id="txtjsf" placeholder=""  value="所有用户 "/>
+						</div>						
+					</div>
+					<div class="form-group" >
+						<label class="control-label" for="ds_username">标题<i>*</i></label>
+						<div class="inputcon ">
+							<input class="form-control behavior" id="biaoti" maxlength="20"  type="text"   />
+						</div>
+						
+					</div>
+					
+					<div class="form-group" >
+						<label class="control-label" for="ds_username">重要程度</label>
+						<div class="inputcon">
+							<div class="form-control behavior" >
+							<input type="radio" class="icheckbox" value="1" name="zycd" checked=""> <span class="checkboxfortitle">一般</span>&nbsp;&nbsp;&nbsp;
+							<input type="radio" class="icheckbox" value="2" name="zycd"> <span class="checkboxfortitle">保密</span>
+							
+							</div>
+						</div>
+					
+					</div>
+					<div class="form-group hig120px"  >
+						<label class="control-label line100px" for="ds_username">正文<i>*</i></label>
+						<div class="inputcon shyj">							
+							<textarea class="form-control behavior hig100px" id="txtyj" type="text" maxlength="200"></textarea>
+							<div>&nbsp;&nbsp;&nbsp;(请输入不少于3个字，不多于200个字的通告内容)</div>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="footer-btns">
+					<input type="button" class="behavior" id="release" value="发布"  />										
+				</div>
+				<input type="hidden" value="" id="txtarrid" />
+			</div>
+		</div>	
+		<!-- 添加接收方弹出框 -->
+		<div class="layui-layer-shade"  style="z-index:888; background-color:#000; opacity:0.8; filter:alpha(opacity=80);"></div>
+		<div class="layui-layer layui-layer-page  layer-anim" id="layui-jsf" type="page" times="5" showtime="0" contype="string" style="z-index: 9999; width: 700px; height: 430px; top: 5%; left: 50%;margin-left:-300px;">
+		<div class="layui-layer-title" style="cursor: move;" move="ok">添加接收方</div>
+			<div id="" class="layui-layer-content" style="height: 382px;">
+				<div class="jsfdiv">
+					<div class="lefttabs">
+						<div class="title">所有用户</div>
+						<div class="tabsmenus">
+							
+							<div id="deptmenu" class="demo ztree"></div>
+			
+						</div>
+					</div>
+					<div class="middletabs">
+						<div class="title"></div>
+						<input type="button" id="btnDpet" value="添加" onclick="adddpet()">
+						<input type="button" id="btnsxDpet"  value="添加下属部门" onclick="addSubordinates()" />
+					</div>
+							
+					<div class="rigtabs">
+						<div class="title">已选接收方</div>
+						<div class="tabsmenus tabright">
+							<div class="demo ztree" tabindex="-1" id="TreeLists"></div>
+							<p style="clear:both;">
+						</p></div>
+						<p style="clear:both;">
+							</p><p></p>
+							<input type="checkbox" class="icheckbox" value="1" name="zycd" ><span class="checkboxfortitle">所有用户</span>
+						<p></p>
+					</div>
+					
+					
+				</div>
+				<div class="fot-btns">
+						<input type="button" value="确认" onclick="btnOK();">
+						<input type="button" value="取消" onclick="btnqx();">
+					</div>
+			</div>
+		<span class="layui-layer-setwin">
+			<a class="layui-layer-ico layui-layer-close layui-layer-close1" href="javascript:;"></a>
+		</span>
+		</div>
+		<input type="hidden"  value="" id="backjson" />
+		<input type="hidden" value="${noticePublishInfo.deptId}" id="defaultNoticeRecDeptId"/>
+		<div id="successdiv">
+			<div style="padding:20px;">通告已发布成功！已发送给<label id="labdata">所有用户</label>。</div>
+			<div class="footer-btns" style="float:left;">
+					<input type="button" class="behavior" id="" value="返回工作台" onclick="backgzt()" />
+					<input type="button" class="behavior" id="" value="再次发布通知" onclick="backfbtg()" />										
+			</div>
+		</div>
+		<%@ include  file="/WEB-INF/page/public/globaljs.jsp"%>
+		<script	src="${pageContext.request.contextPath}/res/js/jquery.ztree.exedit.js?vision=<%=nowtime%>"type="text/javascript"></script>
+		<script	src="${pageContext.request.contextPath}/res/js/selecttreeDetp.js?vision=<%=nowtime%>"type="text/javascript"></script>								
+		<script	src="${pageContext.request.contextPath}/res/js/platformManager/annunciate/releaseAnnunciate.js?vision=<%=nowtime%>"type="text/javascript"></script>
+		<script>
+		var path='${pageContext.request.contextPath}';
+		var layerindex=null;
+		var arrdata=[];
+		var strcz=null;//子页面需要用到
+		//关闭所有layer弹出层
+		/* function closelayer(id,name,strhtml) {
+			arrdata.length=0;	
+			var dataname=name.toString();			
+			dataname=dataname.replace(/,/g,';');			
+			for(var i=0;i<id.length;i++){
+				arrdata.push(id[i]);
+			}
+			$("#txtarrid").val(id);
+			$("#txtjsf").val(dataname);	
+			strcz=strhtml;	
+			layer.close(layerindex);
+			
+		} 
+		//取消
+		function closewin(){
+			layer.close(layerindex);
+		}*/
+		//接收方
+		function options(obj) {
+			$(".layui-layer-shade").show();
+			$("#layui-jsf").show();			
+		}
+		//跳转到工作台
+		function backgzt(){
+			top.closeRefreshIframe('工作台');
+		}
+		//刷新本界面
+		function backfbtg(){
+			location.reload();
+		}
+		$(function(){
+			//checkbox
+			$('.icheckbox').iCheck({
+					checkboxClass: 'icheckbox_square-green',
+					radioClass: 'iradio_square-green',
+					increaseArea: '20%' // optional
+				});
+			//发布
+			$("#release").bind("click",function(){
+				var txtarrid=$("#txtarrid").val();
+				var txtjsf=$("#txtjsf").val();	
+				var txtbt=$("#biaoti").val();
+				var txtyj=$("#txtyj").val();
+				var txtjb=$(".form-control .checked .icheckbox").val();				
+				if(txtjsf==""){
+					layer.msg('请选择接收方');
+					return;
+				}
+				if(txtbt==""){
+					layer.msg('请输入标题');
+					return;
+				}
+				if(txtyj.length<3){
+					layer.msg('请至少输入3个字的通告正文');
+					return;
+				}else if(txtyj.length>=200){
+					layer.msg('多余200个字的通告正文');
+					return;
+				}
+				
+				//发布通告信息
+				var backjson= {};
+				var noticeRecDeptInfo = $("#backjson").val();
+				//判断是否勾选所有用户
+				if($('.rigtabs .icheckbox_square-green').hasClass("checked")){
+					//默认接收部门
+					backjson["noticeAddParamInfo.deptInfos[0].deptId"] = $("#defaultNoticeRecDeptId").val();
+				    //默认包含下级所有部门
+				    backjson["noticeAddParamInfo.deptInfos[0].receiveState"] = "0";
+				}else{
+					backjson=JSON.parse(noticeRecDeptInfo);
+				}
+				
+			   /*var noticeRecDeptInfo = $("#backjson").val();
+				 if(noticeRecDeptInfo!= null && noticeRecDeptInfo!=""){
+					backjson=JSON.parse(noticeRecDeptInfo);
+				}else{//默认接收部门
+					backjson["noticeAddParamInfo.deptInfos[0].deptId"] = $("#defaultNoticeRecDeptId").val();
+				    //默认包含下级所有部门
+				    backjson["noticeAddParamInfo.deptInfos[0].receiveState"] = "0";
+				} */
+				
+				backjson["noticeAddParamInfo.importLevel"] = txtjb;//级别
+				backjson["noticeAddParamInfo.title"] = txtbt;//标题
+				backjson["noticeAddParamInfo.content"] = txtyj;//正文
+				//console.log(backjson);
+				
+			 	$.ajax({
+			 		url: '${pageContext.request.contextPath}/notice/publicNoticeAddSubmit.action',
+					data: backjson,				
+					type: "post",
+					traditional: true,
+					beforeSend:function(){
+						loading();
+					},
+					success: function(data) {										
+						closeloading();
+						var mes=data.split("@");
+						 if(mes[0]=="0"){						 	
+						 	$(".layui-layer-close").trigger('click');
+							window.parent.mests(mes[1]);
+							//aj_update_tabback();
+							$("#successdiv").show();
+							//$("#labdata").html(strtext);	 							 	
+						 }
+						 else{
+							 window.parent.mests(mes[1]);
+						 }						
+					}
+			 	});
+			});
+								
+		});
+		
+			
+		</script>
+		
+		<!--js代码--------------------------------------------------------------------------------------->
+		<script>
+			
+ var setting2 = {    
+		   async: {
+				enable: true,
+				//url: getUrlByNodeId				
+				url:"notice/noticeRecSubDeptQuery.action",
+				autoParam: ["id=noticeRecDeptParamInfo.deptId"],
+				dataFilter: filterrig
+			},		
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			edit: {
+                enable: true,                  
+                showRenameBtn:false
+	         },
+			view: {					
+				selectedMulti: false,
+			},
+			callback: {				
+				//onClick: zTreeOnClick
+				// onCollapse: zTreeOnCollapse,//收起事件
+				 onExpand: zTreeOnExpand,//展开事件
+				 onRemove:onRemove,//删除节点后触发，用户后台操作
+				// onAsyncSuccess:zTreeOnAsyncSuccessRight//异步加载成功的fun
+			}
+      };
+ var zTree;
+$(function(){
+	//关闭弹出框
+	$(".layui-layer-close").bind('click',function(){
+		$(".layui-layer-shade").hide();
+		$("#layui-jsf").hide();
+	});
+	$(".rigtabs .icheckbox").iCheck('check');//默认勾选所有用户
+	//选中事件
+	$('.rigtabs .icheckbox').on('ifChecked', function(event){ //ifCreated 事件应该在插件初始化之前绑定 		  
+		  jsoarr.length=0;//用来生成右侧树
+		  idscf.length=0;//用来判断去重复
+		  idsarr.length=0;//用来加颜色的
+		  $("#TreeLists").html('');//清空右边树
+		  $('#deptmenu .node_name').removeClass('disnode');//移除所有的颜色
+	}); 
+	$('.rigtabs .icheckbox').on('ifUnchecked', function(event){ //ifCreated 事件应该在插件初始化之前绑定 
+		 // alert('没选中'); 		 
+	}); 
+	//$('.icheckbox').iCheck('uncheck'); //移除 checked 状态 
+	//初始化树
+	//var urldept = URL + "/basicData/deptedropbox.action";
+	var urldept =URL + "/notice/noticeRecDeptMainQuery.action";
+	var setting = {
+		view: {					
+				selectedMulti: false,
+			},
+	    data: {
+                keep:{
+                    parent:true,
+                    leaf:true
+                },
+                simpleData: {
+                    enable: true
+                }               
+            },
+            async: {
+				enable: true,//getUrlByNodeId,
+				url:"notice/noticeRecSubDeptQuery.action",
+				autoParam: ["id=noticeRecDeptParamInfo.deptId"],
+				dataFilter: filter
+			},
+	
+		callback : {		
+			//asyncError: zTreeOnAsyncError   //加载错误的fun 
+			onAsyncSuccess:zTreeOnAsyncSuccess//异步加载成功的fun
+		}
+	};
+  
+	selecttree(setting, 'deptmenu', urldept);		
+	
+});
+
+var nodesrig=null;
+//异步加载后数据
+function filter(treeId, parentNode, childNodes) {	
+    if (!childNodes) return null;
+    var arrsend=[];
+    for (var i=0, l=childNodes.length; i<l; i++) {
+        childNodes[i].name = childNodes[i].name.replace(/\.n/g, '.');
+        arrsend.push(childNodes[i].id);
+    }
+   //console.log(parentNode);
+   // console.log(parentNode.children.length);      
+   //判断加载后的数据在右边是否存在
+   //for(var i in nodesrig){
+	  // console.log(nodesrig[i].id);
+   //}	
+    return childNodes;
+}
+//收起事件
+function zTreeOnCollapse(event, treeId, treeNode) {	  
+	
+};
+//展开事件
+function zTreeOnExpand(event, treeId, treeNode) {
+    var treeObj1 = $.fn.zTree.getZTreeObj("TreeLists");
+	var nodes1 = treeObj1.transformToArray(treeObj1.getNodes());
+	jsoarr.length=0;
+	for(var i in nodes1){
+		var flag=false;
+		if(treeNode.id==nodes1[i].id){
+			jsoarr.push({"id":""+nodes1[i].id+"","pId":""+nodes1[i].pId+"","name":""+nodes1[i].name+"","isParent":""+nodes1[i].isParent+"","open":""+nodes1[i].open+"","status":"1"});
+			flag=true;
+		}
+		if(!flag){
+			jsoarr.push({"id":""+nodes1[i].id+"","pId":""+nodes1[i].pId+"","name":""+nodes1[i].name+"","isParent":""+nodes1[i].isParent+"","open":""+nodes1[i].open+"","status":""+nodes1[i].status+""});
+		}
+	}
+	
+	
+		
+	   zTree = $.fn.zTree.init($("#TreeLists"), setting2, jsoarr);
+	  
+	
+};
+//右侧异步加载
+function filterrig(treeId, parentNode, childNodes){
+	 if (!childNodes) return null;
+	    for (var i=0, l=childNodes.length; i<l; i++) {
+	        childNodes[i].name = childNodes[i].name.replace(/\.n/g, '.');
+	    }
+	    return childNodes;
+}
+function zTreeOnAsyncError(event, treeId, treeNode){    
+    alert("异步加载失败!");    
+}    
+//异步加载成功方法  
+function zTreeOnAsyncSuccess(event, treeId, treeNode, msg){
+
+     var childrens=treeNode.children;
+    // console.log(nodesrig);
+     if(childrens){
+    	 //判断右侧树是否有内容
+    	 if($("#TreeLists").text().length==0){}else{    		 
+    		 var treeObj1 = $.fn.zTree.getZTreeObj("TreeLists");
+    		 var nodes1 = treeObj1.transformToArray(treeObj1.getNodes());
+    		 //如果加载出的数据在右边已存在，那就变色
+        	 for(var i=0;i<childrens.length;i++){ 
+            	 for(var j in nodes1){        		 
+            		 if(childrens[i].id==nodes1[j].id){        			 
+            			 $('#'+childrens[i].tId+"_a").find('.node_name').addClass('disnode');        			
+            		 }
+            	 }
+             }
+    	 }
+	
+	
+    
+     }
+    // console.log(nodes1);
+}
+//右边异步加载成功的方法
+function zTreeOnAsyncSuccessRight(event, treeId, treeNode, msg){
+	
+	
+}
+function getUrlByNodeId(treeId, treeNode) {
+	return "notice/noticeRecSubDeptQuery.action?noticeRecDeptParamInfo.deptId="+treeNode.deptId;
+}
+
+//添加
+var jsoarr=[];//用来生成右侧树
+var idscf=[];//用来判断去重复
+var idsarr=[];//用来加颜色的
+ function adddpet(){
+	 $('.rigtabs .icheckbox').iCheck('uncheck');
+	 var treeObj = $.fn.zTree.getZTreeObj("deptmenu");
+	 var nodes = treeObj.getSelectedNodes(); //获取选中	 
+	 var nodesAll = treeObj.transformToArray(treeObj.getNodes());//全部
+	//如果选中的这个id在右边已存在这不选中
+	 for(var o in jsoarr){		
+		 if(nodes[0].id==jsoarr[o].id){
+			 $('#deptmenu .curSelectedNode .node_name').addClass('disnode');
+			 return;
+		 }		
+	 }	 
+	 //判断是否勾选全部选中
+	 /*if($('.icheckbox_square-green').hasClass("checked")){
+		 for(var i=0;i<nodesAll.length;i++){						 
+			 jsoarr.push({"id":""+nodesAll[i].id+"","pId":""+nodesAll[i].pId+"","name":""+nodesAll[i].name+"","isParent":""+nodesAll[i].isParent+"","open":""+nodesAll[i].open+"","status":"2"});
+		 }			 
+		 zTree = $.fn.zTree.init($("#TreeLists"), setting2, jsoarr);
+	 }else{//没有勾选全部		 
+*/		 var ifys=$('.curSelectedNode span').eq(1).hasClass('disnode');
+		 if(ifys){
+			return;			
+		 }else{			 
+			 //$("#"+nodes[0].pId).find('.node_name').addClass('disnode');			 
+			 $('#deptmenu .curSelectedNode .node_name').addClass('disnode');			 
+			 var str={"id":""+nodes[0].id+"","pId":""+nodes[0].pId+"","name":""+nodes[0].name+"","isParent":"false","open":""+nodes[0].open+"","status":"1","zAsync":"true"};
+			 jsoarr.push(str);
+		 }
+		 zTree = $.fn.zTree.init($("#TreeLists"), setting2, jsoarr);
+	 //}
+	 var treeObjrig = $.fn.zTree.getZTreeObj("TreeLists");
+	 nodesrig = treeObjrig.transformToArray(treeObjrig.getNodes());
+ }
+ //添加下属部门 
+ function addSubordinates(){
+	 $('.rigtabs .icheckbox').iCheck('uncheck');
+	 var treeObj = $.fn.zTree.getZTreeObj("deptmenu");
+	 var nodes = treeObj.getSelectedNodes(); //获取选中
+	 var zjd=nodes[0].children;	 
+	 var nodesAll = treeObj.transformToArray(treeObj.getNodes());//全部	
+	 
+	 /*if($("#TreeLists").text().length>0){	
+		 var treeObj1 = $.fn.zTree.getZTreeObj("TreeLists");
+		 var nodes1 = treeObj1.transformToArray(treeObj1.getNodes());
+		 var dataZtreeList=[];
+			//alert(1);			
+			for(var i in nodes1){
+				
+			}
+		}else{ */
+	 	 
+	//如果选中的这个id在右边已存在这不选中
+	 for(var o in jsoarr){		
+		 if(nodes[0].id==jsoarr[o].id){
+			 $('#deptmenu .curSelectedNode .node_name').addClass('disnode');
+			 return;
+		 }		
+	 }
+	 
+	 var str =""; 
+	 idsarr.length=0;
+     if(zjd){      	 
+    	// alert('有子节点');    	     	 
+    	 var ifys=$('.curSelectedNode span').eq(1).hasClass('disnode');
+    	 if(ifys){return;}else{
+    		 $('#deptmenu .curSelectedNode .node_name').addClass('disnode');
+        	 idsarr.push(nodes[0].tId);
+        	 idscf.push(nodes[0].id);//用来去重的
+        	 arrpid.push(nodes[0].id);//判断重复添加
+        	 jsoarr.push({"id":""+nodes[0].id+"","pId":""+nodes[0].pId+"","name":""+nodes[0].name+"","isParent":""+nodes[0].isParent+"","open":""+nodes[0].open+"","status":"2"});
+
+             getAllChildrenNodes(nodes[0],str);
+             
+            
+            // console.log(idscf);
+    	 }
+    	
+     }else{   
+    	// alert('无子节点');    	
+    	 str=nodes[0].tId;
+        // str.push(nodes[0].tId);
+    	 var ifys=$('.curSelectedNode span').eq(1).hasClass('disnode');
+    	 if(ifys){return;}else{
+    		 idscf.push(nodes[0].id);//用来去重的颜色
+    		 arrpid.push(nodes[0].id);//判断重复添加
+    		 $('#deptmenu .curSelectedNode .node_name').addClass('disnode');
+    		
+    		 jsoarr.push({"id":""+nodes[0].id+"","pId":""+nodes[0].pId+"","name":""+nodes[0].name+"","isParent":""+nodes[0].isParent+"","open":""+nodes[0].open+"","status":"2"});
+    		 zTree = $.fn.zTree.init($("#TreeLists"), setting2, jsoarr);
+    	 }
+    	 
+     }
+    
+     //获取所有的父节点让他变颜色
+    /* if (nodes.length > 0) {
+     	var nodepid = nodes[0].getPath();
+	     for(var i in nodepid){
+	    	$('#'+nodepid[i].tId+"_a").find('.node_name').addClass('disnode');
+	     }
+     }*/
+    
+	 //添加颜色
+     for(var i=0;i<idsarr.length;i++){
+    	$('#'+idsarr[i]+"_a").find('.node_name').addClass('disnode');
+     }
+   
+	//}
+ }
+//去掉重复数据方法
+ function dataqc(array){
+ for(var i=0;i<array.length;i++){   
+     for(var j=i+1;j<array.length;j++){   
+        if(array[j]===array[i]) {   
+            array.splice(j,1);   
+            j--;   
+          }          
+     }
+ }
+ 	return array;
+ }
+ //js递归
+ var arrpid=[];
+ function getAllChildrenNodes(treeNode,result){ 	 
+
+	 var treeObj1 = $.fn.zTree.getZTreeObj("TreeLists");
+	 var nodes1=null;
+	  //jsoarr.length=0;
+	 if($("#TreeLists").text().length>0){		
+		  nodes1 = treeObj1.transformToArray(treeObj1.getNodes());	
+	 }
+	 
+		 if (treeNode.children) { 			 
+		      var childrenNodes = treeNode.children; 
+		      if (childrenNodes) {		    	  
+		          for (var i = 0; i < childrenNodes.length; i++) { 		        	
+		           if(childrenNodes[i].children){			        	   
+		        	idsarr.push(childrenNodes[i].tId);
+		        	idscf.push(childrenNodes[i].id);//用来去重的颜色		     
+		        	arrpid.push(childrenNodes.id);//用来判断右边是否已存在	
+		        	//循环判断重复
+		        	var flagqc=false;
+		        	for(var k in nodes1){
+		        		if(childrenNodes[i].id==nodes1[k].id){
+		        		
+		        			//jsoarr.splice(0, 1, {"id":""+childrenNodes[i].id+"","pId":""+childrenNodes[i].pId+"","name":""+childrenNodes[i].name+"","isParent":""+childrenNodes[i].isParent+"","open":""+childrenNodes[i].open+"","status":"2"});
+		        			//jsoarr.length=0;
+		        			//treeObj1.removeChildNodes(childrenNodes[i]);
+		        			//jsoarr.splice($.inArray({"id":""+childrenNodes[i].id+"","pId":""+childrenNodes[i].pId+"","name":""+childrenNodes[i].name+"","isParent":""+childrenNodes[i].isParent+"","open":""+childrenNodes[i].open+"","status":""+childrenNodes[i].open+""},jsoarr),1);
+		        			flagqc=true;		        			
+		        			
+		        		}
+		        	}
+		        	if(!flagqc){		        		
+		        		jsoarr.push({"id":""+childrenNodes[i].id+"","pId":""+childrenNodes[i].pId+"","name":""+childrenNodes[i].name+"","isParent":""+childrenNodes[i].isParent+"","open":""+childrenNodes[i].open+"","status":"2"});
+		        	}
+		        	
+		        	
+		        	//jsoarr.push({"id":""+childrenNodes[i].id+"","pId":""+childrenNodes[i].pId+"","name":""+childrenNodes[i].name+"","isParent":""+childrenNodes[i].isParent+"","open":""+childrenNodes[i].open+"","status":"2"});		        	
+		            //result = getAllChildrenNodes(childrenNodes[i], result);
+		        	getAllChildrenNodes(childrenNodes[i], result);
+		        	
+		           }else{		        	   
+		            //result += ',' + childrenNodes[i].id;		        	
+		            idsarr.push(childrenNodes[i].tId);
+		            idscf.push(childrenNodes[i].id);//用来去重的
+		            arrpid.push(childrenNodes[i].id);
+		           // jsoarr.push({"id":""+childrenNodes[i].id+"","pId":""+childrenNodes[i].pId+"","name":""+childrenNodes[i].name+"","isParent":""+childrenNodes[i].isParent+"","open":""+childrenNodes[i].open+"","status":"2"});
+		            //循环判断重复
+		            var flagqc=false;
+		            	for(var k in nodes1){
+		            		if(childrenNodes[i].id==nodes1[k].id){
+		            			//treeObj1.removeChildNodes(childrenNodes[i]);	
+		            			//jsoarr.splice(0, 1, {"id":""+childrenNodes[i].id+"","pId":""+childrenNodes[i].pId+"","name":""+childrenNodes[i].name+"","isParent":""+childrenNodes[i].isParent+"","open":""+childrenNodes[i].open+"","status":"2"});
+		            			flagqc=true;		            			
+		            		}
+		            	}
+		            	if(!flagqc){		            		
+		            		jsoarr.push({"id":""+childrenNodes[i].id+"","pId":""+childrenNodes[i].pId+"","name":""+childrenNodes[i].name+"","isParent":""+childrenNodes[i].isParent+"","open":""+childrenNodes[i].open+"","status":"2"});
+		            	}
+		            
+		           }
+		          } 
+		      } 
+		  }
+		 
+		 dataqc(arrpid);
+		 dataqc(idscf);//去重
+
+	
+		  zTree = $.fn.zTree.init($("#TreeLists"), setting2, jsoarr);
+
+	 // console.log(idscf);	  
+	  return result; 
+	  
+	}
+	
+ //删除查找pid 递归
+function getAllPidNodes(treeNode,result){
+	 zTree = $.fn.zTree.init($("#TreeLists"), setting2, jsoarr);
+	 var treeObj1 = $.fn.zTree.getZTreeObj("TreeLists");
+	 var nodes1 = treeObj1.transformToArray(treeObj1.getNodes());	 
+	 
+	  
+	 if (treeNode.pId) {
+		 jsoarr.length=0; 
+		 for(var i=0;i<nodes1.length;i++){
+			 if(treeNode.pId==nodes1[i].id){
+				 jsoarr.push({"id":""+nodes1[i].id+"","pId":""+nodes1[i].pId+"","name":""+nodes1[i].name+"","isParent":""+nodes1[i].isParent+"","open":""+nodes1[i].open+"","status":"1"});
+				 getAllPidNodes(nodes1[i], result);
+			 }else{
+				 jsoarr.push({"id":""+nodes1[i].id+"","pId":""+nodes1[i].pId+"","name":""+nodes1[i].name+"","isParent":""+nodes1[i].isParent+"","open":""+nodes1[i].open+"","status":""+nodes1[i].status+""});
+			 }
+		 }
+	      
+	  } 
+	  // console.log(idsarr);
+	  zTree = $.fn.zTree.init($("#TreeLists"), setting2, jsoarr);
+	
+	  return result; 
+}
+ //取消
+ function btnqx(){
+	$(".layui-layer-shade").hide();
+	$("#layui-jsf").hide();
+ }
+
+ //确认
+
+ function btnOK(){
+	 //选中了所有用户
+		if($('.rigtabs .icheckbox_square-green').hasClass("checked")){
+			$("#txtjsf").val('所有用户');
+			$("#labdata").html('所有用户');
+			/*for(var i=0;i<nodesAll.length;i++){						 
+				 jsoarr.push({"id":""+nodesAll[i].id+"","pId":""+nodesAll[i].pId+"","name":""+nodesAll[i].name+"","isParent":""+nodesAll[i].isParent+"","open":""+nodesAll[i].open+"","status":"2"});
+			 }			 
+			 zTree = $.fn.zTree.init($("#TreeLists"), setting2, jsoarr);*/
+		}else{  
+			if($("#TreeLists").html().length<1){layer.msg("未选择任何数据");return;}
+			
+   		 var treeObj1 = $.fn.zTree.getZTreeObj("TreeLists");
+   		 var nodes1 = treeObj1.transformToArray(treeObj1.getNodes());
+   		 var dataZtreeList=[];
+   		 var dataZtreeListjson={};   		 
+   		//dataZtreeListjson={};//传值给后台
+  		 for(var i in nodes1){
+   			dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].deptId"] = nodes1[i].id;
+   			dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].deptName"] = nodes1[i].name;
+   			 //打开
+   			if(nodes1[i].open){
+   				dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].receiveState"] = "1";	    				
+   			}else{//关闭   				
+   				if(nodes1[i].zAsync){
+   					dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].receiveState"] = "1";
+   				}else{	    					
+   					dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].receiveState"] = "0";
+   				}
+   			}
+   			
+   			
+  		 }
+   		/*if(!ifdel){
+   			dataZtreeListjson={};//传值给后台
+	   		 for(var i in nodes1){
+	    			dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].deptId"] = nodes1[i].id;
+	    			dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].deptName"] = nodes1[i].name;
+	    			 //打开
+	    			if(nodes1[i].open){
+	    				dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].receiveState"] = "1";	    				
+	    			}else{//关闭
+	    				
+	    				if(nodes1[i].isParent){
+	    					dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].receiveState"] = "0";
+	    				}else{
+	    					dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].receiveState"] = "1";
+	    				}
+	    				if(nodes1[i].zAsync){
+	    					dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].receiveState"] = "1";
+	    				}else{	    					
+	    					dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].receiveState"] = "0";
+	    				}
+	    			}
+	    			
+	    			
+	   		 }
+   		}
+   		else{   
+   			
+   			dataZtreeListjson={};//传值给后台
+   		 for(var i in nodes1){
+   			dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].deptId"] = nodes1[i].id;
+			dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].deptName"] = nodes1[i].name;
+   			if(nodes1[i].status=="1"){	   				
+	   				dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].receiveState"] = "1";
+	   				//dataZtreeList.push({"deptId":""+nodes1[i].id+"","deptName":""+nodes1[i].name+"","receiveState":"1"});
+	   		}else if(nodes1[i].status=="2"){	   				
+	   				dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].receiveState"] = "0";
+	   				//dataZtreeList.push({"deptId":""+nodes1[i].id+"","deptName":""+nodes1[i].name+"","receiveState":"0"}); 
+	   		}else{
+	   				dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].receiveState"] = "0";
+	   				//dataZtreeListjson["noticeAddParamInfo.deptInfos["+i+"].receiveState"] = nodes1[i].status;
+	   				//dataZtreeList.push({"deptId":""+nodes1[i].id+"","deptName":""+nodes1[i].name+"","receiveState":""+nodes1[i].status+""});
+	   				//dataZtreeList.push({"deptId":""+nodes1[i].id+"","deptName":""+nodes1[i].name+"","receiveState":"0"});
+	   		}
+	
+    			
+    		}
+   		
+   		}*/
+   		
+   		
+  
+   		//console.log(nodes1);
+   		//console.log(dataZtreeListjson);   		 
+   		// return;   	
+		 $.ajax({
+			 url:"notice/noticeRecDeptNameQuery.action",			 			 		
+			 type: "post",
+			 data: dataZtreeListjson,
+			 dataType:"json",
+			 traditional: true,
+			 beforeSend:function(){
+				loading();
+			},
+			 success: function(data) {
+				 var strtext="";//给文本框内容
+				 $("#backjson").val(JSON.stringify(dataZtreeListjson));
+				 $("#txtjsf").val('');
+				 var str=[];
+				
+				 for(var i in data){
+					 str.push(data[i].deptName);
+				 }				 
+				 //超过10个字段显示...
+				 var flg=false;
+				 for(var i=0;i<str.length;i++){
+					 if(i==9){
+						 strtext+=str[i]+";";
+						 flg=true;
+						 break;
+					 }else{
+						 strtext+=str[i]+";";
+					 }
+				 }
+				 if(flg){strtext=strtext.replace(/;$/,'...');}				 
+				 $("#txtjsf").val(strtext);	
+				 $("#labdata").html(strtext);	 
+				 closeloading();
+				 
+			 }
+		 });
+		}//else结束
+		//
+		$(".layui-layer-shade").hide();
+		$("#layui-jsf").hide();
+ }
+
+//删除
+var delarr=[];
+var ifdel=false;
+function onRemove(e, treeId, treeNode) {
+	 ifdel=true;
+	 var treeObj = $.fn.zTree.getZTreeObj("deptmenu");
+	 var nodes = treeObj.transformToArray(treeObj.getNodes());
+	 var treeObj1 = $.fn.zTree.getZTreeObj("TreeLists");
+	 var nodes1 = treeObj1.transformToArray(treeObj1.getNodes());
+	 var arr=[];
+	 
+	// console.log(treeNode);
+	 var treeren=treeNode.children;
+	 
+
+		 //有子节点	 
+		 if(treeNode.children){
+			 //alert('有子节点');
+			 //生成右侧ztree
+			 jsoarr.length=0;
+			 delarr.length=0;
+			//删除时改变他所有父节点的状态
+			  if (nodes1.length > 0) {
+			     	var nodepid = treeNode.getPath();
+			     	 
+				     for(var j=0;j<nodes1.length;j++){
+				    	 var flag=false;
+				    	 for(var i in nodepid){
+					    	 if(nodes1[j].id==nodepid[i].id){
+					    		 flag=true;					    		
+					    		 delarr.push(nodes1[i].id);
+					    		 jsoarr.push({"id":""+nodes1[j].id+"","pId":""+nodes1[j].pId+"","name":""+nodes1[j].name+"","isParent":""+nodes1[j].isParent+"","open":""+nodes1[j].open+"","status":"1"});
+					    	 }
+					    	
+					     }
+				    	 if(!flag){
+				    		 delarr.push(nodes1[j].id);
+				    		 jsoarr.push({"id":""+nodes1[j].id+"","pId":""+nodes1[j].pId+"","name":""+nodes1[j].name+"","isParent":""+nodes1[j].isParent+"","open":""+nodes1[j].open+"","status":""+nodes1[j].status+""});
+				    	 }
+				    	 //delarr.push(nodes1[i].id);
+					 }
+			     }
+			 			
+			
+			 
+			//console.log(delarr);
+			 
+			 //循环对比左右ztree的id		 
+			 for(var q=0;q<nodes.length;q++){
+				 var flag=false;
+				 for(var w=0;w<delarr.length;w++){
+					 //判断右边的ID是否在左边存在
+					 if(nodes[q].id==delarr[w]){	
+						 flag=true; 
+					 }				
+				 }
+				 //如果左侧有的右侧没有，那就变颜色
+				 if(!flag){
+					 $('#'+nodes[q].tId+"_a").find('.node_name').removeClass('disnode');
+				 }
+			 }
+			
+			 
+			 zTree = $.fn.zTree.init($("#TreeLists"), setting2, jsoarr);
+			 
+		 }else{//没有子节点	
+			 //alert('无子节点');
+			 //判断是否变色
+			 for(var i=0;i<nodes.length;i++){			 			 				 		
+					 if(nodes[i].id==treeNode.id){						
+						 $('#'+nodes[i].tId+"_a").find('.node_name').removeClass('disnode');								
+					 }
+			 }
+			 jsoarr.length=0;	
+			 //删除时改变他所有父节点的状态
+			  if (nodes1.length > 0) {
+			     	var nodepid = treeNode.getPath();
+			     	 
+				     for(var j=0;j<nodes1.length;j++){
+				    	 var flag=false;
+				    	 for(var i in nodepid){
+					    	 if(nodes1[j].id==nodepid[i].id){
+					    		 flag=true;
+					    		 jsoarr.push({"id":""+nodes1[j].id+"","pId":""+nodes1[j].pId+"","name":""+nodes1[j].name+"","isParent":""+nodes1[j].isParent+"","open":""+nodes1[j].open+"","status":"1"});
+					    	 }					    	 
+					     }
+				    	 if(!flag){
+				    		 jsoarr.push({"id":""+nodes1[j].id+"","pId":""+nodes1[j].pId+"","name":""+nodes1[j].name+"","isParent":""+nodes1[j].isParent+"","open":""+nodes1[j].open+"","status":""+nodes1[j].status+""});
+				    	 }
+						 
+					 }
+			     }
+			 			 
+			 zTree = $.fn.zTree.init($("#TreeLists"), setting2, jsoarr);
+			// console.log(jsoarr);
+		 }
+	// }
+	
+	 //console.log(nodes1)
+	// console.log(jsoarr);
+}
+
+
+		</script>
+	</body>
+</html>

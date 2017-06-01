@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>扩展</title>
+	</head>
+	<body>
+		<script>
+			// //JS的扩展方法： 1 定义类 静态方法扩展 2 定义类 对象方法扩展
+			 //var aClass = function(){}
+			 function aClass(){alert(11111);}
+			    //1 定义这个类的静态方法
+            aClass.sayHello = function(){
+                document.write('say hello <br/>');
+            }
+			aClass.sayHello();//aClass的静态方法
+			
+            //2 定义这个类对象的对象方法
+            aClass.prototype.protoSayHello = function(){
+                 document.write('prototype say hello <br/>');
+            }
+			var aObject = new aClass();
+            aObject.protoSayHello();  //类对象的方法扩展
+         
+         
+	        String.prototype.ResetBlank = function() {        //对字符串扩展
+	            var regEx = /\s+/g;  
+	            return this.replace(regEx, '');  
+	        };  
+
+        
+            var str = "你      在他想还好吗?";
+             document.write('扩展前'+str+'<br/>');
+            str = str.ResetBlank();        //这样就能够调用了，跟C#的很像吧!
+             document.write('扩展后'+str+'<br/>');
+        
+        
+        
+		</script>
+	</body>
+</html>

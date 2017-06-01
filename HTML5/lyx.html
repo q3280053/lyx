@@ -1,0 +1,124 @@
+﻿<!DOCTYPE  html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>canvas写字</title>
+		<style>
+		</style>
+
+		<script src="js/jquery-1.12.1.min.js"></script>
+
+
+		<script>
+			window.document.designMode = "off";
+		</script>
+	</head>
+
+	<body>
+
+		<canvas id="canvas" style="border: 1px solid #CCCCCC;display: block;margin: 10px auto;">
+			不支持
+		</canvas>
+
+
+
+		<script>
+					
+			 
+			 var tangram=[
+				 //刘
+				 {p:[{x:20,y:20},{x:30,y:30}],color:"#f00"},	
+				 {p:[{x:10,y:35},{x:45,y:35}],color:"#f00"},
+				 {p:[{x:18,y:40},{x:35,y:75}],color:"#f00"},
+				 {p:[{x:35,y:40},{x:18,y:75}],color:"#f00"},
+				 {p:[{x:40,y:50},{x:40,y:65}],color:"#f00"},
+				 {p:[{x:50,y:25},{x:50,y:83}],color:"#f00"},
+				 {p:[{x:50,y:83},{x:40,y:75}],color:"#f00"},
+				 //永
+				 {p:[{x:78,y:20},{x:88,y:30}],color:"#f00"},
+				 {p:[{x:73,y:35},{x:95,y:35}],color:"#f00"},
+				 {p:[{x:95,y:35},{x:95,y:83}],color:"#f00"},
+				 {p:[{x:95,y:83},{x:80,y:75}],color:"#f00"},
+				 {p:[{x:77,y:45},{x:95,y:55}],color:"#f00"},
+				 {p:[{x:95,y:55},{x:73,y:73}],color:"#f00"},
+				 {p:[{x:95,y:55},{x:110,y:40}],color:"#f00"},
+				 {p:[{x:95,y:55},{x:120,y:75}],color:"#f00"},
+				 //希
+				 {p:[{x:130,y:20},{x:150,y:40}],color:"#f00"},
+				 {p:[{x:150,y:20},{x:130,y:40}],color:"#f00"},
+				 {p:[{x:125,y:40},{x:155,y:40}],color:"#f00"},
+				 {p:[{x:140,y:35},{x:125,y:60}],color:"#f00"},
+				 {p:[{x:132,y:50},{x:132,y:65}],color:"#f00"},
+				 {p:[{x:132,y:50},{x:152,y:50}],color:"#f00"},
+				 {p:[{x:152,y:50},{x:152,y:65}],color:"#f00"},
+				 {p:[{x:152,y:65},{x:145,y:63}],color:"#f00"},
+				 {p:[{x:140,y:45},{x:140,y:83}],color:"#f00"}
+				 
+			 ]
+					
+					
+					
+						window.onload=function(){
+							var canvas=document.getElementById("canvas");
+							
+							canvas.width=800;
+							canvas.height=500;
+						
+							var context=canvas.getContext("2d");
+							for(var i=0;i<tangram.length;i++){
+								draw(tangram[i],context);
+								
+						}
+								
+								//俩个圆圈
+							 	context.beginPath();
+					            context.arc(350,150,100,0,Math.PI*2,false);
+					            //参数有（Xstart,Ystart,radiusStart,XEnd,YEnd,radiusEnd）
+					            var gnt = context.createRadialGradient(350,150,0,350,150,100);
+								gnt.addColorStop(0,'red');
+								gnt.addColorStop(0.5,'#ddd');
+								gnt.addColorStop(1,'#333');					            
+					            context.lineWidth = 1;
+					            context.fillStyle = gnt;
+					            context.fill();
+					            context.closePath();
+					            
+					            context.beginPath();
+					            context.arc(600,150,100,0,Math.PI*2,true);					            
+					            var gnt = context.createRadialGradient(600,150,0,600,150,100);
+								gnt.addColorStop(0,'red');								
+								gnt.addColorStop(1,'#333');
+					           
+					            context.lineWidth = 1;
+					            context.fillStyle = gnt;
+					            context.fill();
+					            context.closePath();
+					    
+							
+						}
+							function draw(piece,cxt)
+							{
+								cxt.beginPath();
+								cxt.moveTo(piece.p[0].x,piece.p[0].y);
+								for(var i=1;i<piece.p.length;i++)
+								{
+									cxt.lineTo(piece.p[i].x,piece.p[i].y);
+									cxt.closePath();
+									
+									cxt.strokeStyle=piece.color;
+									
+									cxt.stroke()
+								}
+								
+							}
+							
+					
+						
+							
+		</script>
+
+		
+	</body>
+
+</html>

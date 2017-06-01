@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>多栏布局</title>
+		<style>
+		.box{column-count:4;column-rule:1px solid #ccc}
+		.flower{margin: 40px auto;width: 400px;height: 400px;-webkit-transition: 10s linear;}
+		.flower div{float:left;width: 200px;height: 200px;box-sizing: border-box;background-color: #f00;border: 7px solid #fff;}
+		.flower div:nth-child(1),.flower div:nth-child(4){border-radius: 0 60%;}
+		.flower div:nth-child(2),.flower div:nth-child(3){border-radius: 60% 0;}		
+		.flower:hover{-webkit-transform:rotate(720deg);}
+		</style>
+	</head>
+	<body >
+		<div class="box">
+			<p>1</p>
+			<p>2</p>
+			<p>3</p>
+			<p>4</p>			
+		</div>
+		<div class="flower">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</body>
+</html>

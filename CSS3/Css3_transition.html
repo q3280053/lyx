@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>过度</title>		
+		<meta http-equiv="Page-Enter" content="revealTrans(Duration=1.0,Transition=23)">
+		<meta http-equiv="Page-Exit" content="revealTrans(duration=5, transition=2)">
+		<style>
+			.box{-webkit-transform: matrix(1,0,0,1,0,0);height: 100px;width: 100px;background-color: #ddd;}
+			/*
+			 matrix(a,b,c,d,e,f);
+			 a：缩放x
+			 b：  斜切y
+			 c：  斜切x
+			 d：缩放y
+			 e：位移x
+			 f：位移y
+			 
+			 旋转就要控制 a b c d 4个参数
+			 * */		
+		</style>
+	</head>
+	<body>
+		<div class="box"></div>
+		<script>
+		//WebkitTransitionend
+			var a=3,b=3,c;
+			a=++a;
+			console.log(a);
+			c=++b;
+			console.log(b);
+			console.log(c);
+			function chuanzhi(){
+				alert('我是子页面');
+			}
+		</script>
+	</body>
+</html>

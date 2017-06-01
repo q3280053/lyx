@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.1.min.js"></script>
+		<style>
+			body,html{height: 100%;padding: 0;margin: 0;}
+			.box{position: relative;height: 100%;}
+			.box span{position: absolute;color: rgba(255,255,255,0.3);}
+			
+		</style>
+	</head>
+	<body style="background-color: #000000;">
+		<div class="box">
+			<span>css</span>
+			<span>css3</span>
+			<span>html</span>
+			<span>html5</span>
+			<span>javascript</span>
+		</div>
+		<script>
+			$(function(){
+				//获取高宽
+				var hig=$("body").height()-100;
+				var wid=$("body").width()-100;
+				//随机分布文字
+				$(".box span").each(function(){
+					var sjhig=parseInt(Math.random()*hig);//随机top
+					var sjwid=parseInt(Math.random()*wid);//随机left
+					var sjds=parseInt(Math.random()*361);//随机deg
+					$(this).css({"left":sjwid+"px","top":sjhig+"px",'transform':'rotate('+sjds+'deg)'});
+					
+				});
+			})
+		</script>
+	</body>
+</html>

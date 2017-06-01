@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+
+	</head>
+	<body>
+
+
+<script type="text/javascript"> 
+/*document.onmousemove=function(e){	
+	var ev=e||event;
+	var x=ev.clientX;
+	var y=ev.clientY;
+	document.getElementById("xycoordinates").innerHTML="坐标: (" + x + "," + y + ")";
+}*/
+
+function cnvs_getCoordinates(e)
+{
+	x=e.clientX;
+	y=e.clientY;
+	document.getElementById("xycoordinates").innerHTML="坐标: (" + x + "," + y + ")";
+}
+ 
+function cnvs_clearCoordinates()
+{
+	document.getElementById("xycoordinates").innerHTML="";
+}
+</script>
+</head>
+
+
+<p>把鼠标悬停在下面的矩形上可以看到坐标：</p>
+
+<div id="coordiv" style="float:left;width:199px;height:99px;border:1px solid #c3c3c3" onmousemove="cnvs_getCoordinates(event)" onmouseout="cnvs_clearCoordinates()"></div>
+<br />
+<br />
+<br />
+<div id="xycoordinates"></div>
+
+<div style="float: right;width: 271px;height: 7px;position: relative;background: url(img/90.png) no-repeat;">
+    	<div id="tupian" style="width: 271px;height: 7px;background-color: #fff;position: absolute;right: 0px;top:0px;"></div>
+    </div> 
+    <script>
+    window.onload = function() {
+        	var otp=document.getElementById("tupian");
+        	var timer=null;    
+        	var speed=-10;
+        	timer=setInterval(function(){        		
+        		if(otp.offsetWidth<=1)
+        		{
+        			otp.style.width="271px";
+        		}else{
+        			otp.style.width=otp.offsetWidth+speed+"px";
+        		}        	        		        	
+        	},100)
+        	//var reg=/[u4e00-u9fa5]{2}_[0-9]{8}.xls/;
+		//var reg=/[u4e00-u9fa5]{2}\_[\d]{8}\.xls/;
+		var str="长沙_20122233.xls";
+		var reg=/^[\u4e00-\u9fa5]{2}_\d{8}.xls$/; 
+		/*if(reg.test(str))
+		{
+			alert(1);
+		}else{alert(2);}*/
+		
+            /*if (window.applicationCache) {
+                alert("你的浏览器支持HTML5");
+            } else {
+                alert("你的浏览器不支持HTML5");
+            }*/
+        }
+   
+		</script>
+	</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>弹性盒子</title>
+		<style>
+		/*-webkit-box-pack  位置移动*/
+		/*-webkit-box-reflect 倒影*/
+		/*box-ordinal-group 分组选择位置*/
+		/*box-orient 垂直还是水平*/
+		.box{display: -webkit-box;-webkit-box-pack: center;-webkit-box-orient: below;-webkit-box-orient:inline-axis;
+			
+		}
+		.box div{height:50px;width:50px;border: 1px solid #000;}
+		.box div:nth-of-type(1){-webkit-box-ordinal-group:2}
+		.box div:nth-of-type(2){-webkit-box-ordinal-group:4}
+		.box div:nth-of-type(3){-webkit-box-ordinal-group:3}
+		.box div:nth-of-type(4){-webkit-box-ordinal-group:5}
+		.box div:nth-of-type(5){-webkit-box-ordinal-group:1}
+			input:disabled{color: #f00;}
+			p{text-overflow:ellipsis;overflow:hidden;white-space:nowrap;width: 100px;}
+						
+		</style>
+	</head>
+	<body style="width: 600px;border: 1px solid #ccc;">
+		<div style="width: 100px;">	
+			<div style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+			 单行文本溢出啊三季度喀什的空间撒谎的卡金士顿科技阿什顿快接啊似的看见阿首都喀经商的空间啊活动空间啊哈苏德快接啊得很快结束
+			</div>
+			<div style="overflow: hidden;word-break: break-all;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp: 3;display: -webkit-box;">
+			 多行文本溢出啊三季度喀什的空间撒谎的卡金士顿科技阿什顿快接啊似的看见阿首都喀经商的空间啊活动空间啊哈苏德快接啊得很快结束
+			</div>
+		</div>
+		<input value="禁止输入" type="text" disabled="disabled" />
+		<div>这是透明文少时诵诗书反反复复分字</div>
+		<p>三十岁死死死死死死死死死死死死死死死死死死死死死死死死死死死死死死死死死死死死</p>
+		
+		<div class="box">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		</div>
+		<script>
+			/*var a = ['A', 'B', 'C'];
+				a.forEach(function (element, index, array) {    
+				    alert(element);
+				});*/
+			
+			/*function foo(a, b) {
+			    var i, rest = [];
+			    if (arguments.length > 2) {
+			        for (i = 2; i<arguments.length; i++) {
+			            rest.push(arguments[i]);
+			        }
+			    }
+			    console.log('a = ' + a);
+			    console.log('b = ' + b);
+			    console.log(rest);
+			}; */
+			//foo(2,3,5,6,7);
+			var count = 0;
+			var oldParseInt = parseInt; // 保存原函数
+			
+			window.parseInt = function () {
+			    count += 1;
+			    return oldParseInt.apply(null, arguments); // 调用原函数
+			};
+			var arr =  [10, 20, 1, 2];
+			var r = arr.filter(function (element, index, self) {
+			    return self.indexOf(element) === index;
+			});
+			//alert(r.toString());
+			arr.sort(function(x,y){
+				 return y - x;
+			});
+			console.log(arr);
+			//(function (x) { alert(x*x) }) (2);
+			//xx=>({alert(xx*xx)})(3);
+			 var fn =(x)=> new Date().getFullYear()-x; 
+			//alert(fn(1));
+		</script>
+	</body>
+</html>

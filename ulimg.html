@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #div1{
+      width: 640px;
+      height: 120px;
+      margin: 100px auto;
+      background-color: #646464;
+      position: relative;
+      overflow: hidden;
+    }
+    #div1 ul{
+      position:absolute;
+      left:0;
+      top:0;
+      overflow: hidden;
+      background-color: #3b7796;
+    }
+ 
+    #div1 ul li{
+      float: left;
+      width: 160px;
+      height: 120px;
+      list-style: none;
+    }
+  </style>
+ 
+  <script>
+    window.onload = function(){
+      var oDiv = document.getElementById('div1');
+      var oUl = document.getElementById('ul1');
+      var speed = 2;//初始化速度
+ 
+      oUl.innerHTML += oUl.innerHTML;//图片内容*2-----参考图（2）
+      var oLi= document.getElementsByTagName('li');
+      oUl.style.width = oLi.length*160+'px';//设置ul的宽度使图片可以放下
+ 
+      var oBtn1 = document.getElementById('btn1');
+      var oBtn2 = document.getElementById('btn2');
+ 
+ 
+      function move(){
+        if(oUl.offsetLeft<-(oUl.offsetWidth/2)){//向左滚动，当靠左的图4移出边框时
+          oUl.style.left = 0;
+        }
+ 
+        if(oUl.offsetLeft > 0){//向右滚动，当靠右的图1移出边框时
+          oUl.style.left = -(oUl.offsetWidth/2)+'px';
+        }
+ 
+        oUl.style.left = oUl.offsetLeft + speed + 'px';
+      }
+ 
+      oBtn1.addEventListener('click',function(){
+        speed = -2;
+      },false);
+      oBtn2.addEventListener('click',function(){
+        speed = 2;
+      },false);
+ 
+      var timer = setInterval(move,30);//全局变量 ，保存返回的定时器
+ 
+      oDiv.addEventListener('mouseout', function () {
+        timer = setInterval(move,30);
+      },false);
+      oDiv.addEventListener('mousemove', function () {
+        clearInterval(timer);//鼠标移入清除定时器
+      },false);
+    }
+  </script>
+	</head>
+	<body>
+		<input id="btn1" type="button" value="向左">
+  <input id="btn2" type="button" value="向右">
+  <div id="div1">
+ 
+    <ul id="ul1">
+      <li><img src="img/img_1.jpg"></li>
+      <li><img src="img/img_2.jpg"></li>
+      <li><img src="img/img_3.jpg"></li>
+      <li><img src="img/img_4.jpg"></li>
+    </ul>
+  </div>
+	</body>
+</html>

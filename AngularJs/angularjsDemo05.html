@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head >
+	<meta charset="UTF-8" />
+	<title>注册</title>
+	<link href="Boostrap/css/bootstrap.css" rel="stylesheet" />
+	
+	
+	<style>
+		
+	</style>
+</head>
+<body ng-controller="myCtrl">
+	<form name="formlogin" ng-submit="tijiao()">
+		<div class="form-control">
+			<label for="">用户名</label><input type="text" ng-model="userdata.username" ng-minlength="4" ng-maxlength="10" required name="username" />
+				<span ng-if="(formlogin.username.minlength.$error||formlogin.username.maxlength.$error) && formlogin.username.$touch">报错了</span>
+			<label for="">密码</label><input type="text" ng-model="userdata.password" name="password" /><span></span>
+			<label for="">密码2</label><input type="text" ng-model="userdata.password2" name="password2" /><span></span>
+			<input type="submit" value="注册" />
+		</div>
+	</form>
+	
+  		
+		<script src="js/angular.min.js"></script>
+		
+<script>
+//(formlogin.username.$error.minlength || formlogin.username.$error.maxlength) && 
+	var app = angular.module('myApp', []);
+		app.controller('myCtrl', function($scope) {	
+		  $scope.userdata={};
+		  $scope.tijiao=function(){	
+		  	console.log($scope.userdata);
+		  	if($scope.formlogin.$invalid){
+		  		alert('不通过');
+		  	}
+		  	else{
+		  		alert('通过');
+		  	}
+		  }
+		  
+		    
+		});
+		
+		
+		
+
+
+</script>
+</body>
+</html>

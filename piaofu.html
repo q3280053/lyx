@@ -1,0 +1,106 @@
+
+<html>  
+<head>  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">  
+    <title>test</title>  
+    <style type="text/css">   
+       /* #All{ width: 100%; height: 3000px;}  */
+      body { 
+		_background-attachment:fixed; 
+		_background-image:url(about:blank); 
+		} 
+#asd{
+				position: fixed;
+				bottom: 0;
+				left: 0;
+	/*		_position:absolute;
+_bottom:auto;
+_top:expression_r(eval_r(document.documentElement.scrollTop));*/
+				_position:absolute; 
+/*_top:expression(eval(document.documentElement.scrollTop + 330));  */
+_top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));
+				
+}
+    </style>  
+</head>  
+<body>    
+		<div style="height:1000px;border: 1px solid #000;">
+					sdfsdfadfasdfdsfasdfsadfasdfasdf
+		</div>
+		<div id="asd">
+			<img src="img/HBuilder.png">				
+		</div>
+		
+    <div id="All">   
+        <div id="img" style="position: absolute; z-index:99;" onmouseover="clearInterval(interval)" onmouseout="interval = setInterval('changePos()', delay)">   
+            <span style="CURSOR:hand;font-weight:bold" onclick="clearInterval(interval);img.style.visibility = 'hidden'">关闭</span><br />
+            <a href="#" target="_blank"><img src="img/ico.png" border="0"  style="cursor: pointer;" style="cursor: pointer;" /></a>   
+            <script >  
+    
+                var xPos = 20; //document.body.clientWidth -                 
+                var yPos = document.body.clientHeight / 2;  
+                var step = 1;  
+                var delay = 10;  
+                var height = 0;  
+                var Hoffset = 0;  
+                var Woffset = 0;  
+                var yon = 0;  
+                var xon = 0;  
+                var pause = true;  
+                var interval;  
+                img.style.top = yPos;  
+                
+                function changePos() {  
+                    width = document.body.clientWidth;  
+                    height = document.body.clientHeight;  
+                    Hoffset = img.offsetHeight;  
+                    Woffset = img.offsetWidth;  
+                    img.style.left = xPos + document.body.scrollLeft;  
+                    img.style.top = yPos + document.body.scrollTop;  
+                    if (yon) {  
+                        yPos = yPos + step;  
+                    } else {  
+                        yPos = yPos - step;  
+                    }    
+                    if (yPos < 0) {  
+                        yon = 1;  
+                        yPos = 0;  
+                    }  
+                    if (yPos >= (height - Hoffset)) {  
+                        yon = 0;  
+                        yPos = (height - Hoffset);  
+                    }  
+                    if (xon) {  
+                        xPos = xPos + step;  
+                    } else {  
+                        xPos = xPos - step;  
+                    }  
+                    if (xPos < 0) {  
+                        xon = 1;  
+                        xPos = 0;  
+                    }  
+                    if (xPos >= (width - Woffset)) {  
+                        xon = 0;  
+                        xPos = (width - Woffset);  
+                    }  
+                }   
+                function start() {  
+                    img.visibility = "visible";  
+                    interval = setInterval('changePos()', delay);  
+                }  
+                /*function pause_resume() {  
+                    if (pause) {  
+                        clearInterval(interval);  
+                        pause = false;  
+                    } else {  
+                        interval = setInterval('changePos()', delay);  
+                        pause = true;  
+                    }  
+                }   */
+                start();  
+    
+            </script>  
+        </div>  
+    </div>  
+</body>  
+</html>

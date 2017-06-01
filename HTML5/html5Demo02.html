@@ -1,0 +1,89 @@
+﻿<!DOCTYPE  html>
+<html>
+
+	<head>
+		<title> 语义化标签</title>
+		<meta name="author" content="power" >
+		<meta charset="UTF-8" />
+	    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width,target-densitydpi=device-width" />
+		<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+	<script src="js/jquery-1.12.1.min.js"></script>
+	<script src="Boostrap/js/html5shiv.min.js">/*兼容新标签*/</script>
+	<style>
+		h3{border-bottom:1px solid #ccc;}
+	</style>
+		
+	
+	</head>
+
+	<body>	
+		<input type="text" x-webkit-speech />
+	
+		<header>
+			<time datetime="2008-02-14">9:00</time>
+		</header>
+		<h3>提示框</h3>
+		<aside>
+			<input type="text" list="valList" />
+			<datalist id="valList">
+				<option value="javascript">javascript</option>
+				<option value="css">css</option>
+				<option value="css2">css2</option>
+				<option value="html5">html5</option>
+			</datalist>
+		</aside>
+		<h3>详情</h3>
+		<aside>
+			<details>
+				<summary>妙味</summary>
+				<a href="">培训机构</a>
+			</details>			
+		</aside>
+		<mark>标签</mark>
+		<h3>公钥</h3>
+		<form action="http://www.baidu.com" method="get">
+			用户 <input type="text" name="username" />
+			公钥<keygen name="security" />
+			<input type="submit"  />
+		</form>
+		<h3>进度条</h3>
+		<progress max="100" value="30"><span>70</span>%</progress>
+		<h3>表单控件</h3>
+		<form action="">
+			<input type="email"  placeholder="邮箱 " autocomplete="off"/>
+			<input type="tel" placeholder="手机号" autofocus=""/>
+			<input type="url" placeholder="路径" />
+			<input type="search" placeholder="查询" />
+			<input type="range" max="10" value="3" min="0" step="1" />
+			<input type="number" />
+			<input type="color" />
+			<input type="time" />
+			<input type="datetime-local" />
+			<input type="week" />
+			<input type="month" />
+			<input type="submit" />			
+		</form>
+		<3>验证反馈</3>
+		<script>
+			/*window.webkitNotifications.requestPermission();
+			sataue=window.webkitNotifications.checkPermission();
+			var notification=window.webkitNotifications.createNotification("[img]","title","body");
+			notification.show();*/
+			
+			if(window.webkitNotifications){
+				if(window.webkitNotifications.checkPermission()==0){
+				setInterval(function(){
+				var popup = window.webkitNotifications.createNotification("avator.jpg","如花温馨提醒：","长时间面对电脑眼睛会瞎的，休息一下~！");
+				popup.show();
+			},1000 * 60 * 20);
+			}else{
+				window.webkitNotifications.requestPermission();
+			}
+			}else{
+				console.log('浏览器不支持桌面通知～！');
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{width: 200px;height: 200px;background-color: #f00;margin: 10px;float: left;
+			opacity: 0.3;filter: alpha(opacity:30);
+			}
+		</style>
+		<script>
+		//js运动 缓冲
+			/*window.onload=function(){
+				var oDiv=document.getElementsByTagName("div");
+				for(var i=0;i<oDiv.length;i++){
+					oDiv[i].timer=null;
+					oDiv[i].onmouseover=function(){						
+						starmove(this,300);					
+					}
+					oDiv[i].onmouseout=function(){
+						starmove(this,100);
+					}
+				}
+			}
+			
+			function starmove(obj,itarget){
+				clearInterval(obj.timer);				
+				obj.timer=setInterval(function(){
+					var speed=(itarget-obj.offsetWidth)/6;
+					speed=speed>0?Math.ceil(speed):Math.floor(speed);
+					
+					if(obj.offsetWidth==itarget){
+						clearInterval(obj.timer);
+					}
+					else{
+						obj.style.width=obj.offsetWidth+speed+"px";
+					}
+				},30)
+			}*/
+			
+			//js运动 淡入淡出
+			window.onload=function(){
+				var oDiv=document.getElementsByTagName("div");
+				for(var i=0;i<oDiv.length;i++)
+				{
+					oDiv[i].alpha=30;
+					oDiv[i].timer=null;
+					oDiv[i].onmouseover=function(){						
+						startmove(this,100);
+					}
+					oDiv[i].onmouseout=function(){
+						startmove(this,30);
+					}
+				}
+			}
+			function startmove(obj,itarget){
+				clearInterval(obj.timer);
+				obj.timer=setInterval(function(){
+					var speed=(itarget-obj.alpha)/6;
+					speed=speed>0?Math.ceil(speed):Math.floor(speed);
+					if(obj.alpha==itarget)
+					{
+						clearInterval(obj.timer);
+					}
+					else{
+						obj.alpha+=speed;
+						obj.style.opacity=obj.alpha/100;
+						obj.style.filter="alpha(opacity:"+obj.alpha+")";
+					}
+					
+				},30)
+			}
+			
+			//getStyle(obj,"width");
+			function getStyle(obj,name){
+				if(obj.currentStyle)
+				{
+					return obj.currentStyle[name];
+				}
+				else{
+					return getComputedStyle(obj,false)[name];		
+				}	
+			}
+			//任意值运动框架
+			 /*window.onload=function(){
+			 	var oDiv=document.getElementById("div1");
+			 	oDiv.onmouseover=function(){
+			 		startmove(this,'opacity',100);
+			 	}
+			 	oDiv.onmouseout=function(){
+			 		startmove(this,'opacity',30);
+			 	}
+			 }
+			 function startmove(obj,attr,itarget){
+			 	clearInterval(obj.timer);
+			 	obj.timer=setInterval(function(){
+			 		var cur=0;
+			 		if(attr=="opacity")
+			 		{
+			 			cur=parseFloat(getStyle(obj,attr))*100;
+			 		}else{
+			 			cur=parseInt(getStyle(obj,attr));
+			 		}
+			 		var speed=(itarget-cur)/6;
+			 		speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			 		
+			 		if(cur==itarget)
+			 		{
+			 			clearInterval(obj.timer);
+			 		}
+			 		else{
+			 			if(attr=="opacity"){
+			 				obj.style.opacity=(cur+speed)/100;
+							obj.style.filter="alpha(opacity:"+(cur+speed)+")";
+			 			}
+			 			else{
+			 				obj.style[attr]=cur+speed+"px";
+			 			}
+			 		}
+			 	},30)
+			 }*/
+		</script>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</body>
+</html>

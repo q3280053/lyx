@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.12.1.min.js"></script>
+		<style type="text/css">
+			/* 开通服务 */			
+		.bjk .span-btns{width:300px;display: inline-block;}		
+		.span-btns input{height:25px;padding:0 10px;margin-left: 15px;}
+		
+		.bjk .ktfw-ul .ktfw-title{width:100%;height:40px;font-weight: bold;border-bottom:1px dashed #ccc;padding:0}	
+		.bjk .ktfw-ul{width:95%;margin: 5px auto 0 auto;height: 100%;}	
+		.bjk .ktfw-ul li{width:25%;height:35px;line-height: 35px;padding-left: 20px;}
+		.cfl{*zoom:1}
+		.cfl:after{content:"\0020";display:block;height:0;clear:both;overflow:hidden;visibility:hidden}
+		
+		
+		</style>
+	</head>
+	<body>
+		<input type="button" value="取值" id="btn" />
+		<div id="forxh"></div>
+		<script>
+			$(function(){
+			//生成ul	
+			var str="测试接口1,测试接口11,固话用户信息实时查询@测试接口2,测试接口21,手机LBS定位,手机用户信息实时查询@测试接口3,测试接口21,手机LBS定位";																																			
+			$("#forxh").append('<div class="bjk"><ul class="ktfw-ul"><li><label><input type="checkbox">'+str.replace(/,/g,'</label></li><li><label><input type="checkbox" />').replace(/@/g,'</label></li></ul><div class="cfl"></div></div><div class="bjk"><ul class="ktfw-ul"><li><label><input type="checkbox" />')+'</label></li></ul><div class="cfl"></div></div>');
+			//给li添加样式
+			 var ulleng=$(".ktfw-ul");
+			for(var i=0;i<ulleng.length;i++){
+				ulleng[i].firstChild.className="ktfw-title";						
+			}
+			
+			//全选
+			$(".ktfw-ul .ktfw-title label input").bind("click",function(){				
+					if($(this).is(":checked")){					
+						$(this).parents(".bjk").find("input").prop("checked","true");
+					}else{						
+						$(this).parents(".bjk").find("input").removeAttr("checked");						
+					}
+										
+				});
+			
+			//当子的未选中时，父也未空
+			$('li').not('.ktfw-title').find("input[type='checkbox']").click(function(){
+				if($(this).is(":checked")){					
+					var aaa=$(this).parents(".bjk").find("li").not('.ktfw-title').find("input[type='checkbox']").length;					
+					var bbb=$(this).parents(".bjk").find("li").not('.ktfw-title').find("input[type='checkbox']:checked").length;
+
+					if(aaa==bbb)
+					{
+						$(this).parents(".bjk").find(".ktfw-title input[type='checkbox']").prop("checked","true");
+					}
+					
+				}else{
+					$(this).parents(".bjk").find(".ktfw-title input[type='checkbox']").removeAttr("checked");
+				}
+			})
+			//取值
+			$("#btn").click(function(){
+					var check=$('li').not('.ktfw-title').find("input[type='checkbox']");
+				 	var arrstr="";
+		         for(var i=0;i<check.length;i++)
+		         {		         	
+		         	 if(check[i].checked)
+		         	{		         	
+		         		arrstr+=check[i].parentNode.innerText+",";
+		         	} 
+		         }
+		        
+		         arrstr=arrstr.replace(/,$/, '');
+		         alert(arrstr);
+			})
+		});
+		</script>
+	</body>
+</html>

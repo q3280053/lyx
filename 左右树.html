@@ -1,0 +1,308 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+   
+    
+    <title>发布通告</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	
+
+	
+		<style>
+		.hig100px{height:100px !important;resize:none}
+		.hig120px{height:120px !important;}
+		.line100px{line-height: 100px;};
+		.shyj{width:83% !important;height:100px !important;}
+		.aj .inputcon{width:83% !important;}
+		
+		/* 底部按钮 */
+		.footer-btns{text-align:right;padding-right:100px;}
+		.footer-btns input{border:1px solid #199E47;background-color:#fff;color:#199E47;padding:5px 10px;margin-left:10px;border-radius:4px;}
+		.footer-btns input:hover{border-color: #65d78d;color: #65d78d;}
+		
+		#txtjsf{cursor: pointer;background-color:#fff;}
+		.layui-layer-btn{text-align:center;}
+		</style>
+		<style>
+.tabsmenus {
+	width: 210px;
+	border: 1px solid #ccc;
+	height: 260px;
+	float: left;
+	overflow: auto;
+}
+.tabright1{float:right;margin-right:15px}
+
+.jsfdiv {
+	width: 100%;
+	box-sizing: border-box;
+	height: 90%;
+	background-color: #FBFCFD;
+	border-bottom: 1px solid #ccc;
+	position: relative;
+}
+
+.lefttabs {
+	width: 40%;
+	float: left;
+	height: 100%;
+	padding-left: 15px;
+	box-sizing: border-box;
+}
+
+.rigtabs {
+	width: 40%;
+	float: left;
+	height: 100%;
+	padding-left: 35px;
+	box-sizing: border-box;
+}
+
+.middletabs {
+	width: 20%;
+	height: 100%;
+	float: left;
+	text-align: center;
+	box-sizing: border-box;
+	padding-top:100px;
+}
+
+.middletabs input {
+	color: #199E47;
+	border: 1px solid #199E47;
+	padding: 5px 10px;
+	margin-top:10px;	
+	background-color: #fff;
+}
+
+.title {
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	color: #667481;
+	font-weight: 600;
+}
+
+
+/* 底部按钮 */
+.fot-btns{width:100%;text-align: center;height：40px;box-sizing: border-box;}
+.fot-btns input{color: #199E47;border: 1px solid #199E47;padding: 5px 15px;background-color: #fff;margin:0 10px;}
+.node_name{color:#000;}
+.disnode{color:#939DA8 !important;}
+.layui-layer-shade,#layui-jsf{display:none;} 
+
+/* 发布成功 */
+#successdiv{background-color:#fff;width:100%;height:100%;z-index: 99999;position: fixed;left: 0;top:0;display: none;}
+</style>
+  </head>
+  
+  <body class="aj">
+  
+		<div class="workspacecentrain">
+				<div class="tablediv aj">
+					<div class="form-group">
+						<label class=" control-label" for="ds_host">接收方</label>
+						<div class="inputcon">
+							<input class="form-control behavior" onclick="options(this)" readonly="readonly"  type="text" id="txtjsf" placeholder=""  value="所有用户 "/>
+						</div>						
+					</div>
+					<div class="form-group" >
+						<label class="control-label" for="ds_username">标题<i>*</i></label>
+						<div class="inputcon ">
+							<input class="form-control behavior" id="biaoti" maxlength="20"  type="text"   />
+						</div>
+						
+					</div>
+					
+					<div class="form-group" >
+						<label class="control-label" for="ds_username">重要程度</label>
+						<div class="inputcon">
+							<div class="form-control behavior" >
+							<input type="radio" class="icheckbox" value="1" name="zycd" checked=""> <span class="checkboxfortitle">一般</span>&nbsp;&nbsp;&nbsp;
+							<input type="radio" class="icheckbox" value="2" name="zycd"> <span class="checkboxfortitle">保密</span>
+							
+							</div>
+						</div>
+					
+					</div>
+					<div class="form-group hig120px"  >
+						<label class="control-label line100px" for="ds_username">正文<i>*</i></label>
+						<div class="inputcon shyj">							
+							<textarea class="form-control behavior hig100px" id="txtyj" type="text" maxlength="200"></textarea>
+							<div>&nbsp;&nbsp;&nbsp;(请输入不少于3个字，不多于200个字的通告内容)</div>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="footer-btns">
+					<input type="button" class="behavior" id="release" value="发布"  />										
+				</div>
+				<input type="hidden" value="" id="txtarrid" />
+			</div>
+		</div>	
+		<!-- 添加接收方弹出框 -->
+		<div class="layui-layer-shade"  style="z-index:888; background-color:#000; opacity:0.8; filter:alpha(opacity=80);"></div>
+		<div class="layui-layer layui-layer-page  layer-anim" id="layui-jsf" type="page" times="5" showtime="0" contype="string" style="z-index: 9999; width: 700px; height: 430px; top: 5%; left: 50%;margin-left:-300px;">
+		<div class="layui-layer-title" style="cursor: move;" move="ok">添加接收方</div>
+			<div id="" class="layui-layer-content" style="height: 382px;">
+				<div class="jsfdiv">
+					<div class="lefttabs">
+						<div class="title">所有用户</div>
+						<div class="tabsmenus">
+							
+							<div id="deptmenu" class="demo ztree"></div>
+			
+						</div>
+					</div>
+					<div class="middletabs">
+						<div class="title"></div>
+						<input type="button" id="btnDpet" value="添加" onclick="adddpet()">
+						<input type="button" id="btnsxDpet"  value="添加下属部门" onclick="addSubordinates()" />
+					</div>
+							
+					<div class="rigtabs">
+						<div class="title">已选接收方</div>
+						<div class="tabsmenus tabright">
+							<div class="demo ztree" tabindex="-1" id="TreeLists"></div>
+							<p style="clear:both;">
+						</p></div>
+						<p style="clear:both;">
+							</p><p></p>
+							<input type="checkbox" class="icheckbox"   ><span class="checkboxfortitle">所有用户</span>
+						<p></p>
+					</div>
+					
+					
+				</div>
+				<div class="fot-btns">
+						<input type="button" value="确认" onclick="btnOK();">
+						<input type="button" value="取消" onclick="btnqx();">
+					</div>
+			</div>
+		<span class="layui-layer-setwin">
+			<a class="layui-layer-ico layui-layer-close layui-layer-close1" href="javascript:;"></a>
+		</span>
+		</div>
+		<input type="hidden"  value="" id="backjson" />
+		<input type="hidden" value="${noticePublishInfo.deptId}" id="defaultNoticeRecDeptId"/>
+		<div id="successdiv">
+			<div style="padding:20px;">通告已发布成功！已发送给<label id="labdata">所有用户</label>。</div>
+			<div class="footer-btns" style="float:left;">
+					<input type="button" class="behavior" id="" value="返回工作台" onclick="backgzt()" />
+					<input type="button" class="behavior" id="" value="再次发布通知" onclick="backfbtg()" />										
+			</div>
+		</div>		
+		<script src="js/jquery-1.12.1.min.js"></script>
+		<script src="layer/layer.js"></script>
+		<script src="icheck/icheck.js"></script>
+		<script src="ztreejs/jquery.ztree.core.js"></script>
+		<script src="ztreejs/jquery.ztree.exedit.js"></script>
+		<script src="ztreejs/selecttreeDetp.js"></script>
+		<script src="ztreejs/releaseAnnunciate.js"></script>
+		<script>
+		var path='${pageContext.request.contextPath}';
+		var layerindex=null;
+		var arrdata=[];
+		var strcz=null;//子页面需要用到
+
+		//接收方
+		function options(obj) {		
+			$("#txtjsf").blur();
+			$(".layui-layer-shade").show();
+			$("#layui-jsf").show();			
+		}
+		//跳转到工作台
+		function backgzt(){
+			top.closeRefreshIframe('工作台');
+		}
+		//刷新本界面
+		function backfbtg(){
+			location.reload();
+		}
+		$(function(){
+			//checkbox
+			$('.icheckbox').iCheck({
+					checkboxClass: 'icheckbox_square-green',
+					radioClass: 'iradio_square-green',
+					increaseArea: '20%' // optional
+				});
+			//发布
+			$("#release").bind("click",function(){
+				var txtarrid=$("#txtarrid").val();
+				var txtjsf=$("#txtjsf").val();	
+				var txtbt=$("#biaoti").val();
+				var txtyj=$("#txtyj").val();
+				var txtjb=$(".form-control .checked .icheckbox").val();				
+				if(txtjsf==""){
+					layer.msg('请选择接收方');
+					return;
+				}
+				if(txtbt==""){
+					layer.msg('请输入标题');
+					return;
+				}
+				if(txtyj.length<3){
+					layer.msg('请至少输入3个字的通告正文');
+					return;
+				}else if(txtyj.length>=200){
+					layer.msg('多余200个字的通告正文');
+					return;
+				}
+				
+				//发布通告信息
+				var backjson= {};
+				var noticeRecDeptInfo = $("#backjson").val();
+				//判断是否勾选所有用户
+				if($('.rigtabs .icheckbox_square-green').hasClass("checked")){
+					//默认接收部门
+					backjson["noticeAddParamInfo.deptInfos[0].deptId"] = $("#defaultNoticeRecDeptId").val();
+				    //默认包含下级所有部门
+				    backjson["noticeAddParamInfo.deptInfos[0].receiveState"] = "0";
+				}else{
+					backjson=JSON.parse(noticeRecDeptInfo);
+				}
+				
+			
+				
+				backjson["noticeAddParamInfo.importLevel"] = txtjb;//级别
+				backjson["noticeAddParamInfo.title"] = txtbt;//标题
+				backjson["noticeAddParamInfo.content"] = txtyj;//正文
+				//console.log(backjson);
+				
+			 	$.ajax({
+			 		url: '${pageContext.request.contextPath}/notice/publicNoticeAddSubmit.action',
+					data: backjson,				
+					type: "post",
+					traditional: true,
+					beforeSend:function(){
+						loading();
+					},
+					success: function(data) {										
+						closeloading();
+						var mes=data.split("@");
+						 if(mes[0]=="0"){						 	
+						 	$(".layui-layer-close").trigger('click');
+							window.parent.mests(mes[1]);
+							//aj_update_tabback();
+							$("#successdiv").show();
+							//$("#labdata").html(strtext);	 							 	
+						 }
+						 else{
+							 window.parent.mests(mes[1]);
+						 }						
+					}
+			 	});
+			});
+								
+		});
+		
+			
+		</script>
+	</body>
+</html>
+

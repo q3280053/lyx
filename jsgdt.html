@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>自定义滚动条</title>		
+		<style>
+			
+		</style>
+	</head>
+	<body>
+
+		<div id="div1" style="width: 580px;height: 20px;position: relative;background-color: #ddd;margin: 0 auto;">
+			<div id="div2" style="height: 20px;width: 20px;position: absolute;left: 0;top: 0;background-color: #f00;"></div>
+		</div>
+		
+		<script>		
+		window.onload=function(){			
+			var oDiv1=document.getElementById("div1");
+			var oDiv2=document.getElementById("div2");
+			
+			
+			var disX=0;
+			
+			oDiv2.onmousedown=function(ev){
+				
+				
+				
+				var e=ev||event;
+				disX=e.clientX-oDiv2.offsetLeft;				
+				document.onmousemove=function(ev){
+					var e=ev||event;
+					document.documentElement.clientWidth;
+					var l=e.clientX-disX;
+				
+					if(l<0)
+					{
+						l=0;
+					}else if(l>oDiv1.offsetWidth-oDiv2.offsetWidth){
+						l=oDiv1.offsetWidth-oDiv2.offsetWidth
+					}
+				
+						oDiv2.style.left=l+"px";			
+					var scale=1/(oDiv1.offsetWidth-oDiv2.offsetWidth);
+					document.title=scale;
+							
+				};
+				document.onmouseup=function(){
+					document.onmousemove=null;
+					document.onmouseup=null;
+										
+					
+			
+				}
+				return false;
+			}
+			
+		}
+		</script>
+	</body>
+</html>

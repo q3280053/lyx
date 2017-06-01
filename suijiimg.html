@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,html{width: 100%;height:100%;margin: 0;padding: 0;}
+			
+			#count .active{border: 5px solid #f00;}
+			#count img{float: left;width:100px;height:100px;margin:5px;border: 5px solid #ccc;}
+			#fd{position: fixed;top:50%;left:50%;width:300px;margin-left:-150px;height:350px;margin-top:-150px;z-index: 3;text-align: center;display: none;;}
+			#mask{width: 100%;height:100%;position:fixed;background-color: #000;z-index: 2;display:none;opacity: 0.5;}
+		</style>
+		<script src="js/jquery-1.12.1.min.js"></script>
+	</head>
+	<body>
+		<div id="mask"></div>
+		<div id="fd"><img src=""><input value="再来一次" type="button" id="star" /></div>		
+		
+		<div id="count">			
+			<img src="images/sc1.jpg" class="active" />
+			<img src="images/sc2.jpg" />
+			<img src="images/sc3.jpg" />
+			<img src="images/sc4.jpg" />
+			<img src="images/sc5.jpg" />			
+			<img src="images/sc6.jpg" />
+		</div>
+		<input value="停止" type="button" id="stop" />
+		<script>
+		var timed;
+			$(function(){												
+				sjff();
+				$("#star").on('click',function(){
+					$("#fd img").removeAttr('style');
+					$("#mask").hide();
+					$("#fd").hide();
+					$("#fd img").removeAttr("src",'')
+					sjff();
+				});
+				$("#stop").on('click',function(){
+					$("#mask").show();
+					$("#fd").show();
+					clearInterval(timed); 
+					var url=$("#count .active").attr('src');
+					$("#fd img").attr("src",url).animate({"width":"300px","height":"300px"},300);					
+					$("#count .active").remove();
+				});
+				
+			});
+			function sjff(){
+				clearInterval(timed); 
+				timed=setInterval(function(){
+					var len=$('#count img').length;					
+					var sj=parseInt(Math.random()*len);					
+					$("#count img").removeClass("active");
+					$("#count img").eq(sj).addClass('active');
+				},200)
+			}
+		</script>
+	</body>
+</html>
