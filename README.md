@@ -1,5 +1,5 @@
 ## Welcome to GitHub Pages
-PC:http://www.liuyongxi.cn Web:http://url.cn/45fXavT
+<a href='http://www.liuyongxi.cn'>PC</a> or <a href='http://url.cn/45fXavT' >Web</a>
 
 You can use the [editor on GitHub](https://github.com/q3280053/lyx/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
